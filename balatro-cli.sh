@@ -71,6 +71,12 @@ WINEPREFIX="/opt/Balatro"
 # the mode that balatro will be launched in by default ("native", "steam", or "wine")
 MODE="native"
 
+# if set to 1, mods are not copied to the mod directory
+NOINSTALL="0"
+
+# if set to 1, debug logs are sent to console
+BALATRO_DEBUG="0"
+
 # by vanillyn
 EOF
 
@@ -82,15 +88,19 @@ load_config() {
 
     GAME_PATH=$(eval echo "$GAME_PATH")
     DOWNLOAD_DIR=$(eval echo "$DOWNLOAD_DIR")
+    MODS_DIR=$(eval echo "$MODS_DIR")
     LOVE_BIN=$(eval echo "$LOVE_BIN")
     WINE_BIN=$(eval echo "$WINE_BIN")
     WINEPREFIX=$(eval echo "$WINEPREFIX")
     USER_DIR=$(eval echo "$USER_DIR")
     MODE=$(eval echo "$MODE")
+    NOINSTALL=$(eval echo "$NOINSTALL")
+    BALATRO_DEBUG=$(eval echo "$BALATRO_DEBUG")
 }
 
 # --- Checks
 # Package Manager
+
 if [[ -f /etc/arch-release ]]; then
     PKG="pacman -S"
 elif [[ -f /etc/debian_version ]]; then
@@ -112,14 +122,14 @@ check() {
     local b="$1"
 
     if ! command -v "$b" &>/dev/null; then
-        echo "Missing $b!"
 
-        if [[ !"$PKG" ]]; then
+        if [[ "$PKG" == "" ]]; then
             echo "Package manager incompatible, install $b manually."
+            exit 1
             return
         fi
 
-        read -rp "Install $b with $PKG? [Y/n] " yn
+        read -rp "$b not found. Install it with $PKG? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
             sudo $PKG "$b"
         else
@@ -166,6 +176,7 @@ flags() {
             --native) MODE="native" ;;
             --wine) MODE="wine" ;;
             --steam) MODE="steam" ;;
+            --noinstall) NOINSTALL=1 ;;
             --dir)
                 shift
                 BALATRO_DIR="$1"
@@ -194,6 +205,7 @@ flags() {
                 shift
                 CONF="$1"
                 ;;
+            --debug) BALATRO_DEBUG=1 ;;
             --help) SHOW_HELP=1 ;;
             --version) SHOW_VERSION=1 ;;
             *)
@@ -214,6 +226,7 @@ flags() {
                 s) MODE="steam" ;;
                 h) SHOW_HELP=1 ;;
                 v) SHOW_VERSION=1 ;;
+                V) BALATRO_DEBUG=1 ;;
                 *)
                     echo "Unkown flag: -$flag"
                     exit 1
@@ -290,7 +303,6 @@ subcommand() {
     esac
 }
 
-
 help() {
 
     echo "balatro-cli: launcher and mod manager for balatro on linux"
@@ -328,6 +340,7 @@ help() {
     echo "  --user_dir     specify save directory"
     echo "  --love_path    location of love executable"
     echo "  --wine_path    location of wine executable"
+    echo "  --debug        enable debug logging"
     echo ""
 }
 
@@ -358,7 +371,7 @@ version() {
     fi
 }
 
-# Launches Balatro without mods 
+# Launches Balatro without mods
 launch() {
     echo "Starting Balatro [$MODE] (Vanilla)"
 
@@ -434,15 +447,41 @@ backup() {
 # ---- Mod commands
 # Launches Balatro with mods
 m_launch() {
-    echo "Starting Balatro [$MODE] (Modded)"
+   echo "Starting Balatro [$MODE] (Modded)"
 
     native() {
-        mkdir -p "$USER_DIR/Mods"
-        mkdir -p "$HOME/.config/love"
+        check lua-socket
+        check lua-sec
+        check love
 
-        echo "[Lovely] Mod files linked"
-        echo "[Lovely] liblovely.so preloaded"
-        LD_PRELOAD=liblovely.so balatro-native
+        if [[ ! -x "$GAME_PATH" ]]; then
+            read -rp "Balatro [$MODE] not installed. Install it? [Y/n] " yn
+            if [[ "$yn" == [Yy]* ]]; then
+                i_native
+                native
+            else
+                echo "Balatro [$MODE] not installed."
+                exit 1
+            fi
+        else
+            mkdir -p "$USER_DIR/Mods"
+            mkdir -p "$HOME/.config/love"
+
+            echo "[Lovely] Mod files linked"
+            if ldconfig -p | grep -q liblovely; then
+                echo "[Lovely] liblovely.so preloaded"
+                LD_PRELOAD=liblovely.so balatro-native
+            else
+                read -rp "Lovely not found. Install Lovely? [Y/n] " yn
+                if [[ "$yn" == [Yy]* ]]; then
+                    i_lovely
+                    native
+                else
+                    echo "Lovely not installed. Mods will not load."
+                    balatro-native
+                fi
+            fi
+        fi
     }
 
     wine() {
@@ -450,57 +489,149 @@ m_launch() {
         if [[ -f "$GAME_PATH/version.dll.disabled" ]]; then
             echo "Enabling Lovely"
             mv "$GAME_PATH/version.dll.disabled" "$dll"
-        elif [[ -f "$dll" ]]; then
+        elif [[ "$dll" ]]; then
             echo "Lovely enabled"
         fi
 
         echo "[Lovely] Lovely copied to directory"
         WINEPREFIX="$WINEPREFIX" "$WINE_BIN" "$GAME_PATH/Balatro.exe"
     }
-
+    
     case "$MODE" in
     native) native ;;
     wine) wine ;;
     *) echo "Can't launch using $MODE" ;;
     esac
+    
 }
 
 m_install() {
+    [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Entering m_install for mod: $1"
+    check git
+
     local modname="$1"
-    local repo="https://raw.githubusercontent.com/vanillyn/balatro-cli/refs/heads/main/mods.txt"
-    local installed=()
+    local repo_file="$DOWNLOAD_DIR/mods.txt"
+
+    if [[ ! -f "$repo_file" ]]; then
+        check wget
+        wget -q -O "$repo_file" https://raw.githubusercontent.com/vanillyn/balatro-cli/refs/heads/main/mods.txt
+    fi
+
+    local -a mod_lines
+    mapfile -t mod_lines <"$repo_file"
+
+    unset insmod
+    declare -g -A insmod
+    [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: insmod initialized/cleared. Current keys: ${!insmod[@]}"
+
+    trim() {
+        echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+    }
 
     resolve_mod() {
-        local name="$1"
-        
-        [[ " ${installed[*]} " =~ " $name " ]] && return
+        local in_name="$1"
+        in_name=$(echo "$in_name" | tr '[:upper:]' '[:lower:]')
 
-        local line
-        line=$(grep -Ei "^$name[[:space:]]*\|" "$repo")
-        [[ -z "$line" ]] && echo "mod $name not found" && return
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Resolving '$in_name'. Current tracker state: ${!insmod[@]}"
 
-        IFS='|' read -r name url deps <<< "$line"
-        name=$(echo "$name" | xargs)
-        url=$(echo "$url" | xargs)
-        deps=$(echo "$deps" | xargs)
+        if [[ -n "${insmod[$in_name]}" ]]; then
+            [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Skipping already processed mod: '$in_name' (state: '${insmod[$in_name]}')"
+            return
+        fi
 
-        if [[ -n "$deps" ]]; then
-            IFS=',' read -ra dep_array <<< "$deps"
+        local found_entry=""
+        local found_name=""
+        local found_url=""
+        local found_deps=""
+        local found_category=""
+
+        for line in "${mod_lines[@]}"; do
+            if [[ -z "$line" || "$line" =~ ^# ]]; then
+                continue
+            fi
+
+            IFS='|' read -r name url deps category <<<"$line"
+
+            name=$(trim "$name")
+            url=$(trim "$url")
+            deps=$(trim "$deps")
+            category=$(trim "$category")
+
+            lname=$(echo "$name" | tr '[:upper:]' '[:lower:]')
+
+            [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG_LOOP: in_name='$in_name', name='$name', lname='$lname', url='$url', deps='$deps', category='$category'"
+
+            if [[ "$lname" == "$in_name" ]]; then
+                found_entry="$line"
+                found_name="$name"
+                found_url="$url"
+                found_deps="$deps"
+                found_category="$category"
+                break
+            fi
+        done
+
+        if [[ -z "$found_entry" ]]; then
+            echo "'$in_name' not found in mods.txt."
+            [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Exiting resolve_mod for: '$in_name'. Final tracker state: ${!insmod[@]}"
+            return 1
+        fi
+
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Found match for '$in_name': '$found_name'. Marking as 'processing'."
+        insmod[$in_name]="processing"
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Tracker state after marking 'processing': ${!insmod[@]}"
+
+        if [[ -n "$found_deps" ]]; then
+            IFS=',' read -ra dep_array <<<"$found_deps"
+            [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: '$in_name' has dependencies: ${dep_array[*]}"
             for dep in "${dep_array[@]}"; do
                 resolve_mod "$dep"
+                if [[ $? -ne 0 ]]; then
+                    echo "ERROR: Dependency '$dep' failed to install for '$in_name'."
+                    return 1
+                fi
             done
         fi
 
-
-        installed+=("$name")
-
-        if [[ "$url" == "smod" ]]; then
-            balatro install smod
-        elif [[ "$url" == "lovely" ]]; then
-            balatro install lovely
+        if [[ "$in_name" == "smod" || "$in_name" == "steamodded" ]]; then
+            i_steammodded
+        elif [[ "$in_name" == "lovely" ]]; then
+            i_lovely
         else
-            git clone "$url" "$MODS_PATH/$name"
+            echo "Installing $found_name [$found_category]"
+
+            local dp="$DOWNLOAD_DIR/$found_name"
+            local ip="$MODS_DIR/$found_name"
+
+            mkdir -p "$DOWNLOAD_DIR"
+
+            if [[ -d "$dp/.git" ]]; then
+                echo "Updating $found_name"
+                git -C "$dp" pull || {
+                    echo "Update failed for $found_name."
+                    return 1
+                }
+            else
+                git clone "$found_url" "$dp" || {
+                    echo "Download failed for $found_name."
+                    return 1
+                }
+            fi
+
+            if [[ "$NOINSTALL" != 1 ]]; then
+                mkdir -p "$MODS_DIR"
+                echo "Copying $found_name to "$ip""
+                rsync -a --exclude='.git' "$dp/" "$ip/"
+            else
+                echo "Skipping $found_name install."
+            fi
         fi
+
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Finished processing '$in_name'. Marking as 'installed'."
+        insmod[$in_name]="installed"
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Tracker state after marking 'installed': ${!insmod[@]}"
+        [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Exiting resolve_mod for: '$in_name'. Final tracker state: ${!insmod[@]}"
+        return 0
     }
 
     resolve_mod "$modname"
@@ -510,7 +641,22 @@ m_remove() { echo "[removing mod: $1]"; }
 m_disable() { echo "[disabling mod: $1]"; }
 m_enable() { echo "[enabling mod: $1]"; }
 m_list() { echo "[listing mods]"; }
-m_search() { echo "[searching mods for: $1]"; }
+m_search() {
+    local query="$1"
+    local repo_file="$DOWNLOAD_DIR/mods.txt"
+
+    if [[ ! -f "$repo_file" ]]; then
+        echo "Core mod repository not found. Use sync to download."
+        return 1
+    fi
+
+    grep -i "$query" "$repo_file" | while IFS='|' read -r name url deps category; do
+        name=$(echo "$name" | xargs)
+        url=$(echo "$url" | xargs)
+        category=$(echo "$category" | xargs)
+        echo "$category/$name - $url"
+    done
+}
 
 # ---- Install commands
 
@@ -607,7 +753,6 @@ i_balamod() {
 
 # --- Locks script        so nothing breaks
 lock() {
-    
 
     echo $$ >"$LOCKFILE"
 
@@ -622,8 +767,7 @@ lock() {
 
 # ----------- Main function
 main() {
-    lock()
-    [[ -f "$CONF" ]] || mkconf
+    lock() [[ -f "$CONF" ]] || mkconf
     load_config
 
     flags "$@"

@@ -37,6 +37,9 @@ if [[ -f "$LOCKFILE" ]]; then
     exit 1
 fi
 
+# --- Configs
+# Make config if missing
+
 mkconf() {
     mkdir -p "$(dirname "$CONF")"
     mkdir -p "$(dirname "$CONF")/mods"
@@ -73,6 +76,7 @@ EOF
 
 }
 
+# Load config file
 load_config() {
     [[ -f "$CONF" ]] && source "$CONF"
 
@@ -151,6 +155,8 @@ get_releases() {
         head -n 1
 }
 
+# --- Command handling
+# Handles the flags
 flags() {
     while [[ $# -gt 0 ]]; do
         arg="$1"
@@ -222,6 +228,7 @@ flags() {
     done
 }
 
+# Handles commands and subcommands
 subcommand() {
     case "$1" in
     launch) launch ;;
@@ -283,7 +290,6 @@ subcommand() {
     esac
 }
 
-# stub functions
 
 help() {
 
@@ -352,6 +358,7 @@ version() {
     fi
 }
 
+# Launches Balatro without mods 
 launch() {
     echo "Starting Balatro [$MODE] (Vanilla)"
 
@@ -424,6 +431,8 @@ backup() {
     echo "Saves backed up to $file."
 }
 
+# ---- Mod commands
+# Launches Balatro with mods
 m_launch() {
     echo "Starting Balatro [$MODE] (Modded)"
 
@@ -456,12 +465,55 @@ m_launch() {
     esac
 }
 
-m_install() { echo "[installing mods: $@]"; }
+m_install() {
+    local modname="$1"
+    local repo="https://raw.githubusercontent.com/vanillyn/balatro-cli/refs/heads/main/mods.txt"
+    local installed=()
+
+    resolve_mod() {
+        local name="$1"
+        
+        [[ " ${installed[*]} " =~ " $name " ]] && return
+
+        local line
+        line=$(grep -Ei "^$name[[:space:]]*\|" "$repo")
+        [[ -z "$line" ]] && echo "mod $name not found" && return
+
+        IFS='|' read -r name url deps <<< "$line"
+        name=$(echo "$name" | xargs)
+        url=$(echo "$url" | xargs)
+        deps=$(echo "$deps" | xargs)
+
+        if [[ -n "$deps" ]]; then
+            IFS=',' read -ra dep_array <<< "$deps"
+            for dep in "${dep_array[@]}"; do
+                resolve_mod "$dep"
+            done
+        fi
+
+
+        installed+=("$name")
+
+        if [[ "$url" == "smod" ]]; then
+            balatro install smod
+        elif [[ "$url" == "lovely" ]]; then
+            balatro install lovely
+        else
+            git clone "$url" "$MODS_PATH/$name"
+        fi
+    }
+
+    resolve_mod "$modname"
+}
+
 m_remove() { echo "[removing mod: $1]"; }
 m_disable() { echo "[disabling mod: $1]"; }
 m_enable() { echo "[enabling mod: $1]"; }
 m_list() { echo "[listing mods]"; }
 m_search() { echo "[searching mods for: $1]"; }
+
+# ---- Install commands
+
 i_native() {
     echo "native"
 }
@@ -552,6 +604,8 @@ i_steammodded() {
 i_balamod() {
     ls
 }
+
+# --- Locks script        so nothing breaks
 lock() {
     
 
@@ -566,6 +620,7 @@ lock() {
     trap cleanup INT TERM EXIT
 }
 
+# ----------- Main function
 main() {
     lock()
     [[ -f "$CONF" ]] || mkconf

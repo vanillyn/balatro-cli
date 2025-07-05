@@ -4,12 +4,12 @@
 #                       -,OKKKKOEEK:
 #                      :OKKKKKKJrrrJ
 #                     :OKKKKKKKO,O=
-#             -=JJJJ/=OKKKKKKKKKJ:=JJJJ=-             balatro-cli
+#             -=JJJJ/=OKKKKKKKKKJ:=JJJJ=-             jkrsh (joker shell)
 #            /ERRRRRREKKKKKKKKKKKERRRRRRE/            a tool by vanillyn
 #           /EREKERREKKKKKOKOKKKKKERREERRE/
 #          .ORO=..JEKKKKOKEEEKOKKKKEJ..=KRO.
 #          Oekj-  /KKKRkerrrrrekRKKK=  :okeO
-#          /oeK- :OKKEjokkrrrkkoREKKO: -Eeo/
+#          /oeK- :OKKEjokkrrrkkoREKKO: -Eeo/          modifies and runs Balatro on Linux natively
 #            .   =OEoojE[JOKER]EjkeKJ:   .
 #                .Jjkrrrrrrrrrrrrrro,.
 #                =jejKRjkojjjokjRKoro:
@@ -27,10 +27,15 @@
 #                 ---             -::
 
 CONF="$HOME/.config/balatro/config"
+CONF_DIR="$HOME/.config/balatro"
+REPO_DIR="$CONF_DIR/repos"
+mkdir -p $REPO_DIR
+
 LOCKFILE="/tmp/balatro.lock"
 LAUNCH=("native" "wine" "steam")
 ver="v0.1"
 ARGS=()
+
 
 if [[ -f "$LOCKFILE" ]]; then
     echo "another instance is already running. exiting."
@@ -82,6 +87,27 @@ EOF
 
 }
 
+mkrepo() {
+     local core_repo_file="$REPO_DIR/core.jkrepo"
+    if [[ ! -f "$core_repo_file" ]]; then
+
+        local mods_txt_path="$(dirname "$0")/mods.txt"
+        if [[ -f "$mods_txt_path" ]]; then
+            cat <<EOF >"$core_repo_file"
+# REPO_NAME: Official Balatro Mods
+# REPO_AUTHOR: vanillyn
+# REPO_DESCRIPTION: Core collection of Balatro mods from awesome-balatro.
+# REPO_URL: https://raw.githubusercontent.com/vanillyn/balatro-cli/main/mods.txt
+# REPO_MOD_COUNT: $(grep -vE '^(#|$)' "$mods_txt_path" | wc -l)
+
+$(cat "$mods_txt_path")
+EOF
+        else
+            echo "Warning: mods.txt not found at $mods_txt_path. Cannot create default core repository."
+        fi
+    fi
+
+}
 # Load config file
 load_config() {
     [[ -f "$CONF" ]] && source "$CONF"
@@ -89,6 +115,7 @@ load_config() {
     GAME_PATH=$(eval echo "$GAME_PATH")
     DOWNLOAD_DIR=$(eval echo "$DOWNLOAD_DIR")
     MODS_DIR=$(eval echo "$MODS_DIR")
+    DISABLED_DIR=$(eval echo "$MODS_DIR/disabled")
     LOVE_BIN=$(eval echo "$LOVE_BIN")
     WINE_BIN=$(eval echo "$WINE_BIN")
     WINEPREFIX=$(eval echo "$WINEPREFIX")
@@ -96,6 +123,7 @@ load_config() {
     MODE=$(eval echo "$MODE")
     NOINSTALL=$(eval echo "$NOINSTALL")
     BALATRO_DEBUG=$(eval echo "$BALATRO_DEBUG")
+
 }
 
 # --- Checks
@@ -249,52 +277,16 @@ subcommand() {
     version) version ;;
     backup) backup "$2" ;;
     mods)
-        case "$2" in
-        launch) m_launch ;;
-        install)
-            shift 2
-            m_install "$@"
-            ;;
-        remove)
-            shift 2
-            m_remove "$1"
-            ;;
-        disable)
-            shift 2
-            m_disable "$1"
-            ;;
-        enable)
-            shift 2
-            m_enable "$1"
-            ;;
-        list) m_list ;;
-        search)
-            shift 2
-            m_search "$1"
-            ;;
-        *)
-            echo "Unknown command: $2"
-            help
-            ;;
-        esac
+        shift
+        m_command "$@"
         ;;
     install)
-        case "$2" in
-        native)
-            shift 2
-            i_native "$1"
-            ;;
-        wine)
-            shift 2
-            i_wine "$1"
-            ;;
-        lovely) i_lovely ;;
-        smods | steammodded | smod) i_steammodded ;;
-        *)
-            echo "Unknown command: $2"
-            help
-            ;;
-        esac
+        shift
+        i_command "$@"
+        ;;
+    repo)
+        shift
+        r_command "$@"
         ;;
     *)
         echo "Unknown command: $1"
@@ -312,20 +304,9 @@ help() {
     echo "  help           display this help message"
     echo "  launch         launch balatro"
     echo "  backup         backs up balatro save data to a file"
-    echo "  mods"
-    echo "    launch       launches modded balatro"
-    echo "    install      installs speecified mod"
-    echo "    remove       removes specified mod"
-    echo "    disable      temporarily removes mod"
-    echo "    enable       enables a disabled mod"
-    echo "    search       searches for an available mod"
-    echo "    list         lists all installed mods"
-    echo "  install"
-    echo "    native       sets up balatro native"
-    echo "    wine         sets up a wineprefix"
-    echo "    lovely       downloads and installs lovely"
-    echo "    smod         downloads and installs steamodded"
-    echo "    balamod      downloads and installs balamod"
+    echo "  mods           manage balatro mods (use 'balatro mods help')"
+    echo "  install        install balatro components (use 'balatro install help')"
+    echo "  repo           manage mod repositories (use 'balatro repo help')" 
     echo ""
     echo "flags:"
     echo "  -h, --help     display this help message"
@@ -340,6 +321,7 @@ help() {
     echo "  --user_dir     specify save directory"
     echo "  --love_path    location of love executable"
     echo "  --wine_path    location of wine executable"
+    echo "  --noinstall    doesn't install mods"
     echo "  --debug        enable debug logging"
     echo ""
 }
@@ -444,14 +426,58 @@ backup() {
     echo "Saves backed up to $file."
 }
 
-# ---- Mod commands
+# --- Handles mod subcommands
+m_command() {
+    case "$1" in
+    launch) m_launch ;;
+    install)
+        shift
+        m_install "$@"
+        ;;
+    remove)
+        shift
+        m_remove "$1"
+        ;;
+    disable)
+        shift
+        m_disable "$1"
+        ;;
+    enable)
+        shift
+        m_enable "$1"
+        ;;
+    list) m_list ;;
+    search)
+        shift
+        m_search "$1"
+        ;;
+    *)
+        echo "Unknown command: $1"
+        m_help
+        ;;
+    esac
+}
+
+m_help() {
+    echo "balatro-cli mods: manage balatro mods"
+    echo "usage: balatro mods [subcommand] [args...]"
+    echo ""
+    echo "commands:"
+    echo "  launch       launches modded balatro"
+    echo "  install      installs specified mod"
+    echo "  remove       removes specified mod"
+    echo "  disable      temporarily removes mod"
+    echo "  enable       enables a disabled mod"
+    echo "  search       searches for an available mod"
+    echo "  list         lists all installed mods"
+    echo ""
+}
+
 # Launches Balatro with mods
 m_launch() {
    echo "Starting Balatro [$MODE] (Modded)"
 
     native() {
-        check lua-socket
-        check lua-sec
         check love
 
         if [[ ! -x "$GAME_PATH" ]]; then
@@ -505,6 +531,20 @@ m_launch() {
     
 }
 
+r_sync() {
+    echo "Syncing mod repositories..."
+    local aggregated_mods_file="$DOWNLOAD_DIR/mods.txt"
+    > "$aggregated_mods_file"
+
+    for repo_file in "$REPO_DIR"/*.jkrepo; do
+        if [[ -f "$repo_file" ]]; then
+            echo "Processing repository: $(basename "$repo_file")"
+            grep -vE '^(# REPO_NAME:|# REPO_AUTHOR:|# REPO_DESCRIPTION:|# REPO_URL:|# REPO_MOD_COUNT:|^$)' "$repo_file" >> "$aggregated_mods_file"
+        fi
+    done
+    echo "All repositories synced to $aggregated_mods_file."
+}
+
 m_install() {
     [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Entering m_install for mod: $1"
     check git
@@ -513,8 +553,12 @@ m_install() {
     local repo_file="$DOWNLOAD_DIR/mods.txt"
 
     if [[ ! -f "$repo_file" ]]; then
-        check wget
-        wget -q -O "$repo_file" https://raw.githubusercontent.com/vanillyn/balatro-cli/refs/heads/main/mods.txt
+        r_sync
+    fi
+
+    if [[ ! -f "$repo_file" ]]; then
+        echo "No mod repositories found or synced. Please add a repository first."
+        return 1
     fi
 
     local -a mod_lines
@@ -572,7 +616,7 @@ m_install() {
         done
 
         if [[ -z "$found_entry" ]]; then
-            echo "'$in_name' not found in mods.txt."
+            echo "'$in_name' not found in any active repository."
             [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Exiting resolve_mod for: '$in_name'. Final tracker state: ${!insmod[@]}"
             return 1
         fi
@@ -593,39 +637,44 @@ m_install() {
             done
         fi
 
-        if [[ "$in_name" == "smod" || "$in_name" == "steamodded" ]]; then
-            i_steammodded
-        elif [[ "$in_name" == "lovely" ]]; then
-            i_lovely
-        else
-            echo "Installing $found_name [$found_category]"
+        case "$in_name" in
+            smod|steamodded)
+                i_steammodded
+                ;;
+            lovely)
+                i_lovely
+                ;;
+            *)
+                echo "Installing $found_name [$found_category]"
 
-            local dp="$DOWNLOAD_DIR/$found_name"
-            local ip="$MODS_DIR/$found_name"
+                local dp="$DOWNLOAD_DIR/$found_name"
+                local ip="$MODS_DIR/$found_name"
 
-            mkdir -p "$DOWNLOAD_DIR"
+                mkdir -p "$DOWNLOAD_DIR"
 
-            if [[ -d "$dp/.git" ]]; then
-                echo "Updating $found_name"
-                git -C "$dp" pull || {
-                    echo "Update failed for $found_name."
-                    return 1
-                }
-            else
-                git clone "$found_url" "$dp" || {
-                    echo "Download failed for $found_name."
-                    return 1
-                }
-            fi
+                if [[ -d "$dp/.git" ]]; then
+                    echo "Updating $found_name"
+                    git -C "$dp" pull || {
+                        echo "Update failed for $found_name."
+                        return 1
+                    }
+                else
+                    git clone "$found_url" "$dp" || {
+                        echo "Download failed for $found_name."
+                        return 1
+                    }
+                fi
 
-            if [[ "$NOINSTALL" != 1 ]]; then
-                mkdir -p "$MODS_DIR"
-                echo "Copying $found_name to "$ip""
-                rsync -a --exclude='.git' "$dp/" "$ip/"
-            else
-                echo "Skipping $found_name install."
-            fi
-        fi
+                if [[ "$NOINSTALL" != 1 ]]; then
+                    mkdir -p "$MODS_DIR"
+                    echo "Copying $found_name to "$ip""
+                    rsync -a --exclude='.git' "$dp/" "$ip/"
+                else
+                    echo "Skipping $found_name install."
+                fi
+                ;;
+        esac
+
 
         [[ "$BALATRO_DEBUG" == 1 ]] && echo "DEBUG: Finished processing '$in_name'. Marking as 'installed'."
         insmod[$in_name]="installed"
@@ -637,28 +686,191 @@ m_install() {
     resolve_mod "$modname"
 }
 
-m_remove() { echo "[removing mod: $1]"; }
-m_disable() { echo "[disabling mod: $1]"; }
-m_enable() { echo "[enabling mod: $1]"; }
-m_list() { echo "[listing mods]"; }
+m_remove() {
+    local modname="$1"
+    if [[ -z "$modname" ]]; then
+        echo "Usage: balatro mods remove <mod_name>"
+        return 1
+    fi
+
+    local downloaded_path="$DOWNLOAD_DIR/$modname"
+    local installed_path="$MODS_DIR/$modname"
+
+    echo "Attempting to remove mod: $modname"
+
+    if [[ -d "$installed_path" ]]; then
+        read -rp "Are you sure you want to remove '$modname' from your mods directory ($installed_path)? [Y/n] " yn
+        if [[ "$yn" == [Yy]* ]]; then
+            rm -rf "$installed_path"
+            echo "Removed '$modname' from mods directory."
+        else
+            echo "Skipping removal from mods directory."
+        fi
+    else
+        echo "Mod '$modname' not found in installed mods directory ($installed_path)."
+    fi
+
+    if [[ -d "$downloaded_path" ]]; then
+        read -rp "Are you sure you want to remove '$modname' from your download cache ($downloaded_path)? [Y/n] " yn
+        if [[ "$yn" == [Yy]* ]]; then
+            rm -rf "$downloaded_path"
+            echo "Removed '$modname' from download cache."
+        else
+            echo "Skipping removal from download cache."
+        fi
+    else
+        echo "Mod '$modname' not found in download cache ($downloaded_path)."
+    fi
+
+    if [[ ! -d "$installed_path" ]] && [[ ! -d "$downloaded_path" ]]; then
+        echo "Successfully processed removal request for '$modname'."
+    else
+        echo "Removal of '$modname' completed with some paths not found or skipped."
+    fi
+}
+
+m_disable() {
+    local modname="$1"
+
+
+    mkdir -p "$DISABLED_DIR"
+
+    if [[ -z "$modname" ]]; then
+        echo "Usage: balatro mods disable <mod_name>"
+        return 1
+    fi
+
+    local installed_path="$MODS_DIR/$modname"
+    local archive_file="$DISABLED_DIR/${modname}.tar.jkr"
+
+    if [[ ! -d "$installed_path" ]]; then
+        echo "Mod '$modname' not found or already disabled."
+        return 1
+    fi
+
+    mkdir -p "$DISABLED_DIR"
+    tar -czf "$archive_file" -C "$(dirname "$installed_path")" "$(basename "$installed_path")" || {
+        echo "Failed to create archive for '$modname'."
+        return 1
+    }
+
+    rm -rf "$installed_path" || {
+        echo "Failed to remove original mod directory '$installed_path'."
+        return 1
+    }
+
+    echo "Disabled '$modname'."
+}
+
+m_enable() {
+    local modname="$1"
+    if [[ -z "$modname" ]]; then
+        echo "Usage: balatro mods enable <mod_name>"
+        return 1
+    fi
+
+    local installed_path="$MODS_DIR/$modname"
+    local archive_file="$DISABLED_DIR/${modname}.tar.jkr" 
+
+    if [[ ! -f "$archive_file" ]]; then 
+        echo "Mod '$modname' is already enabled."
+        return 1
+    fi
+
+    tar -xzf "$archive_file" -C "$MODS_DIR" || {
+        echo "Failed to extract archive for '$modname'."
+        return 1
+    }
+
+    rm -f "$archive_file" || {
+        echo "Failed to remove archive file '$archive_file'."
+        return 1
+    }
+
+    echo "Enabled $modname."
+}
+
+m_list() {
+    echo "Listing installed mods:"
+    if [[ -d "$MODS_DIR" ]]; then
+        local installed_count=0
+        echo "--- enabled:"
+        find "$MODS_DIR" -maxdepth 1 -mindepth 1 -type d -not -name "disabled" -printf "%f\n" | sort | while read -r mod; do
+            echo "- $mod"
+            installed_count=$((installed_count + 1))
+        done
+
+        if [[ -d "$DISABLED_DIR" ]]; then
+            echo ""
+            echo "-- disabled:"
+            find "$DISABLED_DIR" -maxdepth 1 -mindepth 1 -type f -name "*.tar.jkr" -printf "%f\n" | sort | while read -r archive_name; do
+                local mod=$(basename "$archive_name" .tar.jkr)
+                echo "- $mod"
+                installed_count=$((installed_count + 1))
+            done
+        fi
+
+        if [[ "$installed_count" -eq 0 ]]; then
+            # echo "No mods found in $MODS_DIR." # may not implement cuz rn its always counting installed_count as 0
+            return
+        fi
+    else
+        echo "Mod directory $MODS_DIR does not exist."
+    fi
+}
+
 m_search() {
     local query="$1"
     local repo_file="$DOWNLOAD_DIR/mods.txt"
 
+    r_sync
+
     if [[ ! -f "$repo_file" ]]; then
-        echo "Core mod repository not found. Use sync to download."
+        echo "No mod repositories found or synced. Please add a repository first."
         return 1
     fi
 
-    grep -i "$query" "$repo_file" | while IFS='|' read -r name url deps category; do
+    echo "Searching for '$query' in active repositories..."
+    grep -vE '^(# REPO_NAME:|# REPO_AUTHOR:|# REPO_DESCRIPTION:|# REPO_URL:|# REPO_MOD_COUNT:|^$)' "$repo_file" | grep -i "$query" | while IFS='|' read -r name url deps category; do
         name=$(echo "$name" | xargs)
         url=$(echo "$url" | xargs)
         category=$(echo "$category" | xargs)
-        echo "$category/$name - $url"
+        echo "Found: $name (Category: $category) - $url"
     done
 }
 
-# ---- Install commands
+i_command() {
+    case "$1" in
+    native)
+        shift
+        i_native "$1"
+        ;;
+    wine)
+        shift
+        i_wine "$1"
+        ;;
+    lovely) i_lovely ;;
+    smods | steammodded | smod) i_steammodded ;;
+    balamod) i_balamod ;;
+    *)
+        echo "Unknown command: $1"
+        i_help
+        ;;
+    esac
+}
+
+i_help() {
+    echo "balatro-cli install: sets up balatro components"
+    echo "usage: balatro install [subcommand] [args...]"
+    echo ""
+    echo "commands:"
+    echo "  native       sets up balatro native"
+    echo "  wine         sets up a wineprefix"
+    echo "  lovely       downloads and installs lovely"
+    echo "  smod         downloads and installs steamodded"
+    echo "  balamod      downloads and installs balamod"
+    echo ""
+}
 
 i_native() {
     echo "native"
@@ -708,6 +920,7 @@ i_lovely() {
 
         echo "Installing liblovely.so to /lib"
         sudo mv "$extract_dir/liblovely.so" /lib/liblovely.so || return 1
+        sudo ldconfig
     else
         unzip -o "$archive" -d "$extract_dir" || return 1
         if [[ ! -f "$extract_dir/version.dll" ]]; then
@@ -728,7 +941,7 @@ i_steammodded() {
     check git
 
     local repo="https://github.com/Steamodded/smods"
-    local mod_dir="$USER_DIR/Mods/smods"
+    local mod_dir="$MODS_DIR/smods"
 
     if [[ -d "$mod_dir/.git" ]]; then
         echo "Updating SMODS [$MODE]"
@@ -747,9 +960,144 @@ i_steammodded() {
     echo "SMODS [$MODE] installed to $mod_dir"
 }
 
-i_balamod() {
-    ls
+
+# --- Repository commands
+r_command() {
+    case "$1" in
+    add)
+        shift
+        r_add "$@"
+        ;;
+    delete)
+        shift
+        r_delete "$1"
+        ;;
+    list) r_list ;;
+    sync) r_sync ;;
+    *)
+        echo "Unknown command: $1"
+        r_help
+        ;;
+    esac
 }
+
+r_help() {
+    echo "balatro-cli repo: manage mod repositories"
+    echo "usage: balatro repo [subcommand] [args...]"
+    echo ""
+    echo "commands:"
+    echo "  add <name> <url>   add a new mod repository from a URL"
+    echo "  delete <name>      delete an existing mod repository"
+    echo "  list               list all active mod repositories"
+    echo "  sync               re-sync all mod data from active repositories"
+    echo ""
+}
+
+r_add() {
+    local repo_name="$1"
+    local repo_url="$2"
+
+    if [[ -z "$repo_name" || -z "$repo_url" ]]; then
+        echo "Usage: balatro repo add <name> <url>"
+        return 1
+    fi
+
+    local repo_file="$REPO_DIR/${repo_name}.jkrepo"
+
+    if [[ -f "$repo_file" ]]; then
+        echo "Repository '$repo_name' already exists. Use 'repo delete' first if you want to replace it."
+        return 1
+    fi
+
+    check curl
+    check wget
+
+    echo "Downloading repository from $repo_url..."
+    if ! wget -q -O "$repo_file.tmp" "$repo_url"; then
+        echo "Failed to download repository from $repo_url."
+        rm -f "$repo_file.tmp"
+        return 1
+    fi
+
+    if ! grep -q '|' "$repo_file.tmp"; then
+        echo "Downloaded file does not appear to be a valid mod repository format (missing '|' delimiters)."
+        rm -f "$repo_file.tmp"
+        return 1
+    fi
+
+    local downloaded_content=$(cat "$repo_file.tmp")
+    local extracted_name=$(echo "$downloaded_content" | grep -m 1 '^# REPO_NAME:' | cut -d ':' -f 2- | xargs)
+    local extracted_author=$(echo "$downloaded_content" | grep -m 1 '^# REPO_AUTHOR:' | cut -d ':' -f 2- | xargs)
+    local extracted_desc=$(echo "$downloaded_content" | grep -m 1 '^# REPO_DESCRIPTION:' | cut -d ':' -f 2- | xargs)
+
+    : "${extracted_name:=$repo_name}"
+    : "${extracted_author:=Unknown}"
+    : "${extracted_desc:=No description provided.}"
+
+    echo "# REPO_NAME: $extracted_name" > "$repo_file"
+    echo "# REPO_AUTHOR: $extracted_author" >> "$repo_file"
+    echo "# REPO_DESCRIPTION: $extracted_desc" >> "$repo_file"
+    echo "# REPO_URL: $repo_url" >> "$repo_file"
+    local mod_count=$(echo "$downloaded_content" | grep -vE '^(#|$)' | wc -l)
+    echo "# REPO_MOD_COUNT: $mod_count" >> "$repo_file"
+    echo "$downloaded_content" >> "$repo_file"
+
+    rm -f "$repo_file.tmp"
+
+    echo "Repository '$repo_name' added successfully."
+    r_sync
+}
+
+r_delete() {
+    local repo_name="$1"
+
+    if [[ -z "$repo_name" ]]; then
+        echo "Usage: balatro repo delete <name>"
+        return 1
+    fi
+
+    local repo_file="$REPO_DIR/${repo_name}.jkrepo"
+
+    if [[ ! -f "$repo_file" ]]; then
+        echo "Repository '$repo_name' not found."
+        return 1
+    fi
+
+    read -rp "Are you sure you want to delete repository '$repo_name'? [Y/n] " yn
+    if [[ "$yn" == [Yy]* ]]; then
+        rm -f "$repo_file"
+        echo "Repository '$repo_name' deleted."
+        r_sync
+    else
+        echo "Deletion cancelled."
+    fi
+}
+
+r_list() {
+    echo "Listing active mod repositories:"
+    local found_repos=0
+    for repo_file in "$REPO_DIR"/*.jkrepo; do
+        if [[ -f "$repo_file" ]]; then
+            found_repos=$((found_repos + 1))
+            local name=$(grep -m 1 '^# REPO_NAME:' "$repo_file" | cut -d ':' -f 2- | xargs)
+            local author=$(grep -m 1 '^# REPO_AUTHOR:' "$repo_file" | cut -d ':' -f 2- | xargs)
+            local desc=$(grep -m 1 '^# REPO_DESCRIPTION:' "$repo_file" | cut -d ':' -f 2- | xargs)
+            local mod_count=$(grep -m 1 '^# REPO_MOD_COUNT:' "$repo_file" | cut -d ':' -f 2- | xargs)
+
+            echo "------------------------------------"
+            echo "Name: ${name:-$(basename "$repo_file" .jkrepo)} (${mod_count:-Unknown} mods)"
+            echo "Author: ${author:-Unknown}"
+            echo "Description: ${desc:-No description provided.}"
+        fi
+    done
+
+    if [[ "$found_repos" -eq 0 ]]; then
+        echo "No repositories found. Add one with 'balatro repo add'."
+    else
+        echo "------------------------------------"
+    fi
+}
+
 
 # --- Locks script        so nothing breaks
 lock() {
@@ -768,6 +1116,7 @@ lock() {
 # ----------- Main function
 main() {
     lock() [[ -f "$CONF" ]] || mkconf
+    mkrepo
     load_config
 
     flags "$@"
@@ -775,18 +1124,14 @@ main() {
     [[ "$SHOW_HELP" == 1 ]] && help && exit 0
     [[ "$SHOW_VERSION" == 1 ]] && version && exit 0
 
-    for arg in "${ARGS[@]}"; do
-        case "$arg" in
-        launch | backup | mods | install | help | version)
-            subcommand "${ARGS[@]}"
-            exit 0
-            ;;
-        esac
-    done
+    if [[ ${#ARGS[@]} -gt 0 ]]; then
+        subcommand "${ARGS[@]}"
+        exit 0
 
-    echo "Unknown command: $1"
-    help
-    exit 1
+    else
+        help
+        exit 0
+    fi
 }
 
 main "$@"

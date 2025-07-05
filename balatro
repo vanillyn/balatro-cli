@@ -1,0 +1,593 @@
+#!/usr/bin/env bash
+#                           ---.
+#                         -,JOOOJ=.
+#                       -,OKKKKOEEK:
+#                      :OKKKKKKJrrrJ
+#                     :OKKKKKKKO,O=
+#             -=JJJJ/=OKKKKKKKKKJ:=JJJJ=-             balatro-cli
+#            /ERRRRRREKKKKKKKKKKKERRRRRRE/            a tool by vanillyn
+#           /EREKERREKKKKKOKOKKKKKERREERRE/
+#          .ORO=..JEKKKKOKEEEKOKKKKEJ..=KRO.
+#          Oekj-  /KKKRkerrrrrekRKKK=  :okeO
+#          /oeK- :OKKEjokkrrrkkoREKKO: -Eeo/
+#            .   =OEoojE[JOKER]EjkeKJ:   .
+#                .Jjkrrrrrrrrrrrrrro,.
+#                =jejKRjkojjjokjRKoro:
+#                 =EkoKOKjooojKOKkeR=
+#                   JekEKERRREKRerJ
+#              .--//JjerekjjjkerroJ,,/:.
+#           -=,JOOEERokookeerkoojoojREKOJ=:
+#         .,JOEEjjoooRKOOEjjooEOORjjooojRKO/.
+#         /JJOKRjoojOJOEREKOKjojOJKjjjojKOKK,
+#         /JJJ,JKREOJKKOJJ,,,JJERKJORRO,,JJO=
+#         =OO,/-.=JJJKJ,J,:-:,,,OEJJJ:.-/,,=
+#         =OO=   =JOOJJJ/.   ./JJJOOJ:   =/=
+#                -,JJJ/-       -/JJO,-
+#                :,,,:           :JKO:
+#                 ---             -::
+
+CONF="$HOME/.config/balatro/config"
+LOCKFILE="/tmp/balatro.lock"
+LAUNCH=("native" "wine" "steam")
+ver="v0.1"
+ARGS=()
+
+if [[ -f "$LOCKFILE" ]]; then
+    echo "another instance is already running. exiting."
+    exit 1
+fi
+
+mkconf() {
+    mkdir -p "$(dirname "$CONF")"
+    mkdir -p "$(dirname "$CONF")/mods"
+
+    cat <<EOF >"$CONF"
+# config file for balatro-cli
+
+# the path that contains Balatro.exe or balatro-native
+GAME_PATH="/usr/bin/balatro-native"
+
+# the path that mods will be downloaded to
+DOWNLOAD_DIR="\$HOME/.config/balatro/mods"
+
+# the path that lovely will load mods from
+MODS_DIR="\$HOME/.config/love"
+
+# the path that contains your Balatro saves and mod directory
+USER_DIR="\$HOME/.local/share/love/Balatro"
+
+# the path to your love binary ("love" or "/usr/bin/love" by default)
+LOVE_BIN="love"
+
+# the path to your wine binary ("wine" or "/usr/bin/wine" by default)
+WINE_BIN="wine"
+
+# the wineprefix used for running Balatro with wine
+WINEPREFIX="/opt/Balatro"
+
+# the mode that balatro will be launched in by default ("native", "steam", or "wine")
+MODE="native"
+
+# by vanillyn
+EOF
+
+}
+
+load_config() {
+    [[ -f "$CONF" ]] && source "$CONF"
+
+    GAME_PATH=$(eval echo "$GAME_PATH")
+    DOWNLOAD_DIR=$(eval echo "$DOWNLOAD_DIR")
+    LOVE_BIN=$(eval echo "$LOVE_BIN")
+    WINE_BIN=$(eval echo "$WINE_BIN")
+    WINEPREFIX=$(eval echo "$WINEPREFIX")
+    USER_DIR=$(eval echo "$USER_DIR")
+    MODE=$(eval echo "$MODE")
+}
+
+# --- Checks
+# Package Manager
+if [[ -f /etc/arch-release ]]; then
+    PKG="pacman -S"
+elif [[ -f /etc/debian_version ]]; then
+    PKG="apt-get install"
+elif [[ -f /etc/redhat-release ]]; then
+    PKG="yum install"
+elif [[ -f /etc/gentoo-release ]]; then
+    PKG="emerge install"
+elif [[ -f /etc/SuSE-release ]]; then
+    PKG="zypper install"
+elif [[ -f /etc/alpine-release ]]; then
+    PKG="apk add"
+else
+    PKG=""
+fi
+
+# Necessary packages
+check() {
+    local b="$1"
+
+    if ! command -v "$b" &>/dev/null; then
+        echo "Missing $b!"
+
+        if [[ !"$PKG" ]]; then
+            echo "Package manager incompatible, install $b manually."
+            return
+        fi
+
+        read -rp "Install $b with $PKG? [Y/n] " yn
+        if [[ "$yn" == [Yy]* ]]; then
+            sudo $PKG "$b"
+        else
+            echo "Skipping $b install."
+        fi
+    fi
+}
+
+# Balatro install directory
+check_install() {
+    if [[ -z "$GAME_PATH" ]]; then
+        if [[ -d "/usr/share/balatro" ]]; then
+            GAME_PATH="/usr/share/balatro"
+        elif command -v steam &>/dev/null; then
+            if [[ -d "$HOME/.steam/steam/steamapps/common/Balatro" ]]; then
+                GAME_PATH="$HOME/.steam/steam/steamapps/common/Balatro"
+            fi
+        else
+            echo "Can't find Balatro directory, please specify with --dir"
+        fi
+    fi
+}
+
+# Git releases
+get_releases() {
+    local repo="$1"
+    local pattern="$2"
+
+    curl -s "https://api.github.com/repos/$repo/releases/latest" |
+        grep "browser_download_url" |
+        grep "$pattern" |
+        cut -d '"' -f 4 |
+        head -n 1
+}
+
+flags() {
+    while [[ $# -gt 0 ]]; do
+        arg="$1"
+
+        if [[ "$arg" == --* ]]; then
+            case "$arg" in
+            --native) MODE="native" ;;
+            --wine) MODE="wine" ;;
+            --steam) MODE="steam" ;;
+            --dir)
+                shift
+                BALATRO_DIR="$1"
+                ;;
+            --mod_dir)
+                shift
+                MOD_DIR="$1"
+                ;;
+            --love_dir)
+                shift
+                LOVE_BIN="$1"
+                ;;
+            --wine_dir)
+                shift
+                WINE_BIN="$1"
+                ;;
+            --wineprefix)
+                shift
+                WINEPREFIX="$1"
+                ;;
+            --user_dir)
+                shift
+                USER_DIR="$1"
+                ;;
+            --config)
+                shift
+                CONF="$1"
+                ;;
+            --help) SHOW_HELP=1 ;;
+            --version) SHOW_VERSION=1 ;;
+            *)
+                echo "Unknown flag: $arg"
+                exit 1
+                ;;
+            esac
+
+        elif [[ "$arg" == -* && "$arg" != "--" ]]; then
+            flags="${arg:1}"
+            i=0
+            while [[ $i -lt ${#flags} ]]; do
+                flag="${flags:$i:1}"
+                ((i++))
+                case "$flag" in
+                n) MODE="native" ;;
+                w) MODE="wine" ;;
+                s) MODE="steam" ;;
+                h) SHOW_HELP=1 ;;
+                v) SHOW_VERSION=1 ;;
+                *)
+                    echo "Unkown flag: -$flag"
+                    exit 1
+                    ;;
+                esac
+            done
+
+        else
+            ARGS+=("$arg")
+        fi
+        shift
+    done
+}
+
+subcommand() {
+    case "$1" in
+    launch) launch ;;
+    help) help ;;
+    version) version ;;
+    backup) backup "$2" ;;
+    mods)
+        case "$2" in
+        launch) m_launch ;;
+        install)
+            shift 2
+            m_install "$@"
+            ;;
+        remove)
+            shift 2
+            m_remove "$1"
+            ;;
+        disable)
+            shift 2
+            m_disable "$1"
+            ;;
+        enable)
+            shift 2
+            m_enable "$1"
+            ;;
+        list) m_list ;;
+        search)
+            shift 2
+            m_search "$1"
+            ;;
+        *)
+            echo "Unknown command: $2"
+            help
+            ;;
+        esac
+        ;;
+    install)
+        case "$2" in
+        native)
+            shift 2
+            i_native "$1"
+            ;;
+        wine)
+            shift 2
+            i_wine "$1"
+            ;;
+        lovely) i_lovely ;;
+        smods | steammodded | smod) i_steammodded ;;
+        *)
+            echo "Unknown command: $2"
+            help
+            ;;
+        esac
+        ;;
+    *)
+        echo "Unknown command: $1"
+        help
+        ;;
+    esac
+}
+
+# stub functions
+
+help() {
+
+    echo "balatro-cli: launcher and mod manager for balatro on linux"
+    echo "usage: balatro [subcommand] [args...] [--flags]"
+    echo ""
+    echo "commands:"
+    echo "  help           display this help message"
+    echo "  launch         launch balatro"
+    echo "  backup         backs up balatro save data to a file"
+    echo "  mods"
+    echo "    launch       launches modded balatro"
+    echo "    install      installs speecified mod"
+    echo "    remove       removes specified mod"
+    echo "    disable      temporarily removes mod"
+    echo "    enable       enables a disabled mod"
+    echo "    search       searches for an available mod"
+    echo "    list         lists all installed mods"
+    echo "  install"
+    echo "    native       sets up balatro native"
+    echo "    wine         sets up a wineprefix"
+    echo "    lovely       downloads and installs lovely"
+    echo "    smod         downloads and installs steamodded"
+    echo "    balamod      downloads and installs balamod"
+    echo ""
+    echo "flags:"
+    echo "  -h, --help     display this help message"
+    echo "  -v, --version  display version information."
+    echo "  -n, --native   launch balatro natively"
+    echo "  -w, --wine     launch balatro through wine"
+    echo "  -s, --steam    launch balatro through steam/proton"
+    echo ""
+    echo "  --config       use custom config file"
+    echo "  --dir          specify balatro directory"
+    echo "  --wineprefix   specify wineprefix"
+    echo "  --user_dir     specify save directory"
+    echo "  --love_path    location of love executable"
+    echo "  --wine_path    location of wine executable"
+    echo ""
+}
+
+version() {
+    echo "balatro-cli $ver"
+    echo "-------"
+    echo ""
+    echo "mode: $MODE"
+    echo ""
+    echo "balatro dir: $GAME_PATH"
+    echo "mod dir: $MODS_DIR"
+    echo ""
+
+    if [[ $MODE == "wine" ]]; then
+        if command -v "$WINE_BIN" &>/dev/null; then
+            echo "wine version: $($WINE_BIN --version)"
+            echo "wineprefix: $WINEPREFIX"
+        else
+            echo "wine: not found"
+        fi
+    elif [[ $MODE == "native" ]]; then
+        if command -v "$LOVE_BIN" &>/dev/null; then
+            echo "love version: $($LOVE_BIN --version 2>/dev/null | head -n1)"
+            echo "user dir: $USER_DIR"
+        else
+            echo "love: not found"
+        fi
+    fi
+}
+
+launch() {
+    echo "Starting Balatro [$MODE] (Vanilla)"
+
+    native() {
+        if [[ ! -x "$GAME_PATH" ]]; then
+            echo "Native Balatro binary not found, please setup with \"balatro install native\""
+            exit 1
+        fi
+
+        balatro-native
+    }
+
+    wine() {
+        if [[ ! -f "$GAME_PATH" ]]; then
+            echo "Balatro.exe not found in $GAME_PATH. Please install it."
+            exit 1
+        fi
+
+        if [[ -f "$GAME_PATH/version.dll" ]]; then
+            echo "Disabling Lovely"
+            mv "$GAME_PATH/version.dll" "$GAME_PATH/version.dll.disabled"
+        fi
+        WINEPREFIX="$WINEPREFIX" "$WINE_BIN" "$GAME_PATH/Balatro.exe"
+    }
+
+    steam() {
+        local appid="2379780"
+
+        if command -v steam &>/dev/null; then
+            steam -applaunch "$appid"
+        else
+            echo "Steam not found, please install it here: https://steampowered.com"
+            exit 1
+        fi
+    }
+
+    case "$MODE" in
+    native) native ;;
+    wine) wine ;;
+    steam) steam ;;
+    *)
+        echo "Can't launch using $MODE"
+        exit 1
+        ;;
+    esac
+}
+
+backup() {
+
+    if [[ -z "$1" ]]; then
+        local jkr="."
+    else
+        local jkr="$1"
+        mkdir -p "$jkr"
+    fi
+
+    echo "Backing up saves in $USER_DIR to $(readlink -f $jkr)"
+
+    local file="$jkr/balatro-save-$(date +%Y-%m-%d).tar.jkr"
+
+    if [[ ! -d "$USER_DIR" ]]; then
+        echo "$USER_DIR doesn't exist"
+        exit 1
+    fi
+
+    tar -czf "$file" -C "$USER_DIR" . || {
+        echo "Failed to backup save directory, please back up manually."
+        exit 1
+    }
+    echo "Saves backed up to $file."
+}
+
+m_launch() {
+    echo "Starting Balatro [$MODE] (Modded)"
+
+    native() {
+        mkdir -p "$USER_DIR/Mods"
+        mkdir -p "$HOME/.config/love"
+
+        echo "[Lovely] Mod files linked"
+        echo "[Lovely] liblovely.so preloaded"
+        LD_PRELOAD=liblovely.so balatro-native
+    }
+
+    wine() {
+        local dll="$GAME_PATH/version.dll"
+        if [[ -f "$GAME_PATH/version.dll.disabled" ]]; then
+            echo "Enabling Lovely"
+            mv "$GAME_PATH/version.dll.disabled" "$dll"
+        elif [[ -f "$dll" ]]; then
+            echo "Lovely enabled"
+        fi
+
+        echo "[Lovely] Lovely copied to directory"
+        WINEPREFIX="$WINEPREFIX" "$WINE_BIN" "$GAME_PATH/Balatro.exe"
+    }
+
+    case "$MODE" in
+    native) native ;;
+    wine) wine ;;
+    *) echo "Can't launch using $MODE" ;;
+    esac
+}
+
+m_install() { echo "[installing mods: $@]"; }
+m_remove() { echo "[removing mod: $1]"; }
+m_disable() { echo "[disabling mod: $1]"; }
+m_enable() { echo "[enabling mod: $1]"; }
+m_list() { echo "[listing mods]"; }
+m_search() { echo "[searching mods for: $1]"; }
+i_native() {
+    echo "native"
+}
+
+i_wine() { echo "[setting up wine prefix in $1]"; }
+
+i_lovely() {
+    echo "Setting up Lovely [$MODE]"
+    check curl
+    check wget
+    check unzip
+    check tar
+
+    local repo="ethangreen-dev/lovely-injector"
+    local url=""
+    local archive=""
+    local extract_dir="$DOWNLOAD_DIR/lovely"
+
+    if [[ "$MODE" == "native" ]]; then
+        url=$(get_releases "$repo" "lovely-x86_64-unknown-linux-gnu.tar.gz")
+        archive="$DOWNLOAD_DIR/lovely-linux.tar.gz"
+    else
+        url=$(get_releases "$repo" "lovely-x86_64-pc-windows-msvc.zip")
+        archive="$DOWNLOAD_DIR/lovely-windows.zip"
+    fi
+
+    if [[ -z "$url" ]]; then
+        echo "Could not find suitable Lovely [$MODE] release."
+        return 1
+    fi
+
+    echo "downloading lovely from: $url"
+    wget -q -O "$archive" "$url" || {
+        echo "Download failed."
+        return 1
+    }
+
+    echo "extracting to $extract_dir"
+    mkdir -p "$extract_dir"
+    if [[ "$MODE" == "native" ]]; then
+        tar -xf "$archive" -C "$extract_dir" || return 1
+        if [[ ! -f "$extract_dir/liblovely.so" ]]; then
+            echo "Linux Lovely library file not found"
+            return 1
+        fi
+
+        echo "Installing liblovely.so to /lib"
+        sudo mv "$extract_dir/liblovely.so" /lib/liblovely.so || return 1
+    else
+        unzip -o "$archive" -d "$extract_dir" || return 1
+        if [[ ! -f "$extract_dir/version.dll" ]]; then
+            echo "Windows Lovely library file not found"
+            return 1
+        fi
+
+        echo "Installing version.dll to $GAME_PATH"
+        cp "$extract_dir/version.dll" "$GAME_PATH/version.dll" || return 1
+    fi
+
+    echo "Finished installing Lovely [$MODE]"
+}
+
+i_steammodded() {
+    echo "Setting up SMODS [$MODE]"
+
+    check git
+
+    local repo="https://github.com/Steamodded/smods"
+    local mod_dir="$USER_DIR/Mods/smods"
+
+    if [[ -d "$mod_dir/.git" ]]; then
+        echo "Updating SMODS [$MODE]"
+        git -C "$mod_dir" pull || {
+            echo "Update failed."
+            return 1
+        }
+    else
+        mkdir -p "$(dirname "$mod_dir")"
+        git clone "$repo" "$mod_dir" || {
+            echo "Download failed."
+            return 1
+        }
+    fi
+
+    echo "SMODS [$MODE] installed to $mod_dir"
+}
+
+i_balamod() {
+    ls
+}
+lock() {
+    
+
+    echo $$ >"$LOCKFILE"
+
+    cleanup() {
+        rm -f "$LOCKFILE"
+        echo "cleaned up lockfile"
+        exit
+    }
+
+    trap cleanup INT TERM EXIT
+}
+
+main() {
+    lock()
+    [[ -f "$CONF" ]] || mkconf
+    load_config
+
+    flags "$@"
+
+    [[ "$SHOW_HELP" == 1 ]] && help && exit 0
+    [[ "$SHOW_VERSION" == 1 ]] && version && exit 0
+
+    for arg in "${ARGS[@]}"; do
+        case "$arg" in
+        launch | backup | mods | install | help | version)
+            subcommand "${ARGS[@]}"
+            exit 0
+            ;;
+        esac
+    done
+
+    echo "Unknown command: $1"
+    help
+    exit 1
+}
+
+main "$@"

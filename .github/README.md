@@ -1,1 +1,1 @@
-![](https://raw.githubusercontent.com/vanillyn/jkrsh/refs/heads/main/.github/jokersh-banner.png)
+![](https://github.com/vanillyn/jkrsh/blob/main/.github/jkrsh-banner.png)

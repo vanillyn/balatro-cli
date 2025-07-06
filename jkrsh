@@ -532,17 +532,14 @@ m_launch() {
 }
 
 r_sync() {
-    echo "Syncing mod repositories..."
     local aggregated_mods_file="$DOWNLOAD_DIR/mods.txt"
     > "$aggregated_mods_file"
 
     for repo_file in "$REPO_DIR"/*.jkrepo; do
         if [[ -f "$repo_file" ]]; then
-            echo "Processing repository: $(basename "$repo_file")"
             grep -vE '^(# REPO_NAME:|# REPO_AUTHOR:|# REPO_DESCRIPTION:|# REPO_URL:|# REPO_MOD_COUNT:|^$)' "$repo_file" >> "$aggregated_mods_file"
         fi
     done
-    echo "All repositories synced to $aggregated_mods_file."
 }
 
 m_install() {
@@ -696,36 +693,34 @@ m_remove() {
     local downloaded_path="$DOWNLOAD_DIR/$modname"
     local installed_path="$MODS_DIR/$modname"
 
-    echo "Attempting to remove mod: $modname"
-
     if [[ -d "$installed_path" ]]; then
-        read -rp "Are you sure you want to remove '$modname' from your mods directory ($installed_path)? [Y/n] " yn
+        read -rp "Remove '$modname' from your mods directory ($installed_path)? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
             rm -rf "$installed_path"
-            echo "Removed '$modname' from mods directory."
+            echo "Removed '$modname'."
         else
-            echo "Skipping removal from mods directory."
+            echo "Skipping."
         fi
     else
-        echo "Mod '$modname' not found in installed mods directory ($installed_path)."
+        echo "Mod '$modname' not found."
     fi
 
     if [[ -d "$downloaded_path" ]]; then
-        read -rp "Are you sure you want to remove '$modname' from your download cache ($downloaded_path)? [Y/n] " yn
+        read -rp "Remove '$modname' from your downloads directory ($downloaded_path)? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
             rm -rf "$downloaded_path"
-            echo "Removed '$modname' from download cache."
+            echo "Removed '$modname' from downloads."
         else
-            echo "Skipping removal from download cache."
+            echo "Skipping."
         fi
     else
-        echo "Mod '$modname' not found in download cache ($downloaded_path)."
+        echo "Mod '$modname' not found in ($downloaded_path)."
     fi
 
     if [[ ! -d "$installed_path" ]] && [[ ! -d "$downloaded_path" ]]; then
-        echo "Successfully processed removal request for '$modname'."
+        echo "Removed '$modname'."
     else
-        echo "Removal of '$modname' completed with some paths not found or skipped."
+        echo "Removed '$modname' with some paths skipped."
     fi
 }
 
@@ -830,7 +825,7 @@ m_search() {
         return 1
     fi
 
-    echo "Searching for '$query' in active repositories..."
+    echo "Searching for '$query'"
     grep -vE '^(# REPO_NAME:|# REPO_AUTHOR:|# REPO_DESCRIPTION:|# REPO_URL:|# REPO_MOD_COUNT:|^$)' "$repo_file" | grep -i "$query" | while IFS='|' read -r name url deps category; do
         name=$(echo "$name" | xargs)
         url=$(echo "$url" | xargs)

@@ -121,42 +121,15 @@ EOF
     return 0
 }
 
-# Creates the default repository 
 mkrepo() {
     log VERBOSE "Checking for default core repository."
-    local base_repo="$REPO_DIR/core.json"
-    if [[ ! -f "$base_repo" ]]; then
-        local base_txt="$(dirname "$0")/mods.txt"
-        if [[ -f "$base_txt" ]]; then
-            log VERBOSE "Creating default core mod repository from mods.txt."
-            local mod_count=$(grep -vE '^(#|$)' "$base_txt" | wc -l)
-            local mods_array=$(grep -vE '^(#|$)' "$base_txt" | awk -F'|' '{
-                printf "    {\n"
-                printf "      \"name\": \"%s\",\n", $1
-                printf "      \"download_url\": \"%s\",\n", $2
-                printf "      \"dependencies\": [%s],\n", ($3 == "" ? "" : "\"" gensub(/,/, "\",\"", "g", $3) "\"")
-                printf "      \"category\": \"%s\",\n", $4
-                printf "      \"install_type\": \"%s\"\n", ($5 == "" ? "" : $5)
-                printf "    }%s\n", (NR==mod_count ? "" : ",")
-            }' | sed 's/\"\"//g; s/\[,/\\[/g; s/,\]/\\]/g')
-
-            cat <<EOF >"$base_repo"
-{
-  "name": "Balatro Mods",
-  "author": "vanillyn",
-  "description": "Some Balatro mods from awesome-balatro.",
-  "url": "https://raw.githubusercontent.com/vanillyn/jkrsh/main/mods.json",
-  "mods": [
-${mods_array}
-  ]
-}
-EOF
-            log VERBOSE "Created default core mod repository at '$base_repo'."
-        else
-            log WARNING "mods.txt not found at $base_txt. Cannot create default core repository."
-            return 1
-        fi
+    local core="$REPO_DIR/core.json"
+    if [[ ! -f "$core" ]]; then
+        log VERBOSE "Default core mod repository '$core' not found. Downloading"
+        wget -P $REPO_DIR https://raw.githubusercontent.com/vanillyn/jkrsh/main/scripts/core.json
+        return 1
     fi
+    log VERBOSE "Default core mod repository found at '$core_repo_file'."
     return 0
 }
 

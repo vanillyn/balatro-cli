@@ -1,0 +1,1241 @@
+{
+  "name": "Balatro Mods",
+  "author": "vanillyn",
+  "description": "A curated collection of Balatro mods.",
+  "url": "https://raw.githubusercontent.com/vanillyn/jkrsh/main/mods.json",
+  "mods": [
+    {
+      "name": "lovely",
+      "download_url": "https://github.com/ethangreen-dev/lovely-injector",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "lovely_prebuilt"
+    },
+    {
+      "name": "balamod",
+      "download_url": "https://github.com/balamod/balamod",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "cryptid",
+      "download_url": "https://github.com/spectralpack/cryptid",
+      "dependencies": [
+        "steamodded",
+        "talisman"
+      ],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "wiwiweb's balatro mods",
+      "download_url": "https://github.com/wiwiweb/balatromods",
+      "dependencies": [
+        "steamodded"
+      ],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "debugplus",
+      "download_url": "https://github.com/wilsonthewolf/debugplus",
+      "dependencies": [
+        "lovely"
+      ],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "scoreimprovements",
+      "download_url": "https://github.com/wilsonthewolf/balatro-mods",
+      "dependencies": [
+        "lovely"
+      ],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "steamodded",
+      "download_url": "https://github.com/steamopollys/steamodded",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "smods_prebuilt"
+    },
+    {
+      "name": "balatrobot",
+      "download_url": "https://github.com/besteon/balatrobot",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "enhanceapi",
+      "download_url": "https://github.com/numbuh214/enhanceapi",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "federapi",
+      "download_url": "https://github.com/itayfeder/federapi-balatro",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "oddityapi",
+      "download_url": "https://github.com/autumnmood924/autumnmoodmechanics",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "sound util",
+      "download_url": "https://github.com/infarcactus/balatro-custom-sound-player",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "mathblinds",
+      "download_url": "https://github.com/bazinga9000/mathblinds",
+      "dependencies": [],
+      "category": "blinds",
+      "install_type": "git"
+    },
+    {
+      "name": "5 legendary challenges",
+      "download_url": "https://github.com/betmma/my_balatro_mods",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "feed the vampire",
+      "download_url": "https://github.com/morpline/feedthevampire",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "goldenchallenge",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "riff-raffling",
+      "download_url": "https://github.com/uppedhealer8521/riff-raffling",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "stylish sleeves challenge",
+      "download_url": "https://github.com/aurelius7309/stylishsleeves",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "last stand",
+      "download_url": "https://github.com/tucaonormal/laststand",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "nihility",
+      "download_url": "https://github.com/ascriptmaster/balatro-nihility",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "arachnei's balatro mods",
+      "download_url": "https://github.com/nicholassam6425/balatro-mods",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "bunco",
+      "download_url": "https://github.com/firch/bunco",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "fortlatro",
+      "download_url": "https://github.com/ericthetoon/fortlatro",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "mika's mod collection",
+      "download_url": "https://github.com/mikaschoenmakers/mikasbalatro",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "myst's balatro mods",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "sdm_0's stuff",
+      "download_url": "https://github.com/sdm0/sdm_0-s-stuff",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "sylvie's silliness",
+      "download_url": "https://github.com/newtthefish/sylviesilly",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "codex arcanum",
+      "download_url": "https://github.com/itayfeder/codex-arcanum",
+      "dependencies": [],
+      "category": "consumable_cards",
+      "install_type": "git"
+    },
+    {
+      "name": "deluxe consumables cards",
+      "download_url": "https://github.com/jeffvi/dx-tarots",
+      "dependencies": [],
+      "category": "consumable_cards",
+      "install_type": "git"
+    },
+    {
+      "name": "the autumn circus",
+      "download_url": "https://github.com/autumnmood924/theautumncircus",
+      "dependencies": [],
+      "category": "consumable_cards",
+      "install_type": "git"
+    },
+    {
+      "name": "dna splice deck",
+      "download_url": "https://github.com/jlwoolf/dnasplice",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "enchanted deck",
+      "download_url": "https://github.com/encarvlucas/encarvlucasbalatromods",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "french tarot cavalier card",
+      "download_url": "https://github.com/desmero/frenchtarotcavaliercard",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "high card deck and jokers",
+      "download_url": "https://github.com/ken-shi/balatro_highcardmod",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "pauper deck",
+      "download_url": "https://github.com/aiksilotl/pauper-deck",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "randomizer deck",
+      "download_url": "https://github.com/hellyom/hellyombalatromods",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "sylvie's silliness",
+      "download_url": "https://github.com/newtthefish/sylviesilly",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "x card",
+      "download_url": "https://github.com/numbuh214/x-card",
+      "dependencies": [],
+      "category": "enhancements",
+      "install_type": "git"
+    },
+    {
+      "name": "gold's cards",
+      "download_url": "https://github.com/goldfighter5/golds-cards",
+      "dependencies": [],
+      "category": "enhancements",
+      "install_type": "git"
+    },
+    {
+      "name": "+1 shop slot for high stakes",
+      "download_url": "https://github.com/encarvlucas/encarvlucasbalatromods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "add +1 shop to every run",
+      "download_url": "https://github.com/encarvlucas/encarvlucasbalatromods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "balatroquickload",
+      "download_url": "https://github.com/tsunamiinfantasy/balatroquickload",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "better mouse and gamepad",
+      "download_url": "https://github.com/kooluve/better-mouse-and-gamepad",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "better stakes",
+      "download_url": "https://github.com/kjossul/betterstakes",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "card sleeves",
+      "download_url": "https://github.com/larswijn/cardsleeves",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "collection fix",
+      "download_url": "https://github.com/goldenepsilon/balatro_collectionfix",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "disableverdantleaf",
+      "download_url": "https://github.com/v-rtualized/disableverdantleaf",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "flush hotkeys",
+      "download_url": "https://github.com/agoraaa/flushhotkeys",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "gamespeed display and spacereroll",
+      "download_url": "https://github.com/snowylight/gamespeed-display-and-spacereroll",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "hotkeys collection",
+      "download_url": "https://github.com/dorkdad141/keyboard-shortcuts",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "house rules",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "increasejokercap",
+      "download_url": "https://github.com/akitaattribute/increasejokercap",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "increasesoulprobability",
+      "download_url": "https://github.com/akitaattribute/increasesoulprobability",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "infintescore",
+      "download_url": "https://github.com/jamesthejellyfish/infinitescoremod",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "jimbostats",
+      "download_url": "https://github.com/jimbostats/jimbo-stats-mod",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "masquerade",
+      "download_url": "https://github.com/amvoled/masquerade",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "metal card falling sound effect",
+      "download_url": "https://github.com/muddieee/metal_card_falling",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "milck qol",
+      "download_url": "https://github.com/mi1ck/milcks-qol",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "neow blessings",
+      "download_url": "https://github.com/kjossul/neowblessings",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "randomsprite",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "replacejokers",
+      "download_url": "https://github.com/akitaattribute/replacejokers",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "stickers always shown",
+      "download_url": "https://github.com/sirmaiquis/balatro-stickers-always-shown",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "survival mode",
+      "download_url": "https://github.com/aurelius7309/survival",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "ultrahand",
+      "download_url": "https://github.com/xioxin/balatromods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro hand preview",
+      "download_url": "https://github.com/toeler/balatro-handpreview",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro hand preview ru",
+      "download_url": "https://github.com/zarenoff/balatro-handpreview-ru",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro safety",
+      "download_url": "https://github.com/zei33/balatro-safety-steamodded",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "balatroverlay",
+      "download_url": "https://github.com/cantlookback/balatroverlay",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "colour selector",
+      "download_url": "https://github.com/emperorgesar/balatro-colour-selector",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "deck creator",
+      "download_url": "https://github.com/adambennett/balatro-deckcreator",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "deselect all",
+      "download_url": "https://github.com/zei33/deselect-all-steamodded",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "divvy's history",
+      "download_url": "https://github.com/divvycr/balatro-history",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "divvy's preview",
+      "download_url": "https://github.com/divvycr/balatro-preview",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "fold button",
+      "download_url": "https://github.com/happinyz/balatrofoldbutton",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "gay mod",
+      "download_url": "https://github.com/fosterbarnes/balatrogaypenis",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "jokerdisplay",
+      "download_url": "https://github.com/nh6574/jokerdisplay",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "jokersellvalue",
+      "download_url": "https://github.com/oppositewolf770/jokersellvalue",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "manual flip",
+      "download_url": "https://github.com/ssyangchn/manualflip",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "roulette",
+      "download_url": "https://github.com/hellyom/hellyombalatromods",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "spectral recolouring",
+      "download_url": "https://github.com/eremel/spectralrecolours",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "systemclock",
+      "download_url": "https://github.com/breezebuilder/systemclock",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "taikomochi",
+      "download_url": "https://github.com/amvoled/taikomochi",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "trance",
+      "download_url": "https://github.com/mathisfun0/trance",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "wheel of fortune tracker + guarantee",
+      "download_url": "https://github.com/sabslikesobs/pitywheel",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "yippeegameover",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "5cebalatro",
+      "download_url": "https://github.com/dps2004/5cebalatro",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "ancientjokerfix",
+      "download_url": "https://github.com/gabepesco/balatroancientjokerfix",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "bad apple joker",
+      "download_url": "https://github.com/jamesthejellyfish/badapplebalatro",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "betmma jokers",
+      "download_url": "https://github.com/betmma/my_balatro_mods",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "big bang",
+      "download_url": "https://github.com/zjwcy/balatro_big_bang_by_zjwcy",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "cheesyjokers",
+      "download_url": "https://github.com/ilikecheese0/cheesyjokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "d6 jokers",
+      "download_url": "https://github.com/gauntletgames-2086/d6-jokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "date a live",
+      "download_url": "https://github.com/snowylight/datealivebalatro",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "emergence",
+      "download_url": "https://github.com/snoresville/balatro-emergence-joker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "floundersjokers",
+      "download_url": "https://github.com/flounderlul/floundersjokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "harambe's chosen",
+      "download_url": "https://github.com/juliandeclercq/harambes-chosen",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "jankjonklers",
+      "download_url": "https://github.com/spikeof2010/jankjonklers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "jellymod",
+      "download_url": "https://github.com/jamesthejellyfish/jellymod",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "joker evolution",
+      "download_url": "https://github.com/sdm0/joker-evolution",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "lushmod",
+      "download_url": "https://github.com/lusciousdev/lushmod",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "milatro",
+      "download_url": "https://github.com/milankapitein/milatro-mod",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "mor jokers",
+      "download_url": "https://github.com/morpline/morjokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "multipack",
+      "download_url": "https://github.com/snowylight/multipack",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "multijokers",
+      "download_url": "https://github.com/ijohnmaged/multi-jokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "mystjokers",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "olympus",
+      "download_url": "https://github.com/abhinavr314/balatroolympus",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "panley joker",
+      "download_url": "https://github.com/redrcknrbn/panley-joker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "pijoker",
+      "download_url": "https://github.com/erachlin/pijoker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "quilombo",
+      "download_url": "https://github.com/acetna/quilombo",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "ro-balatro",
+      "download_url": "https://github.com/alexzgreat/ro-balatro",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "ror2funnyitems",
+      "download_url": "https://github.com/ao-u/ror2funnyitems",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "seven sins",
+      "download_url": "https://github.com/alexdavies8/balatro-mods",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "star rail events",
+      "download_url": "https://github.com/snowylight/starrailevents",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "super balatrio bros",
+      "download_url": "https://github.com/dps2004/super-balatrio-bros",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "tag team",
+      "download_url": "https://github.com/snoresville/balatro-double-tag-joker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "the blunt",
+      "download_url": "https://github.com/snoresville/balatro-blunt-joker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "themed jokers",
+      "download_url": "https://github.com/blizzowx/balatro---themed-jokers",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "zilliax",
+      "download_url": "https://github.com/snowylight/zilliax",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "dice seals",
+      "download_url": "https://github.com/flounderlul/dice-seals",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "green seal",
+      "download_url": "https://github.com/axbolduc/greenseal",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "silver seal",
+      "download_url": "https://github.com/mwithington/silverseal",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "hanafuda hybrid",
+      "download_url": "https://github.com/tvroonhove/hanafudahybridmod",
+      "dependencies": [],
+      "category": "suits",
+      "install_type": "git"
+    },
+    {
+      "name": "inkandcolor",
+      "download_url": "https://github.com/rattlingsnow353/inkandcolor",
+      "dependencies": [],
+      "category": "suits",
+      "install_type": "git"
+    },
+    {
+      "name": "musical suit",
+      "download_url": "https://github.com/itayfeder/musicalsuit",
+      "dependencies": [],
+      "category": "suits",
+      "install_type": "git"
+    },
+    {
+      "name": "six suits",
+      "download_url": "https://github.com/aurelius7309/sixsuits",
+      "dependencies": [],
+      "category": "suits",
+      "install_type": "git"
+    },
+    {
+      "name": "tags preview",
+      "download_url": "https://github.com/jkd3vld/balatrotagpreview",
+      "dependencies": [],
+      "category": "tags",
+      "install_type": "git"
+    },
+    {
+      "name": "dna splice tag",
+      "download_url": "https://github.com/jlwoolf/dnasplice",
+      "dependencies": [],
+      "category": "tags",
+      "install_type": "git"
+    },
+    {
+      "name": "balaquints",
+      "download_url": "https://github.com/luuumine/balaquints",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro '95",
+      "download_url": "https://github.com/sparktimus/balatro95",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro-texture-packs",
+      "download_url": "https://github.com/alexse13dev/balatro-texture-packs",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "baldatro",
+      "download_url": "https://github.com/sirmaiquis/balatro-baldatro",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "dark mode",
+      "download_url": "https://github.com/carrotonman/balatrodarkmode",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "eclipsetextures",
+      "download_url": "https://github.com/aleksxar/eclipsetextures",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "gross balatro",
+      "download_url": "https://github.com/chrishanel/grossbalatro",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "improved booster tarots",
+      "download_url": "https://github.com/ard1tion/improved-booster-tarots",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "ogtextures",
+      "download_url": "https://github.com/uppedhealer8521/ogtextures",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "recast contrast",
+      "download_url": "https://github.com/lunaastracassiopeia/lunasbalatromods",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "wilds texture pack",
+      "download_url": "https://github.com/natakilar/balatro-wilds",
+      "dependencies": [],
+      "category": "textures",
+      "install_type": "git"
+    },
+    {
+      "name": "better french",
+      "download_url": "https://github.com/frbmt-bigetnouf/balatro-french-translations",
+      "dependencies": [],
+      "category": "translates",
+      "install_type": "git"
+    },
+    {
+      "name": "betmma vouchers",
+      "download_url": "https://github.com/betmma/my_balatro_mods",
+      "dependencies": [],
+      "category": "vouchers",
+      "install_type": "git"
+    },
+    {
+      "name": "card back injection",
+      "download_url": "https://github.com/ken-shi/balatro_cardbackinjection",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "distro",
+      "download_url": "https://github.com/dvrp0/distro",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "center hook",
+      "download_url": "https://github.com/nicholassam6425/balatro-mods",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "seal api",
+      "download_url": "https://github.com/jacobr1227/double_seals",
+      "dependencies": [],
+      "category": "api",
+      "install_type": "git"
+    },
+    {
+      "name": "myst's boss blinds",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "blinds",
+      "install_type": "git"
+    },
+    {
+      "name": "goldenchallenge",
+      "download_url": "https://github.com/mysthaps/balatromods",
+      "dependencies": [],
+      "category": "challenges",
+      "install_type": "git"
+    },
+    {
+      "name": "arachnei's balatro mods",
+      "download_url": "https://github.com/nicholassam6425/balatro-mods",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro-communitypack",
+      "download_url": "https://github.com/goldenepsilon/balatro-communitypack",
+      "dependencies": [],
+      "category": "collections",
+      "install_type": "git"
+    },
+    {
+      "name": "buffon deck",
+      "download_url": "https://github.com/jopstro/balatromods",
+      "dependencies": [],
+      "category": "decks",
+      "install_type": "git"
+    },
+    {
+      "name": "better black-stake",
+      "download_url": "https://github.com/system-of-root/roots_balatro_mods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "flush hotkeys",
+      "download_url": "https://github.com/agoraaa/flushhotkeys",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "quick restart",
+      "download_url": "https://github.com/nicholassam6425/balatro-mods",
+      "dependencies": [],
+      "category": "functionality",
+      "install_type": "git"
+    },
+    {
+      "name": "balatro safety",
+      "download_url": "https://github.com/zei33/balatro-safety-balamod",
+      "dependencies": [
+        "balamod"
+      ],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "deselect all",
+      "download_url": "https://github.com/zei33/deselect-all-balamod",
+      "dependencies": [
+        "balamod"
+      ],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "gay mod",
+      "download_url": "https://github.com/heyimkyu/balatro-gay",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "parrot joker",
+      "download_url": "https://github.com/jopstro/balatromods",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "shampack",
+      "download_url": "https://github.com/goldenepsilon/shampack",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "slutty joker",
+      "download_url": "https://github.com/heyimkyu/balatro-slutty-joker",
+      "dependencies": [],
+      "category": "jokers",
+      "install_type": "git"
+    },
+    {
+      "name": "double seals",
+      "download_url": "https://github.com/jacobr1227/double_seals",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "orange seals",
+      "download_url": "https://github.com/jacobr1227/double_seals",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "silver seals",
+      "download_url": "https://github.com/jacobr1227/double_seals",
+      "dependencies": [],
+      "category": "seals",
+      "install_type": "git"
+    },
+    {
+      "name": "better french",
+      "download_url": "https://github.com/frbmt-bigetnouf/balatro-french-translations",
+      "dependencies": [],
+      "category": "translates",
+      "install_type": "git"
+    },
+    {
+      "name": "brainstorm",
+      "download_url": "https://github.com/oceanramen/brainstorm",
+      "dependencies": [],
+      "category": "functional",
+      "install_type": "git"
+    },
+    {
+      "name": "talisman",
+      "download_url": "https://github.com/mathisfun0/talisman",
+      "dependencies": [],
+      "category": "functional",
+      "install_type": "git"
+    },
+    {
+      "name": "typist",
+      "download_url": "https://github.com/kasimeka/balatro-typist-mod",
+      "dependencies": [],
+      "category": "functional",
+      "install_type": "git"
+    },
+    {
+      "name": "malverk",
+      "download_url": "https://github.com/eremel/malverk",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "planet card cash-out mod",
+      "download_url": "https://github.com/antler5/balatro-planet-card-cash-out-mod",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "readabletro",
+      "download_url": "https://github.com/bladesk/readabletro",
+      "dependencies": [],
+      "category": "gui",
+      "install_type": "git"
+    },
+    {
+      "name": "when the impostor is sun",
+      "download_url": "https://github.com/muddieee/sun_is_sus",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "cartomancer",
+      "download_url": "https://github.com/stupxd/cartomancer",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "blueprint",
+      "download_url": "https://github.com/stupxd/blueprint",
+      "dependencies": [],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "lang-russian",
+      "download_url": "https://github.com/nitablade/balatro_properrussian",
+      "dependencies": [],
+      "category": "translates",
+      "install_type": "git"
+    },
+    {
+      "name": "debugplus",
+      "download_url": "https://github.com/wilsonthewolf/debugplus",
+      "dependencies": [
+        "lovely"
+      ],
+      "category": "extra",
+      "install_type": "git"
+    },
+    {
+      "name": "lang-romanian",
+      "download_url": "https://github.com/olenicandrei/balatro-romanian-translations",
+      "dependencies": [],
+      "category": "translates",
+      "install_type": "git"
+    }
+  ]
+}

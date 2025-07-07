@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 #                           ---.
 #                         -,JOOOJ=.
 #                       -,OKKKKOEEK:
@@ -33,7 +34,9 @@ REPO_DIR="$CONF_DIR/repos"
 LOCKFILE="/tmp/balatro.lock"
 ver="v0.5"
 ARGS=()
-
+MODDED_LAUNCH=0
+SHOW_HELP=0
+SHOW_VERSION=0
 # --- Logging
 SILENT=0
 ERROR=1
@@ -96,7 +99,7 @@ mkconf() {
     mkdir -p "$REPO_DIR" || { log ERROR "Could not create repository directory '$REPO_DIR'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"; return 1; }
     
     local dldef="$HOME/.config/balatro/mods"
-    local modsdef="$HOME/.config/love"
+    local modsdef="$HOME/.config/love/Mods"
     local modsddef="$modsdef/disabled"
     local userdef="$HOME/.local/share/love/Balatro"
 
@@ -125,7 +128,7 @@ mkrepo() {
     if [[ ! -f "$base_repo" ]]; then
         local base_txt="$(dirname "$0")/mods.txt"
         if [[ -f "$base_txt" ]]; then
-            log INFO "Creating default core mod repository from mods.txt."
+            log VERBOSE "Creating default core mod repository from mods.txt."
             local mod_count=$(grep -vE '^(#|$)' "$base_txt" | wc -l)
             local mods_array=$(grep -vE '^(#|$)' "$base_txt" | awk -F'|' '{
                 printf "    {\n"
@@ -890,7 +893,8 @@ m_remove() {
             log INFO "Skipping removal."
         fi
     else
-        log INFO "'$modname' not found."
+        log ERROR "'$modname' not found."
+        return 1
     fi
 
     if [[ -d "$downloaded_path" ]]; then
@@ -902,7 +906,7 @@ m_remove() {
             log INFO "Skipping removal."
         fi
     else
-        log INFO "'$modname' not found."
+        log ERROR "'$modname' not found."
     fi
 
     if [[ -f "$archive_file" ]]; then
@@ -914,7 +918,7 @@ m_remove() {
             log INFO "Skipping removal."
         fi
     else
-        log INFO "'$modname' not found in disabled archives ($archive_file)."
+        log WARNING "'$modname' not found in disabled archives ($archive_file)."
     fi
 
     if [[ ! -d "$installed_path" ]] && [[ ! -d "$downloaded_path" ]] && [[ ! -f "$archive_file" ]]; then
@@ -1003,29 +1007,29 @@ m_enable() {
 # Lists all installed and disabled mods.
 m_list() {
     log DEBUG "Entering m_list."
-    log INFO "Listing installed mods:"
+    log VERBOSE "Listing installed mods:"
     local installed_count=0
 
-    log INFO "--- Enabled Mods ---"
+    log INFO "--- enabled mods ---"
     if [[ -d "$MODS_DIR" ]]; then
-        find "$MODS_DIR" -maxdepth 1 -mindepth 1 -type d -not -name "disabled_archives" -printf "%f\n" | sort | while read -r mod; do
-            log SILENT "- $mod"
+        find "$MODS_DIR" -maxdepth 1 -mindepth 1 -type d -not -name "disabled" -printf "%f\n" | sort | while read -r mod; do
+            log INFO "- $mod"
             installed_count=$((installed_count + 1))
         done
     fi
 
     log INFO ""
-    log INFO "--- Disabled Mods (Archived) ---"
+    log INFO "--- disabled mods ---"
     if [[ -d "$DISABLED_DIR" ]]; then
         find "$DISABLED_DIR" -maxdepth 1 -mindepth 1 -type f -name "*.tar.jkr" -printf "%f\n" | sort | while read -r archive_name; do
             local mod=$(basename "$archive_name" .tar.jkr)
-            log SILENT "- $mod (archived)"
+            log INFO "- $mod"
             installed_count=$((installed_count + 1))
         done
     fi
 
     if [[ "$installed_count" -eq 0 ]]; then
-        log INFO "No mods found (enabled or disabled)."
+        log DEBUG "No mods found (enabled or disabled)." # still showing despite there being listed mods
     fi
     log DEBUG "Exiting m_list."
     return 0

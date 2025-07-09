@@ -1,0 +1,3706 @@
+{
+  "name": "awesome-balatro",
+  "author": "jie65535 and contributers",
+  "description": "Mods from awesome-balatro. Core repository.",
+  "url": "https://github.com/jie65535/awesome-balatro",
+  "mods": [
+    {
+      "name": "Balatrobot",
+      "url": "https://github.com/besteon/balatrobot",
+      "description": "A Botting API for Balatro.",
+      "author": [
+        {
+          "name": "Besteon",
+          "url": "https://github.com/besteon"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["api"]
+    },
+    {
+      "name": "EnhanceAPI",
+      "url": "https://github.com/Numbuh214/EnhanceAPI",
+      "description": "Allows for the easy addition of custom enhancements.",
+      "author": [
+        {
+          "name": "Numbuh214",
+          "url": "https://github.com/Numbuh214"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["api"]
+    },
+    {
+      "name": "FederAPI",
+      "url": "https://github.com/itayfeder/FederAPI-Balatro",
+      "description": "An API library mod that allows to register vouchers, blinds, tarots, sounds, etc.",
+      "author": [
+        {
+          "name": "itayfeder",
+          "url": "https://github.com/itayfeder"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["api"]
+    },
+    {
+      "name": "OddityAPI",
+      "url": "https://github.com/AutumnMood924/AutumnMoodMechanics",
+      "description": "Adds Oddities to the game as a concept. Doesn't add any content on its own.",
+      "author": [
+        {
+          "name": "AutumnMood",
+          "url": "https://github.com/AutumnMood924"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["api"]
+    },
+    {
+      "name": "Sound Util",
+      "url": "https://github.com/Infarcactus/Balatro-Custom-Sound-Player",
+      "description": "Allows you to play custom sounds.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["api"]
+    },
+    {
+      "name": "1 Hand? You're Joking?",
+      "url": "https://discord.com/channels/1116389027176787968/1214857669932744714",
+      "description": "Challenge with just 1 hand every round.",
+      "author": [
+        {
+          "name": "`@Prokop :D`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "5 legendary challenges",
+      "url": "https://github.com/betmma/my_balatro_mods",
+      "description": "5 more challenges, each featuring a legendary joker.",
+      "author": [
+        {
+          "name": "Betmma",
+          "url": "https://github.com/betmma"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "Feed the Vampire",
+      "url": "https://github.com/morpline/FeedTheVampire",
+      "description": "Adds a challenge that just gives you Pareidolia, Midas Mask, and Vampire.",
+      "author": [
+        {
+          "name": "Morpline",
+          "url": "https://github.com/morpline"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "GoldenChallenge",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "Adds the challenge \"Golden\".",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "Riff-Raffling",
+      "url": "https://github.com/UppedHealer8521/Riff-Raffling",
+      "description": "start with a negative eternal riffraff you have to get money and win with just common jokers.",
+      "author": [
+        {
+          "name": "UppedHealer8521",
+          "url": "https://github.com/UppedHealer8521"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "Stylish Sleeves Challenge",
+      "url": "https://github.com/Aurelius7309/StylishSleeves",
+      "description": "Adds the Stylish Sleeves Challenge to the game: The effects of all base game decks apply, X2 base blind score.",
+      "author": [
+        {
+          "name": "Aure",
+          "url": "https://github.com/Aurelius7309"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "Last Stand",
+      "url": "https://github.com/Tucaonormal/LastStand",
+      "description": "Adds the Last Stand Challenge to the game: Start with $250; after defeating each Boss Blind, earn $10; you cannot earn money through any other means (including selling cards).",
+      "author": [
+        {
+          "name": "Tucaonormal",
+          "url": "https://github.com/Tucaonormal"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "Nihility",
+      "url": "https://github.com/ascriptmaster/Balatro-Nihility",
+      "description": "Adds the Nihility Challenge to the game: All cards are debuffed. Start with Joker, so Round 1 is beatable.",
+      "author": [
+        {
+          "name": "ascriptmaster",
+          "url": "https://github.com/ascriptmaster"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "arachnei's balatro mods",
+      "url": "https://github.com/nicholassam6425/balatro-mods",
+      "description": "Collection of balatro mods.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Bunco",
+      "url": "https://github.com/Firch/Bunco",
+      "description": "Adds 30+ Jokers and new gameplay mechanics, such as Exotic Suits.",
+      "author": [
+        {
+          "name": "Firch",
+          "url": "https://github.com/Firch"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Fortlatro",
+      "url": "https://github.com/EricTheToon/Fortlatro",
+      "description": "A Fortnite X Balatro collab featuring 44 Jokers, 2 Decks, 2 Tarots, 1 Spectral, 21 Consumables, 5 Enhancements, 3 Seals, 2 Booster Packs, and 2 Blinds.",
+      "author": [
+        {
+          "name": "EricTheToon",
+          "url": "https://github.com/EricTheToon"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Mika's Mod Collection",
+      "url": "https://github.com/MikaSchoenmakers/MikasBalatro",
+      "description": "A collection of 60 Jokers, 2 Tarots, 1 Spectral and 7 Decks!",
+      "author": [
+        {
+          "name": "Mikadoe",
+          "url": "https://github.com/MikaSchoenmakers"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Myst's Balatro Mods",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "A collection of mods made by Myst for the game Balatro.",
+      "author": [
+        {
+          "name": "Mysthaps(https://github.com/Mysthaps)",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "SDM_0's Stuff",
+      "url": "https://github.com/SDM0/SDM_0-s-Stuff",
+      "description": "Adds more Jokers and Challenges to the game.",
+      "author": [
+        {
+          "name": "SDM_0",
+          "url": "https://github.com/SDM0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Sylvie's Silliness",
+      "url": "https://github.com/NewtTheFish/SylvieSilly",
+      "description": "A few decks, jokers, etc. Have fun!",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "TetraPak",
+      "url": "https://tetraminus.github.io/TetrapakWebsite/",
+      "description": "This mod add quite a few new things,such as new jokers, new consumables, and a Boss Blind.",
+      "author": [
+        {
+          "name": "tetraminus",
+          "url": "https://github.com/tetraminus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Wiwiweb's Balatro mods",
+      "url": "https://github.com/Wiwiweb/BalatroMods",
+      "description": "Various mods for Balatro.",
+      "author": [
+        {
+          "name": "Wiwiweb",
+          "url": "https://github.com/Wiwiweb"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Codex Arcanum",
+      "url": "https://github.com/itayfeder/Codex-Arcanum",
+      "description": "Adds a new set of cards: Alchemy!",
+      "author": [
+        {
+          "name": "itayfeder",
+          "url": "https://github.com/itayfeder"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["consumable_cards"]
+    },
+    {
+      "name": "Deluxe Consumables Cards",
+      "url": "https://github.com/JeffVi/DX-Tarots",
+      "description": "Add Deluxe versions of consumables.",
+      "author": [
+        {
+          "name": "JeffVi",
+          "url": "https://github.com/JeffVi"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["consumable_cards"]
+    },
+    {
+      "name": "The Autumn Circus",
+      "url": "https://github.com/AutumnMood924/TheAutumnCircus",
+      "description": "A modularized Balatro mod adding a variety of content!",
+      "author": [
+        {
+          "name": "[AutumnMood](https://github.com/AutumnMood924)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["consumable_cards"]
+    },
+    {
+      "name": "Absolute Deck",
+      "url": "https://github.com/Steamodded/examples/blob/master/Mods/AbsoluteDeck.lua",
+      "description": "Absolute Deck of **PolyGlass**!",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Ace in the Hole",
+      "url": "https://discord.com/channels/1116389027176787968/1215144701586575360",
+      "description": "Create a special deck that only contains **one Ace of each suit**!",
+      "author": [
+        {
+          "name": "`@Chamels`",
+          "url": null
+        },
+        {
+          "name": "`@UnknownEternity`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Astronomer Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1215091624829517876",
+      "description": "A deck perfect for an aspiring astronomer!",
+      "author": [
+        {
+          "name": "`@Vicendithas`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Borrowed deck",
+      "url": "https://discord.com/channels/1116389027176787968/1213054535334109184",
+      "description": "Build a big deck with tons of free **mega standard packs**.",
+      "author": [
+        {
+          "name": "`@Rose Happy`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Dealer's Discount Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1214695661094572092",
+      "description": "Adds a Deck that starts with the **Clearance Sale** voucher.",
+      "author": [
+        {
+          "name": "`@Neon`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Deck of 4",
+      "url": "https://github.com/Steamodded/examples/blob/master/Mods/DeckOf4s.lua",
+      "description": "Create a special deck that only contains **4**s!",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Deck of 8",
+      "url": "https://discord.com/channels/1116389027176787968/1220733310360359033",
+      "description": "Create a special deck that only contains 8s!",
+      "author": [
+        {
+          "name": "`@itiseren`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Dice Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1213040102138323024",
+      "description": "A deck which **doubles** all probabilities, both bad and good!",
+      "author": [
+        {
+          "name": "`@Blackbando`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "DNA Splice Deck",
+      "url": "https://github.com/jlwoolf/DNASplice",
+      "description": "Adds a deck that gives a DNA joker at run start.",
+      "author": [
+        {
+          "name": "jlwoolf",
+          "url": "https://github.com/jlwoolf"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Double Decker",
+      "url": "https://discord.com/channels/1116389027176787968/1246280922412744774",
+      "description": "Adds a double-stacked deck to the game.",
+      "author": [
+        {
+          "name": "`@Rokk`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Dynamic Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1211776677584175125",
+      "description": "Increase rank of discarded cards by 1!",
+      "author": [
+        {
+          "name": "Tianjing (discord)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Easy Start Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1215120640563089470",
+      "description": "A deck that starts with a **coupon** and **polychromatic** tag for a good start made for gloc.",
+      "author": [
+        {
+          "name": "`@Spellign`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Eccentric Deck",
+      "url": "https://github.com/mojimoon/MojiBalatro/blob/main/EccentricDeck/EccentricDeck.lua",
+      "description": "All Ranks and Suits in deck are randomized but heavily **biased** towards a specific type. Enhancements, editions and seals are also biasely added to some cards.",
+      "author": [
+        {
+          "name": "Mojimoon",
+          "url": "https://github.com/mojimoon/"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Enchanted Deck",
+      "url": "https://github.com/encarvlucas/EncarvlucasBalatroMods",
+      "description": "Start the game with some of your cards already be **enhanced**!",
+      "author": [
+        {
+          "name": "Encarvlucas",
+          "url": "https://github.com/encarvlucas"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Expansion Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1213521072591208548",
+      "description": "Grab more cards than you can hold!",
+      "author": [
+        {
+          "name": "`@Tianjing`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Foiled Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1220733310360359033/1221074837343305789",
+      "description": "All the cards are Foiled.",
+      "author": [
+        {
+          "name": "`@itiseren`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Foiled Wild Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1220733310360359033/1221782780157886484",
+      "description": "All the cards are wild and foiled.",
+      "author": [
+        {
+          "name": "`@itiseren`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "French Tarot Cavalier Card",
+      "url": "https://github.com/Desmero/FrenchTarotCavalierCard",
+      "description": "Add the card rank Cavalier from the game of French Tarot.",
+      "author": [
+        {
+          "name": "Desmero",
+          "url": "https://github.com/Desmero/FrenchTarotCavalierCard"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Gimmicky decks pack",
+      "url": "https://discord.com/channels/1116389027176787968/1215786968433164328",
+      "description": "A collection of mods I've made. Mostly exists so that I can assign multiple custom deck images to custom decks.",
+      "author": [
+        {
+          "name": "Kusoro (discord)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "High Card Deck and Jokers",
+      "url": "https://github.com/Ken-Shi/Balatro_HighCardMod",
+      "description": "Create a deck that references the HighCard Franchise!",
+      "author": [
+        {
+          "name": "Kenny Stone",
+          "url": "https://github.com/Ken-Shi"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Joker Only Deck",
+      "url": "https://github.com/mojimoon/MojiBalatro/blob/main/JokerOnlyDeck/JokerOnlyDeck.lua",
+      "description": "All **Consumables** and **Vouchers** are banned, together with related Jokers, Tags and Booster Packs.",
+      "author": [
+        {
+          "name": "Mojimoon",
+          "url": "https://github.com/mojimoon/"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Legendary Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1215385607686066287",
+      "description": "Adds 1 deck (Legendary Deck) and 1 legendary joker (Charon).",
+      "author": [
+        {
+          "name": "`@UnknownEternity`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Mesh Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1230941930288844891",
+      "description": "Burglar 2.0 !!",
+      "author": [
+        {
+          "name": "`@Nrio`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Number Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1229482445074857996",
+      "description": "Swaps the face cards for numbers instead. This mod adds a numerical deck.",
+      "author": [
+        {
+          "name": "`@Matherubik1`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Pact Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1212584088968368208",
+      "description": "After defeating each Boss Blind, gain a **Negative Tag**. and **-1** Joker Slot.",
+      "author": [
+        {
+          "name": "`@Blackbando`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Pauper Deck",
+      "url": "https://github.com/AiksiLotl/Pauper-Deck",
+      "description": "Shop has no Jokers. Open a Jumbo Pack after each Blind. Only Jokers earn you money.",
+      "author": [
+        {
+          "name": "AiksiLotl",
+          "url": "https://github.com/AiksiLotl"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Randomizer Deck",
+      "url": "https://github.com/Hellyom/HellyomBalatroMods",
+      "description": "The Randomizer Deck randomizes itself, jokers, vouchers, planets, costs etc.",
+      "author": [
+        {
+          "name": "Hellyom",
+          "url": "https://github.com/Hellyom"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Royal Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1215417507440107540",
+      "description": "Adds 1 deck (Royal Deck): It contains only enhanced Aces, face cards, and 10s.",
+      "author": [
+        {
+          "name": "`@UnknownEternity`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "ScrapDeck",
+      "url": "https://discord.com/channels/1116389027176787968/1212307751980498975",
+      "description": "A deck where everything sells at **full price**! Might be overpowered but it's definitely fun!",
+      "author": [
+        {
+          "name": "`@Rose Happy`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Sylvie's Silliness",
+      "url": "https://github.com/NewtTheFish/SylvieSilly",
+      "description": "A few decks, jokers, etc. Have fun!",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Lemon",
+      "url": null,
+      "description": "Lime Deck - Start with a modified deck; -1 discard, -1 hand; The 2's in the deck have one of each (vanilla) seal.",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Sulfur Deck",
+      "url": null,
+      "description": "Start with a Death card and Overstock; Jokers are appear less often (equal chance to Tarots and Planets)",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Aurora Deck",
+      "url": null,
+      "description": "Start with an Aura card; Jokers and Playing cards always have editions; -1 joker slot, -1 hand.",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Hallowed Deck",
+      "url": null,
+      "description": "Planets and Tarots no longer appear in the shop. Playing Cards now appear in the shop by deafult.",
+      "author": [
+        {
+          "name": "NewtTheFish",
+          "url": "https://github.com/NewtTheFish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Turquoise Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1221088657251897344",
+      "description": "+1 hand size, -1 discard, At the end of the round, change suit and rank of the cards in hand.",
+      "author": [
+        {
+          "name": "`@Nrio`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Ultimate Random Deck",
+      "url": "https://github.com/Steamodded/examples/blob/master/Mods/UltimateRandom.lua",
+      "description": "Ultimate Random Deck!",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Voucher Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1212498071649521694",
+      "description": "Include a new deck which add **1** voucher to shop when entering and **20%** off for vouchers in shop.",
+      "author": [
+        {
+          "name": "`@Tianjing`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Wild Deck",
+      "url": "https://discord.com/channels/1116389027176787968/1220733310360359033/1220733397899542630",
+      "description": "Start with a Deck full of wild cards.",
+      "author": [
+        {
+          "name": "`@itiseren`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Gold's Cards",
+      "url": "https://github.com/Goldfighter5/Golds-Cards",
+      "description": "Adds the enhancement \"Rainbow Cards\" to the game, which give 3x mult, as well as 4 new tarot cards and 1 new spectral.",
+      "author": [
+        {
+          "name": "Goldfighter5",
+          "url": "https://github.com/Goldfighter5"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["enhancements"]
+    },
+    {
+      "name": "+1 Shop slot for High Stakes",
+      "url": "https://github.com/encarvlucas/EncarvlucasBalatroMods",
+      "description": "Adds Overstock Voucher (+1 card slot in Shop) to all runs at Blue Stakes or higher.",
+      "author": [
+        {
+          "name": "Encarvlucas",
+          "url": "https://github.com/encarvlucas"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Add +1 Shop to Every Run",
+      "url": "https://github.com/encarvlucas/EncarvlucasBalatroMods",
+      "description": "Adds Overstock Voucher (+1 card slot in Shop) to all runs.",
+      "author": [
+        {
+          "name": "Encarvlucas",
+          "url": "https://github.com/encarvlucas"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Always Show Seed",
+      "url": "https://www.nexusmods.com/balatro/mods/6/",
+      "description": "Shows the seed and makes you able to copy it at all time on the options eveon on non seeded run.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "BalatroQuickLoad",
+      "url": "https://github.com/TsunamiinFantasy/BalatroQuickLoad",
+      "description": "I made this module for quick file reads. Repeatedly switching to the main menu was too painful.",
+      "author": [
+        {
+          "name": "TsunamiinFantasy",
+          "url": "https://github.com/TsunamiinFantasy"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Better Balatro",
+      "url": "https://discord.com/channels/1116389027176787968/1223603584285937774",
+      "description": "A mod that changes the gameplay for a fresh Balatro™️ experience!",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Better Mouse And Gamepad",
+      "url": "https://github.com/Kooluve/Better-Mouse-And-Gamepad",
+      "description": "Make mouse and gamepad more efficient and easier to use. For example multiply select cards",
+      "author": [
+        {
+          "name": "holding",
+          "url": null
+        },
+        {
+          "name": "dragging right mouse button. by [@Kooluve](https://github.com/Kooluve)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Better Stakes",
+      "url": "https://github.com/kjossul/BetterStakes",
+      "description": "Rework of orange and gold stakes, making them less challenging and reducing the need to reset for a good start.",
+      "author": [
+        {
+          "name": "kjossul",
+          "url": "https://github.com/kjossul"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Card Sleeves",
+      "url": "https://github.com/larswijn/CardSleeves",
+      "description": "Adds fancy sleeves which not only keep the cards cosy, but also apply the modifier of the deck it represents (e.g. get +$10 at start with Yellow Sleeve).",
+      "author": [
+        {
+          "name": "Larswijn",
+          "url": "https://github.com/larswijn"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Choose First Shop Joker",
+      "url": "https://www.nexusmods.com/balatro/mods/11/",
+      "description": "This mod adds a way to choose the first joker that spawns.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Collection Fix",
+      "url": "https://github.com/GoldenEpsilon/Balatro_CollectionFix",
+      "description": "Fixes the collection to work with amounts of cards that aren't the base game's.",
+      "author": [
+        {
+          "name": "Golden Epsilon",
+          "url": "https://github.com/GoldenEpsilon"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Debug Menu",
+      "url": "https://discord.com/channels/1116389027176787968/1209857245316255744",
+      "description": "Enables Balatro's builtin debug menu. Press TAB to show keybinds.",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/MathIsFun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "DisableVerdantLeaf",
+      "url": "https://github.com/V-rtualized/DisableVerdantLeaf",
+      "description": "Disable Verdant Leaf (All cards debuffed until 1 Joker Sold) on specific challenge runs.",
+      "author": [
+        {
+          "name": "V-rtualized",
+          "url": "https://github.com/V-rtualized"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Faster Stakes Unlock",
+      "url": "https://github.com/Wiwiweb/BalatroMods/blob/main/FasterStakesUnlock.lua",
+      "description": "Winning a run with a stake unlocks the stake 2 levels below for all decks.",
+      "author": [
+        {
+          "name": "Wiwiweb",
+          "url": "https://github.com/Wiwiweb"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Flush Hotkeys",
+      "url": "https://github.com/Agoraaa/FlushHotkeys",
+      "description": "Adds hotkeys for selecting flushes, full houses and other hand types.",
+      "author": [
+        {
+          "name": "Agoraaa",
+          "url": "https://github.com/Agoraaa"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Free Reroll",
+      "url": "https://discord.com/channels/1116389027176787968/1215870212847698020",
+      "description": "Rerolls are free! It may ruin your game experience.",
+      "author": [
+        {
+          "name": "`@Tianjing`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "GameSpeed Display and Spacereroll",
+      "url": "https://github.com/snowylight/GameSpeed-Display-and-Spacereroll",
+      "description": "Always display the speed. Press the shift key to change speed and space key to reroll in shop, also disable the FPS display.",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "[Hermit Level Up](https://www.nexusmods.com/balatro/mods/331) | [github](https://github.com/LnxFCA/balatro",
+      "url": null,
+      "description": "mods/tree/main/hermit-level-up) - Adds a level system for **The Hermit**, increasing its money cap with each level. by [@LnxFCA](https://github.com/LnxFCA)",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Hotkeys Collection",
+      "url": "https://github.com/DorkDad141/keyboard-shortcuts",
+      "description": "Adds hotkeys / keyboard shortcuts for a wide range of Balatro game actions, designed to be able to play most common hands without having to click very often.",
+      "author": [
+        {
+          "name": "[@DorkDad141](https://github.com/DorkDad141) based on [@Agoraaa](https://github.com/Agoraaa)'s mod",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "House Rules",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "a mod that adds difficulty modifiers to your runs.",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Increase Shop Size",
+      "url": "https://discord.com/channels/1116389027176787968/1217062797167427624",
+      "description": "Increase cards that are sold in the shop",
+      "author": [
+        {
+          "name": "2. by `@MonkeyHiko`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "IncreaseJokerCap",
+      "url": "https://github.com/AkitaAttribute/IncreaseJokerCap",
+      "description": "Increase Base Joker Capacity.",
+      "author": [
+        {
+          "name": "Akita Attribute",
+          "url": "https://github.com/AkitaAttribute"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "IncreaseSoulProbability",
+      "url": "https://github.com/AkitaAttribute/IncreaseSoulProbability",
+      "description": "Increase Soul Spectral Card Probability To Spawn.",
+      "author": [
+        {
+          "name": "Akita Attribute",
+          "url": "https://github.com/AkitaAttribute"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "InfinteScore",
+      "url": "https://github.com/jamesthejellyfish/InfiniteScoreMod",
+      "description": "A mod to increase the score cap from 1.7e308 to effectively infinite.",
+      "author": [
+        {
+          "name": "JamestheJellyfish",
+          "url": "https://github.com/jamesthejellyfish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "JimboStats",
+      "url": "https://github.com/JimboStats/jimbo-stats-mod",
+      "description": "Automatic Run History Tracking Platform.",
+      "author": [
+        {
+          "name": "`@demarcot`",
+          "url": null
+        },
+        {
+          "name": "AxBolduc",
+          "url": "https://github.com/AxBolduc"
+        },
+        {
+          "name": "mwithington",
+          "url": "https://github.com/mwithington"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "JoJo's Tarots",
+      "url": "https://www.nexusmods.com/balatro/mods/13",
+      "description": "Replaces tarot cards graphics with ones from Jojo's.",
+      "author": [
+        {
+          "name": "`@KaptenApten`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Masquerade",
+      "url": "https://github.com/Amvoled/Masquerade",
+      "description": "Allows multiple card sprites to coexist and be randomly picked when displayed.",
+      "author": [
+        {
+          "name": "Amavoleda",
+          "url": "https://github.com/Amvoled"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Metal Card Falling Sound Effect",
+      "url": "https://github.com/Muddieee/metal_card_falling",
+      "description": "Replaces default steel card activation sound with metal pipe falling sound effect.",
+      "author": [
+        {
+          "name": "Muddie",
+          "url": "https://github.com/Muddieee"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Milck QOL",
+      "url": "https://github.com/Mi1cK/Milcks-QOL",
+      "description": "Add keyboard shortcuts to the game.",
+      "author": [
+        {
+          "name": "[Milck](https://github.com/Mi1cK)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Neow Blessings",
+      "url": "https://github.com/kjossul/NeowBlessings",
+      "description": "Neow has transformed into a cute little card! Choose between 4 blessings at the start of your run, inspired from Slay the Spire.",
+      "author": [
+        {
+          "name": "kjossul",
+          "url": "https://github.com/kjossul"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Quick Restart",
+      "url": "https://github.com/nicholassam6425/balatro-mods/blob/main/steamodded/mods/quickrestart_steamodded.lua",
+      "description": "Quickly reroll ante 1 tags",
+      "author": [
+        {
+          "name": "clicking f2. by [@arachnei](https://github.com/nicholassam6425)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "RandomSprite",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "Randomizes the sprites of all Jokers, Vouchers, Boosters and comsumables. This will also randomize all modded cards into vanilla sprites.",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "ReplaceJokers",
+      "url": "https://github.com/AkitaAttribute/ReplaceJokers",
+      "description": "A mod to replace all jokers.  Can be used to make runs that only have a select few jokers.",
+      "author": [
+        {
+          "name": "Akita Attribute",
+          "url": "https://github.com/AkitaAttribute"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "RerollPacks",
+      "url": "https://github.com/DorkDad141/balatro/blob/main/RerollPacks.lua",
+      "description": "Reroll packs when rerolling the shop.",
+      "author": [
+        {
+          "name": "DorkDad141",
+          "url": "https://github.com/DorkDad141"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Robo Sorting",
+      "url": "https://discord.com/channels/1116389027176787968/1248493580537040917",
+      "description": "Adds Joker Sorting with the S key in the shop.",
+      "author": [
+        {
+          "name": "`@Robo`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Rumble",
+      "url": "https://github.com/WilsontheWolf/balatro-mods/tree/master/steamodded/Rumble",
+      "description": "Enables controller rumble support.",
+      "author": [
+        {
+          "name": "WilsontheWolf",
+          "url": "https://github.com/WilsontheWolf"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Seed Challenges",
+      "url": "https://gist.github.com/n4ru/885293b844f27e7c90705e4cca9c0f3f",
+      "description": "Allows seeding challenge runs.",
+      "author": [
+        {
+          "name": "n4ru",
+          "url": "https://github.com/n4ru"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Seed Persistence",
+      "url": "https://gist.github.com/n4ru/4ab14a6c9fd13e79e2f3bc8715e1a079",
+      "description": "Quick restart seeded runs.",
+      "author": [
+        {
+          "name": "n4ru",
+          "url": "https://github.com/n4ru"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Set Seed Achievements Bypass",
+      "url": "https://www.nexusmods.com/balatro/mods/5",
+      "description": "Enables achievements with seeded run.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Slower Scaling Ante",
+      "url": "https://www.nexusmods.com/balatro/mods/7/",
+      "description": "Slows the ante scaling to a linear pattern.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Stickers Always Shown",
+      "url": "https://github.com/SirMaiquis/Balatro-Stickers-Always-Shown",
+      "description": "The joker's stickers are always shown!.",
+      "author": [
+        {
+          "name": "SirMaiquis",
+          "url": "https://github.com/SirMaiquis"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Survival Mode",
+      "url": "https://github.com/Aurelius7309/Survival",
+      "description": "This mod adds two new game modes: Survival and Survival+.",
+      "author": [
+        {
+          "name": "Aure",
+          "url": "https://github.com/Aurelius7309"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "UltraHand",
+      "url": "https://github.com/xioxin/BalatroMods",
+      "description": "Click on the card in the collection menu to spawn, ignoring the card count limit.",
+      "author": [
+        {
+          "name": "xioxin",
+          "url": "https://github.com/xioxin"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Balatro Hand Preview",
+      "url": "https://github.com/Toeler/Balatro-HandPreview",
+      "description": "Adds a window showing the possible poker hands that you can make with your current hand!",
+      "author": [
+        {
+          "name": "Toeler",
+          "url": "https://github.com/Toeler"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Balatro Hand Preview RU",
+      "url": "https://github.com/ZarenOFF/Balatro-HandPreview-RU",
+      "description": "Russian translation for Balatro Hand Preview",
+      "author": [
+        {
+          "name": "ZarenOFF",
+          "url": "https://github.com/ZarenOFF"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Balatro Safety",
+      "url": "https://github.com/Zei33/balatro-safety-steamodded",
+      "description": "Presents a confirmation dialogue when you select a dangerous action (like using ankh or hex).",
+      "author": [
+        {
+          "name": "Zei33",
+          "url": "https://github.com/Zei33"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "BalatrOverlay",
+      "url": "https://github.com/cantlookback/BalatrOverlay",
+      "description": "Helpful game overlay.",
+      "author": [
+        {
+          "name": "cantlookback",
+          "url": "https://github.com/cantlookback"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Brainstorm Reroll Button",
+      "url": "https://github.com/Jdbye/BalatroMods/blob/main/BrainstormRerollButton.lua",
+      "description": "For use with Brainstorm. Adds an Auto Reroll button to the escape menu and game over screen.",
+      "author": [
+        {
+          "name": "Jdbye",
+          "url": "https://github.com/Jdbye"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Colour Selector",
+      "url": "https://github.com/EmperorGesar/Balatro-Colour-Selector",
+      "description": "Mod for selecting and changing the colours of the main menu background.",
+      "author": [
+        {
+          "name": "EmperorGesar",
+          "url": "https://github.com/EmperorGesar"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Custom Fonts",
+      "url": "https://discord.com/channels/1116389027176787968/1210101577550008390",
+      "description": "Allows setting the game font to a custom font. Must be named \"font.ttf\".",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/MathIsFun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Deck Creator",
+      "url": "https://github.com/adambennett/Balatro-DeckCreator",
+      "description": "GUI mod for creating, saving, loading, and sharing your own customizable decks!",
+      "author": [
+        {
+          "name": "Nyoxide",
+          "url": "https://github.com/adambennett"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Deck Seer",
+      "url": "https://gist.github.com/theVDude/c8d33960f869207da4a69cc7c035e68d",
+      "description": "Peer into the future of your deck (see upcoming draws).",
+      "author": [
+        {
+          "name": "thevdude",
+          "url": "https://gist.github.com/theVDude"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Deselect All",
+      "url": "https://github.com/Zei33/deselect-all-steamodded",
+      "description": "Adds a deselect all button to deselect all highlighted cards.",
+      "author": [
+        {
+          "name": "Zei33",
+          "url": "https://github.com/Zei33"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Divvy's History",
+      "url": "https://github.com/DivvyCr/Balatro-History",
+      "description": "View your last played hand!",
+      "author": [
+        {
+          "name": "DivvyCr",
+          "url": "https://github.com/DivvyCr"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Divvy's Preview",
+      "url": "https://github.com/DivvyCr/Balatro-Preview",
+      "description": "Simulate and preview the score that your hand will get!",
+      "author": [
+        {
+          "name": "DivvyCr",
+          "url": "https://github.com/DivvyCr"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Escape Exit Button",
+      "url": "https://github.com/Steamodded/examples/blob/master/Mods/EscapeExitButton.lua",
+      "description": "Add an \"Exit\" button into the \"Escape\" menu.",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Fold Button",
+      "url": "https://github.com/happinyz/BalatroFoldButton",
+      "description": "Quickly forfeit your runs with the 'Fold' button!",
+      "author": [
+        {
+          "name": "happinyz",
+          "url": "https://github.com/happinyz"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Gay Mod",
+      "url": "https://github.com/fosterbarnes/balatroGayPenis",
+      "description": "Changes a \"Straight\" into a \"Gay\". Also changes \"Venus\" into \"Penis\" as a bonus.",
+      "author": [
+        {
+          "name": "FosterBarnes",
+          "url": "https://github.com/fosterbarnes"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Hitboxes",
+      "url": "https://discord.com/channels/1116389027176787968/1209857245316255744",
+      "description": "Enables Balatro's builtin hitboxes. Also shows some other debug information.",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/MathIsFun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Hold For Final Hand Score",
+      "url": "https://github.com/Wiwiweb/BalatroMods/blob/main/HoldForFinalHandScore.lua",
+      "description": "Pauses a moment for the final Chip X Mult count, and another moment for the final hand chip total. Especially noticeable on big hands that trigger flames.",
+      "author": [
+        {
+          "name": "Wiwiweb",
+          "url": "https://github.com/Wiwiweb"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "[Incantation](https://github.com/jenwalter666/JensBalatroCollection/tree/main/Incantation) | [discord](https://discord.com/channels/1116389027176787968/1248924034716930100)",
+      "url": null,
+      "description": "Enables the ability to stack identical consumables. by [@jenwalter666](https://github.com/cubeanimataz), [@MathIsFun_](https://github.com/MathIsFun0)",
+      "author": [
+        {
+          "name": "Wiwiweb",
+          "url": "https://github.com/Wiwiweb"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "JCursor",
+      "url": "https://github.com/jie65535/JMods/blob/main/JCursor",
+      "description": "Allow customize the cursor.",
+      "author": [
+        {
+          "name": "Jie65535",
+          "url": "https://github.com/jie65535"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Jimbo's Histories | Run Reviewer",
+      "url": "https://github.com/Mi1cK/Jimbos-Histories",
+      "description": "Review run after it has ended.",
+      "author": [
+        {
+          "name": "MilcK",
+          "url": "https://github.com/Mi1cK"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Jimbo's Metrics",
+      "url": "https://gitlab.com/CraftedCart/jimbos_metrics",
+      "description": "Graph your plays over time, and view your previous hands.",
+      "author": [
+        {
+          "name": "CraftedCart",
+          "url": "https://gitlab.com/CraftedCart"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "JokerDisplay",
+      "url": "https://github.com/nh6574/JokerDisplay",
+      "description": "Adds a small window under vanilla Jokers that displays useful information.",
+      "author": [
+        {
+          "name": "nh6574",
+          "url": "https://github.com/nh6574/"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "JokerSellValue",
+      "url": "https://github.com/OppositeWolf770/JokerSellValue",
+      "description": "QOL mod for Jokers in Buffoon Packs and the shop.",
+      "author": [
+        {
+          "name": "OppositeWolf770",
+          "url": "https://github.com/OppositeWolf770"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Main Menu Tweaks",
+      "url": "https://discord.com/channels/1116389027176787968/1212843840814325780",
+      "description": "Minor changes to the main menu screen.",
+      "author": [
+        {
+          "name": "`@termisaal`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Manual Flip",
+      "url": "https://github.com/ssyangchn/ManualFlip",
+      "description": "Adds a hotkey function to flip selected playing cards and Jokers.",
+      "author": [
+        {
+          "name": "ssyangchn",
+          "url": "https://github.com/ssyangchn"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "More Speed",
+      "url": "https://github.com/Steamodded/examples/blob/master/Mods/MoreSpeeds.lua",
+      "description": "More Speed options!",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "[No Background](https://github.com/WilsontheWolf/balatro",
+      "url": null,
+      "description": "mods/tree/master/steamodded/NoBackground) [discord](https://discord.com/channels/1116389027176787968/1231746124994449458) - Disables the background on start. by [@WilsontheWolf](https://github.com/WilsontheWolf)",
+      "author": [
+        {
+          "name": "Steamo",
+          "url": "https://github.com/Steamopollys"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Roulette",
+      "url": "https://github.com/Hellyom/HellyomBalatroMods",
+      "description": "Adds a roulette to the game so you can lose all your money and loose your run faster, obviously.",
+      "author": [
+        {
+          "name": "Hellyom",
+          "url": "https://github.com/Hellyom"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "SeedUnlocker",
+      "url": "https://discord.com/channels/1116389027176787968/1229891707793969265",
+      "description": "Allows for entering seeds without Balatro's arbitrary character restrictions.",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/mathisfun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "[Spectral Recolouring](https://github.com/Eremel/SpectralRecolours) | [discord](https://discord.com/channels/1116389027176787968/1248780371974295592)",
+      "url": null,
+      "description": "Adds a shader to allow easy recolouring of spectral cards. by [@Eremel_](https://github.com/Eremel)",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/mathisfun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Speedrun Timer",
+      "url": "https://discord.com/channels/1116389027176787968/1209916317604511814",
+      "description": "A speedrun timer for Balatro.",
+      "author": [
+        {
+          "name": "MathIsFun_",
+          "url": "https://github.com/mathisfun0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "SystemClock",
+      "url": "https://github.com/Breezebuilder/SystemClock",
+      "description": "Adds a draggable, resizable, customizable clock to the game screen.",
+      "author": [
+        {
+          "name": "Breezebuilder",
+          "url": "https://github.com/Breezebuilder"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Taikomochi",
+      "url": "https://github.com/Amvoled/Taikomochi",
+      "description": "New zen game mode, loosing is not the end of the run, just restart the ante.",
+      "author": [
+        {
+          "name": "Amvoled",
+          "url": "https://github.com/Amvoled"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "[Trance](https://github.com/MathIsFun0/Trance) | [discord](https://discord.com/channels/1116389027176787968/1248865517112918016)",
+      "url": null,
+      "description": "A mod that lets you change Balatro's colors. by [@MathIsFun_](https://github.com/MathIsFun0)",
+      "author": [
+        {
+          "name": "Amvoled",
+          "url": "https://github.com/Amvoled"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Wheel of Fortune Tracker + Guarantee",
+      "url": "https://github.com/sabslikesobs/pitywheel",
+      "description": "Track your Nope! rate for The Wheel of Fortune, OR Guarantee the \"1 in 4\" success rate for The Wheel of Fortune.",
+      "author": [
+        {
+          "name": "sabslikesobs",
+          "url": "https://github.com/sabslikesobs"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "YippeeGameOver",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "Replaces Jimbo in the win screen with tbh.",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "5CEBalatro",
+      "url": "https://github.com/DPS2004/5CEBalatro",
+      "description": "do jokers have meat?",
+      "author": [
+        {
+          "name": "DPS2004",
+          "url": "https://github.com/DPS2004"
+        },
+        {
+          "name": "`@The 5CEB server`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "AncientJokerFix",
+      "url": "https://github.com/gabepesco/BalatroAncientJokerFix",
+      "description": "Fixes Ancient Joker to only pick suits in your deck.",
+      "author": [
+        {
+          "name": "gabepesco",
+          "url": "https://github.com/gabepesco"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Bad Apple Joker",
+      "url": "https://github.com/jamesthejellyfish/BadAppleBalatro",
+      "description": "Adds the Bad Apple Joker to the game.",
+      "author": [
+        {
+          "name": "JamestheJellyfish",
+          "url": "https://github.com/jamesthejellyfish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "BBBalatro",
+      "url": "https://github.com/BBBalatroMod/BBBalatro/tree/main",
+      "description": "Adds 15 well-designed jokers and counting.",
+      "author": [
+        {
+          "name": "BBBalatroMod",
+          "url": "https://github.com/BBBalatroMod"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Betmma Jokers",
+      "url": "https://github.com/betmma/my_balatro_mods",
+      "description": "5 More Jokers!",
+      "author": [
+        {
+          "name": "Betmma",
+          "url": "https://github.com/betmma"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[BIG BANG](https://github.com/ZJWCY/Balatro_BIG_BANG_by_ZJWCY) | [trailer](https://www.bilibili.com/video/BV1zBFKe3EuZ)",
+      "url": null,
+      "description": "Once there was an explosion. A bang which caused a naneinf in a round. (2 jokers & 1 challenge). by [@ZJWCY](https://github.com/ZJWCY)",
+      "author": [
+        {
+          "name": "Betmma",
+          "url": "https://github.com/betmma"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "CheesyJokers",
+      "url": "https://github.com/ilikecheese0/CheesyJokers",
+      "description": "Might as well make my own joker pack since so may other people are doing it.",
+      "author": [
+        {
+          "name": "ilikecheese",
+          "url": "https://github.com/ilikecheese0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[D6 Jokers](https://github.com/GauntletGames",
+      "url": null,
+      "description": "2086/D6-Jokers) | [discord](https://discord.com/channels/1116389027176787968/1249518446669074474) - Adds D6 Jokers that have their effects determined by a die roll. by [@ItsFlowwey](https://github.com/GauntletGames-2086)",
+      "author": [
+        {
+          "name": "ilikecheese",
+          "url": "https://github.com/ilikecheese0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Date A Live",
+      "url": "https://github.com/snowylight/DatealiveBalatro",
+      "description": "Adds 19 jokers from anime DATE A LIVE.",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Emergence",
+      "url": "https://github.com/Snoresville/balatro-emergence-joker",
+      "description": "This mod features one (1) custom Joker, and a custom deck that revolves around its mechanics.",
+      "author": [
+        {
+          "name": "Snoresville",
+          "url": "https://github.com/Snoresville"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "FloundersJokers",
+      "url": "https://github.com/Flounderlul/FloundersJokers",
+      "description": "Adds a variety of different jokers.",
+      "author": [
+        {
+          "name": "Flounderful",
+          "url": "https://github.com/Flounderlul"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Fusion Jokers",
+      "url": "https://itayfeder.github.io/Fusion-Jokers/",
+      "description": "Fuse two jokers together to create special, powerful jokers!",
+      "author": [
+        {
+          "name": "itayfeder",
+          "url": "https://github.com/itayfeder) and [@Lyman](https://github.com/spikeof2010"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Harambe's Chosen",
+      "url": "https://github.com/JulianDeclercq/harambes-chosen",
+      "description": "Cavendish went extinct... just as planned. This mod adds a third, legendary, banana joker to the chain!",
+      "author": [
+        {
+          "name": "Joolean",
+          "url": "https://github.com/JulianDeclercq"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Inscrybed Jokers",
+      "url": "https://discord.com/channels/1116389027176787968/1224707324061552640",
+      "description": "Some Jokers inspired",
+      "author": [
+        {
+          "name": "Inscryption. by [@LunaAstraCassiopeia](https://github.com/LunaAstraCassiopeia)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "JankJonklers",
+      "url": "https://github.com/spikeof2010/JankJonklers",
+      "description": "A small pack of Jokers for the game.",
+      "author": [
+        {
+          "name": "Lyman",
+          "url": "https://github.com/spikeof2010"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "JellyMod",
+      "url": "https://github.com/jamesthejellyfish/JellyMod",
+      "description": "A pack of 17 Jokers and 22 new \"reverse\" tarot cards.",
+      "author": [
+        {
+          "name": "JamestheJellyfish",
+          "url": "https://github.com/jamesthejellyfish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[Joker Evolution](https://github.com/SDM0/Joker",
+      "url": null,
+      "description": "Evolution) | [discord](https://discord.com/channels/1116389027176787968/1249450412143153266) - Gives a few jokers strong evolutions! by [@SDM_0](https://github.com/SDM0)",
+      "author": [
+        {
+          "name": "JamestheJellyfish",
+          "url": "https://github.com/jamesthejellyfish"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Joker Fusions",
+      "url": "https://discord.com/channels/1116389027176787968/1223117435356577824",
+      "description": "Adds fused Jokers to the game, encountered via owning two compatible Jokers.",
+      "author": [
+        {
+          "name": "`@Numbuh214`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "LushMod",
+      "url": "https://github.com/lusciousdev/LushMod",
+      "description": "Pack with 9 jokers with some interesting effects.",
+      "author": [
+        {
+          "name": "lusciousdev",
+          "url": "https://github.com/lusciousdev"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Lynverse Jokers",
+      "url": "https://alexyothefirst.com/mods/lynverse/",
+      "description": "A pack of 15 Jokers based on some lovely ladies!",
+      "author": [
+        {
+          "name": "AlexyoTheFirst",
+          "url": "https://alexyothefirst.com/"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Milatro",
+      "url": "https://github.com/milankapitein/milatro-mod",
+      "description": "Adds 30 new vanilla inspired Jokers to allow for new builds and synergies.",
+      "author": [
+        {
+          "name": "MilanKapitein",
+          "url": "https://github.com/milankapitein"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "MittMods",
+      "url": "https://discord.com/channels/1116389027176787968/1227500439055110175",
+      "description": "This mod adds many different jokers to the game.",
+      "author": [
+        {
+          "name": "`@MittensGCTM`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[Mor jokers](https://github.com/morpline/morjokers) | [discord](https://discord.com/channels/1116389027176787968/1230178381342179350)",
+      "url": null,
+      "description": "Adds mor jokers. by [@Morpline](https://github.com/morpline) and [@Blizzow](https://github.com/BlizzowX)",
+      "author": [
+        {
+          "name": "`@MittensGCTM`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "MoreFluff",
+      "url": "https://notmario.github.io/MoreFluff/",
+      "description": "Adds more jokers to the game,",
+      "author": [
+        {
+          "name": "notmario",
+          "url": "https://github.com/notmario"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Multipack",
+      "url": "https://github.com/snowylight/Multipack",
+      "description": "More crazy packs! You can even choose booster packs from a \"multipack\".",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "MultiJokers",
+      "url": "https://github.com/iJohnMaged/multi-jokers",
+      "description": "Adds a couple of custom jokers to the game.",
+      "author": [
+        {
+          "name": "John Maged",
+          "url": "https://github.com/iJohnMaged"
+        },
+        {
+          "name": "`@Multi`",
+          "url": null
+        },
+        {
+          "name": "`@GoldenEpsilon`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "MystJokers",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "Adds more Jokers to the game. Before you install, read below.",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Holotro",
+      "url": "https://github.com/RivFalcon/Holotro",
+      "description": "A Hololive-themed fanmade Balatro mod.",
+      "author": [
+        {
+          "name": "RivFalcon",
+          "url": "httpd://github.com/RivFalcon"
+        }
+      ],
+      "deps": ["steamodded", "lovely", "multitextbox"],
+      "cat": ["miscellaneous"]
+    },
+    {
+      "name": "multitextbox",
+      "url": "https://github.com/RivFalcon/MultiTextBox",
+      "description": "A Balatro UI mod where you can separate massive description texts into multiple boxes.",
+      "author": [
+        {
+          "name": "RivFalcon",
+          "url": "httpd://github.com/RivFalcon"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Olympus",
+      "url": "https://github.com/AbhinavR314/BalatroOlympus",
+      "description": "adding Greek mythology based Jokers.",
+      "author": [
+        {
+          "name": "AbhinavR314",
+          "url": "https://github.com/AbhinavR314"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Pampa Joker Pack",
+      "url": "https://batabata3.github.io/balatro-pampa-joker-pack/",
+      "description": "Adds 28 jokers to the game.",
+      "author": [
+        {
+          "name": "Matelote",
+          "url": "https://github.com/batabata3"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Panley Joker",
+      "url": "https://github.com/RedrcknRbn/Panley-Joker",
+      "description": "Adds the Panley Joker to the game.",
+      "author": [
+        {
+          "name": "RedrcknRbn",
+          "url": "https://github.com/RedrcknRbn"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "PiJoker",
+      "url": "https://github.com/erachlin/PiJoker",
+      "description": "A joker based on Pi.",
+      "author": [
+        {
+          "name": "Beeks17",
+          "url": "https://github.com/erachlin"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Quilombo",
+      "url": "https://github.com/acetna/Quilombo",
+      "description": "Adds 7 custom jokers with interesting effects.",
+      "author": [
+        {
+          "name": "acetna",
+          "url": "https://github.com/acetna"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Restart Run Button",
+      "url": "https://github.com/Jdbye/BalatroMods/blob/main/RestartRunButton.lua",
+      "description": "Adds a Restart Run button to the escape menu and game over screen. Useful on mobile or for those who were annoyed that the built in R hotkey to restart the run doesn't work on the game over screen.",
+      "author": [
+        {
+          "name": "Jdbye",
+          "url": "https://github.com/Jdbye"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Reverie",
+      "url": "https://dvrp-balatro-mods.pages.dev/reverie",
+      "description": "Reverie is a movie-themed Balatro expansion that focuses on providing special shops and various contents around it.",
+      "author": [
+        {
+          "name": "DVRP",
+          "url": "https://github.com/dvrp0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Risk of Jesters",
+      "url": "https://dvrp-balatro-mods.pages.dev/risk-of-jesters",
+      "description": "Risk of Rain themed Jokers, Vouchers and more.",
+      "author": [
+        {
+          "name": "DVRP",
+          "url": "https://github.com/dvrp0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "RNG Butter",
+      "url": "https://discord.com/channels/1116389027176787968/1229090507720757390",
+      "description": "A mod that tilts RNG somewhat in player's favour.",
+      "author": [
+        {
+          "name": "`@Kusoro`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[Ro",
+      "url": null,
+      "description": "Balatro](https://github.com/AlexZGreat/Ro-Balatro) | [discord](https://discord.com/channels/1116389027176787968/1247049217621360640) - A fusion between Balatro and Roblox. by [@AlexZGreat](https://github.com/AlexZGreat)",
+      "author": [
+        {
+          "name": "`@Kusoro`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "ror2funnyitems",
+      "url": "https://github.com/ao-u/ror2funnyitems",
+      "description": "Adds the funny items from Risk of Rain 2.",
+      "author": [
+        {
+          "name": "aou",
+          "url": "https://github.com/ao-u"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Seven Sins",
+      "url": "https://github.com/AlexDavies8/balatro-mods",
+      "description": "A pack of Jokers based on the Seven Deadly Sins including 3 new challenges.",
+      "author": [
+        {
+          "name": "AlexDavies8",
+          "url": "https://github.com/AlexDavies8"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Snoresville's Turbulent Jokers",
+      "url": "https://snoresville.github.io/snoresville_turbulent_jokers/",
+      "description": "15 Jokers (6 Common, 5 Uncommon, 3 Rare, 1 Legendary) and 7 Decks that revolve around some of the Jokers.",
+      "author": [
+        {
+          "name": "Snoreville",
+          "url": "https://github.com/Snoreville"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Snow's Mods",
+      "url": "https://rattlingsnow353.github.io/Snow-s-Mods/",
+      "description": "This is a Theme(s) mod that adds mult varying things to the game, There is currently (1 Theme).",
+      "author": [
+        {
+          "name": "RattlingSnow353",
+          "url": "https://github.com/RattlingSnow353"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Star Rail Events",
+      "url": "https://github.com/snowylight/Starrailevents",
+      "description": "New consumable cards based on iconic events from Honkai: Star Rail",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "[Super Balatrio Bros](https://github.com/DPS2004/Super",
+      "url": null,
+      "description": "Balatrio-Bros) | [discord](https://discord.com/channels/1116389027176787968/1230341696957448222) - The entirety of Super Mario Bros. for the NES, now playable inside Balatro! by [@DPS2004](https://github.com/DPS2004)",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Tag Team",
+      "url": "https://github.com/Snoresville/balatro-double-tag-joker",
+      "description": "This mod features one (1) custom Joker.",
+      "author": [
+        {
+          "name": "Snoresville",
+          "url": "https://github.com/Snoresville"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "The Blunt",
+      "url": "https://github.com/Snoresville/balatro-blunt-joker",
+      "description": "This mod features one (1) custom Joker.",
+      "author": [
+        {
+          "name": "Snoresville",
+          "url": "https://github.com/Snoresville"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Themed Jokers",
+      "url": "https://github.com/BlizzowX/Balatro---Themed-Jokers",
+      "description": "A bunch of themed Jokers.",
+      "author": [
+        {
+          "name": "Blizzow",
+          "url": "https://github.com/BlizzowX"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Zilliax",
+      "url": "https://github.com/snowylight/Zilliax",
+      "description": "Assemble Functional Modules to create your own Zilliax!",
+      "author": [
+        {
+          "name": "snowylight",
+          "url": "https://github.com/snowylight"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Black Seal",
+      "url": "https://www.nexusmods.com/balatro/mods/9/",
+      "description": "Adds a Black Seal to the game.",
+      "author": [
+        {
+          "name": "infarctus",
+          "url": "https://github.com/Infarcactus"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Dice Seals",
+      "url": "https://github.com/Flounderlul/Dice-seals",
+      "description": "adds seals that mess with probability.",
+      "author": [
+        {
+          "name": "Flounder",
+          "url": "https://github.com/Flounderlul"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Green Seal",
+      "url": "https://github.com/AxBolduc/GreenSeal",
+      "description": "Add a green seal which will increase the hand size for a given round",
+      "author": [
+        {
+          "name": "1 when discarded. A card with the green seal will also apply a X0.75 mult if the card is scored. by [@AxBolduc](https://github.com/AxBolduc)",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Silver Seal",
+      "url": "https://github.com/mwithington/SilverSeal",
+      "description": "A mod for Baltro that adds in a silver seal which will apply a random edition to the card. Once the card is played a second time a new edition will be applied. The edition will only count after you have played the card atleast once. [@mwithington](https://github.com/mwithington), [@AxBolduc](https://github.com/AxBolduc)",
+      "author": [],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Hanafuda Hybrid",
+      "url": "https://github.com/tvroonhove/HanafudaHybridMod",
+      "description": "Turns the regular set of playing cards into hybrid hanafuda cards, and adjusts their base chip value accordingly.",
+      "author": [
+        {
+          "name": "Shirou97",
+          "url": "https://github.com/tvroonhove"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["suits"]
+    },
+    {
+      "name": "InkAndColor",
+      "url": "https://github.com/RattlingSnow353/InkAndColor",
+      "description": "This mod is based on sixsuits(check them out), Adds two new suits: Ink & Color.",
+      "author": [
+        {
+          "name": "RattlingSnow353",
+          "url": "https://github.com/RattlingSnow353"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["suits"]
+    },
+    {
+      "name": "Musical Suit",
+      "url": "https://github.com/itayfeder/MusicalSuit",
+      "description": "Adds a new suit (Notes ♪). with new jokers, tarot, and blind.",
+      "author": [
+        {
+          "name": "itayfeder",
+          "url": "https://github.com/itayfeder"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["suits"]
+    },
+    {
+      "name": "Six Suits",
+      "url": "https://github.com/Aurelius7309/SixSuits",
+      "description": "This mod adds two new suits to the game: Stars and Moons.",
+      "author": [
+        {
+          "name": "[@Aure](https://github.com/Aurelius7309)",
+          "url": null
+        },
+        {
+          "name": "`@CrimsonHeart`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["suits"]
+    },
+    {
+      "name": "Tags Preview",
+      "url": "https://github.com/JKd3vLD/BalatroTagPreview",
+      "description": "Uncommon, Rare, Foil, Holographic, Polychrome and Negative Tags show the Joker you will receive in the shop.",
+      "author": [
+        {
+          "name": "`@JK`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["tags"]
+    },
+    {
+      "name": "DNA Splice Tag",
+      "url": "https://github.com/jlwoolf/DNASplice",
+      "description": "Adds a tag that gives a free DNA joker in the shop.",
+      "author": [
+        {
+          "name": "jlwoolf",
+          "url": "https://github.com/jlwoolf"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["tags"]
+    },
+    {
+      "name": "Baba Decks",
+      "url": "https://discord.com/channels/1116389027176787968/1217466648135733328",
+      "description": "A texture mod, using art",
+      "author": [
+        {
+          "name": "Auburn Arcana on Tumblr. Makes the basic + Abandoned decks look like Baba! by `@Blackbando`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "BalaQuints",
+      "url": "https://github.com/Luuumine/BalaQuints",
+      "description": "A texture mod adding characters from The Quintessential Quintuplets into the game!",
+      "author": [
+        {
+          "name": "Luuumine",
+          "url": "https://github.com/Luuumine"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "[Balatro '95](https://github.com/Sparktimus/Balatro95) | [discord](https://discord.com/channels/1116389027176787968/1246389947556958240)",
+      "url": null,
+      "description": "Make Balatro look like a Windows 95 game! by `@Duncan Molloy`, [@Sparks](https://github.com/Sparktimus)",
+      "author": [
+        {
+          "name": "Luuumine",
+          "url": "https://github.com/Luuumine"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Balatro Re;Shuffled",
+      "url": "https://github.com/XenoCHeart/Crimsons-Ultimate-Card-Collection/releases/tag/RS-Release",
+      "description": "A full game reskin with every joker, consumable, and blind replaced.",
+      "author": [
+        {
+          "name": "[@XenoCHeart](https://github.com/XenoCHeart)",
+          "url": null
+        },
+        {
+          "name": "the Balatro Discord",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Balatro-Texture-Packs",
+      "url": "https://github.com/alexse13dev/Balatro-Texture-Packs",
+      "description": "I just wanted an easier way to share my (or others) texture packs.",
+      "author": [
+        {
+          "name": "Alexse13",
+          "url": "https://github.com/alexse13dev"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Baldatro",
+      "url": "https://github.com/SirMaiquis/Balatro-Baldatro",
+      "description": "Baldatro is a mod that makes all the jokers bald, thats it, enjoy!",
+      "author": [
+        {
+          "name": "SirMaiquis",
+          "url": "https://github.com/SirMaiquis"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Colorblind Friendly Card Colors Pack",
+      "url": "https://discord.com/channels/1116389027176787968/1213904100065021962",
+      "description": "This mod changes the standard card colors to be friendly to the three main colorblind types.",
+      "author": [
+        {
+          "name": "`@za0za_0`",
+          "url": null
+        },
+        {
+          "name": "`@Morn`",
+          "url": null
+        },
+        {
+          "name": "`@fridaywitch`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "[Dark Mode](https://github.com/CarrotonMan/balatrodarkmode) | [discord](https://discord.com/channels/1116389027176787968/1236675603495653416)",
+      "url": null,
+      "description": "Changes card textures into a stylized dark mode. by [@Carroton](https://github.com/CarrotonMan)",
+      "author": [
+        {
+          "name": "`@za0za_0`",
+          "url": null
+        },
+        {
+          "name": "`@Morn`",
+          "url": null
+        },
+        {
+          "name": "`@fridaywitch`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "EclipseTextures",
+      "url": "https://github.com/aleksxar/EclipseTextures",
+      "description": "Aims to give most of the game's textures a dark mode makeover, without many changes to the vanilla look.",
+      "author": [
+        {
+          "name": "aleksxar",
+          "url": "https://github.com/aleksxar"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Game of Thrones Tarot",
+      "url": "https://discord.com/channels/1116389027176787968/1219343995822407750",
+      "description": "Replaces Tarot cards with Game of Thrones Tarot (HBO).",
+      "author": [
+        {
+          "name": "`@Zabuza`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Gradient Suit Colors",
+      "url": "https://discord.com/channels/1116389027176787968/1221853064475050064",
+      "description": "Adds a color gradient to the suits.",
+      "author": [
+        {
+          "name": "`@Dec`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Gross Balatro",
+      "url": "https://github.com/chrishanel/grossbalatro",
+      "description": "Replaces Gros Michel with actor Michael Gross (and Cavendish with Michael J. Fox as Alex P. Keaton).",
+      "author": [
+        {
+          "name": "`@ChrisHanel`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "High Contrast Clubs",
+      "url": "https://discord.com/channels/1116389027176787968/1221328616164691978",
+      "description": "Replaces default clubs with high contrast clubs, while removing the gradient from them, 2x only.",
+      "author": [
+        {
+          "name": "`@moonlitstargazer`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Improved Booster Tarots",
+      "url": "https://github.com/Ard1tion/Improved-Booster-Tarots",
+      "description": "A Retexture of all of the \"booster\" tarots to make them look like their effects.",
+      "author": [
+        {
+          "name": "Ardition",
+          "url": "https://github.com/Ard1tion"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Improved four colors of suits",
+      "url": "https://discord.com/channels/1116389027176787968/1213893814343696414",
+      "description": "Makes the colors for a four-color deck better.",
+      "author": [
+        {
+          "name": "`@Zabuza`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Lotus",
+      "url": "https://drive.google.com/drive/folders/1QrVoxrdkrcmmGhZYlnDTpaXwOj3UA4bP",
+      "description": "ohhh yeah its lotus time babeyyy yeaaah woo yeah oh yeah yeah woo.",
+      "author": [
+        {
+          "name": "`@_VioMarks_`",
+          "url": null
+        },
+        {
+          "name": "`@strudel-fatpaws`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Luna's Enhanced Enhancements",
+      "url": "https://discord.com/channels/1116389027176787968/1216064295633289286",
+      "description": "Modified enhancement textures to fit the pattern of changing the material of the cards.",
+      "author": [
+        {
+          "name": "`@Luna`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Necrodancer Spectrals",
+      "url": "https://discord.com/channels/1116389027176787968/1229566404278358128",
+      "description": "Changes Spectral cards into Necrodancer Chars. Soul included.",
+      "author": [
+        {
+          "name": "`@Luh`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Ogtextures",
+      "url": "https://github.com/UppedHealer8521/Ogtextures",
+      "description": "the original textures from balatro 0.8.8.",
+      "author": [
+        {
+          "name": "UppedHealer8521",
+          "url": "https://github.com/UppedHealer8521"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Persona Tarot",
+      "url": "https://discord.com/channels/1116389027176787968/1219528214486192138",
+      "description": "Replaces Tarot cards with their respective versions from the Persona video game series.",
+      "author": [
+        {
+          "name": "`@Sunday`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Random Dice Blinds",
+      "url": "https://discord.com/channels/1116389027176787968/1224728153310887956",
+      "description": "Replaces the Blind chips with imagery of Random Dice bosses.",
+      "author": [
+        {
+          "name": "`@Assassin Dice`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Recast Contrast",
+      "url": "https://github.com/LunaAstraCassiopeia/LunasBalatroMods",
+      "description": "Just a branched off version of the Enhanced Enhancements texture pack that only has the high-contrast card colors!",
+      "author": [
+        {
+          "name": "LunaAstraCassiopeia",
+          "url": "https://github.com/LunaAstraCassiopeia"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Spectralsbian",
+      "url": "https://discord.com/channels/1116389027176787968/1248729661815521381",
+      "description": "Spectral cards, but with the lesbian flag colours.",
+      "author": [
+        {
+          "name": "`@RadicaAprils`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Texture Pack",
+      "url": "https://discord.com/channels/1116389027176787968/1212504558853689434",
+      "description": "Keranik's 4-Color Poker Player's Deck.",
+      "author": [
+        {
+          "name": "`@Keranik`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Texture Pack",
+      "url": "https://discord.com/channels/1116389027176787968/1212507813792714762",
+      "description": "Red, Green, Blue, Purple Standard Cards.",
+      "author": [
+        {
+          "name": "`@ywle`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Trans Spectrals",
+      "url": "https://discord.com/channels/1116389027176787968/1247528518842191971",
+      "description": "Spectral Cards (and spectral adjacent cards) but trans Spectrans.",
+      "author": [
+        {
+          "name": "`@RadicaAprils`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Wilds Texture Pack",
+      "url": "https://github.com/NataKilar/Balatro-Wilds",
+      "description": "Retextures all planet cards to astral bodies from the game Outer Wilds.",
+      "author": [
+        {
+          "name": "NataKilar",
+          "url": "https://github.com/NataKilar"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["textures"]
+    },
+    {
+      "name": "Better French",
+      "url": "https://github.com/FrBmt-BIGetNouf/balatro-french-translations",
+      "description": "A humble community-made version of the French localization of Balatro.",
+      "author": [
+        {
+          "name": "`The Balatro FR Loc Mod Community`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["translates"]
+    },
+    {
+      "name": "ProperKorean",
+      "url": "https://discord.com/channels/1116389027176787968/1211094025159966790",
+      "description": "Fixes Korean Translation.",
+      "author": [
+        {
+          "name": "DVRP",
+          "url": "https://github.com/dvrp0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["translates"]
+    },
+    {
+      "name": "Betmma Vouchers",
+      "url": "https://github.com/betmma/my_balatro_mods",
+      "description": "10 More Vouchers!",
+      "author": [
+        {
+          "name": "Betmma",
+          "url": "https://github.com/betmma"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["vouchers"]
+    },
+    {
+      "name": "Loop",
+      "url": "https://discord.com/channels/1116389027176787968/1248431147784863840",
+      "description": "Adds a new voucher called Loop, allowing certain vouchers to be re-redeemed in the same run.",
+      "author": [
+        {
+          "name": "`@jenwalter666`",
+          "url": null
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["vouchers"]
+    },
+    {
+      "name": "Card Back Injection",
+      "url": "https://github.com/Ken-Shi/Balatro_CardBackInjection",
+      "description": "systematically loads all the card back files into the system.",
+      "author": [
+        {
+          "name": "Kenny Stone",
+          "url": "https://github.com/Ken-Shi"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "Distro",
+      "url": "https://github.com/dvrp0/distro",
+      "description": "Adds Discord Rich Presence support.",
+      "author": [
+        {
+          "name": "DVRP",
+          "url": "https://github.com/dvrp0"
+        }
+      ],
+      "deps": ["lovely", "steamodded"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "Center Hook",
+      "url": "https://github.com/nicholassam6425/balatro-mods",
+      "description": "An api/hook to add center cards (joker, voucher, booster pack, consumable cards) to the game.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["api"]
+    },
+    {
+      "name": "Seal API",
+      "url": "https://github.com/jacobr1227/double_seals",
+      "description": "Easier to add Seal.",
+      "author": [
+        {
+          "name": "jacobr1227",
+          "url": "https://github.com/jacobr1227"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["api"]
+    },
+    {
+      "name": "Myst's Boss Blinds",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "A pack of Blinds.",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["blinds"]
+    },
+    {
+      "name": "Coupon Book",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#coupon-book-modsp_coupon_booklua",
+      "description": "A booster pack that allows you to redeem 1 of 2 vouchers.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["boosters"]
+    },
+    {
+      "name": "GoldenChallenge",
+      "url": "https://github.com/Mysthaps/BalatroMods",
+      "description": "Adds the challenge \"Golden\".",
+      "author": [
+        {
+          "name": "Mysthaps",
+          "url": "https://github.com/Mysthaps"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["challenges"]
+    },
+    {
+      "name": "arachnei's balatro mods",
+      "url": "https://github.com/nicholassam6425/balatro-mods",
+      "description": "Collection of balatro mods.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Balatro-CommunityPack",
+      "url": "https://github.com/GoldenEpsilon/Balatro-CommunityPack",
+      "description": "see https://discord.com/channels/1116389027176787968/1215516228525760543",
+      "author": [],
+      "deps": ["balamod"],
+      "cat": ["collections"]
+    },
+    {
+      "name": "Buffon Deck",
+      "url": "https://github.com/JopStro/BalatroMods",
+      "description": "Deck that gives you a Jumbo Buffoon Pack at the start of the run.",
+      "author": [
+        {
+          "name": "JopStro",
+          "url": "https://github.com/JopStro"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "Better black-stake",
+      "url": "https://github.com/System-of-Root/Roots_Balatro_Mods",
+      "description": "Makes it so Eternal Jokers can always appear in shops. Makes blackstake increse the odds of Eternal Jokers from 30% to 50%.",
+      "author": [
+        {
+          "name": "Tessy of Root",
+          "url": "https://github.com/System-of-Root"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Flush Hotkeys",
+      "url": "https://github.com/Agoraaa/FlushHotkeys",
+      "description": "Adds hotkeys for selecting flushes, full houses and other hand types.",
+      "author": [
+        {
+          "name": "Agoraaa",
+          "url": "https://github.com/Agoraaa"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Hand of Six",
+      "url": "https://discord.com/channels/1116389027176787968/1218775422066622585",
+      "description": "Allows you to select 6 cards to play.",
+      "author": [
+        {
+          "name": "`@ilikecheese`",
+          "url": null
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Quick Restart",
+      "url": "https://github.com/nicholassam6425/balatro-mods",
+      "description": "Quickly reroll ante 1 tags",
+      "author": [
+        {
+          "name": "clicking f2. by [@arachnei](https://github.com/nicholassam6425)",
+          "url": null
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["functionality"]
+    },
+    {
+      "name": "Balatro Safety",
+      "url": "https://github.com/Zei33/balatro-safety-balamod",
+      "description": "Presents a confirmation dialogue when you select a dangerous action (like using ankh or hex).",
+      "author": [
+        {
+          "name": "Zei33",
+          "url": "https://github.com/Zei33"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Deselect All",
+      "url": "https://github.com/Zei33/deselect-all-balamod",
+      "description": "Adds a deselect all button to deselect all highlighted cards.",
+      "author": [
+        {
+          "name": "Zei33",
+          "url": "https://github.com/Zei33"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Gay Mod",
+      "url": "https://github.com/HeyImKyu/balatro-gay",
+      "description": "Changes a 'Straight' into a 'Gay'.",
+      "author": [
+        {
+          "name": "HeyImKyu",
+          "url": "https://github.com/HeyImKyu"
+        },
+        {
+          "name": "Skadi",
+          "url": "https://github.com/Skadihehe"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Fortune Tree",
+      "url": "https://nicholassam6425.github.io/balatro/arachnei_fortune/",
+      "description": "Adds Chinese fortune-based cards Mostly inspired",
+      "author": [
+        {
+          "name": "TFT's Fortune trait. by [@arachnei](https://github.com/nicholassam6425)",
+          "url": null
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Jokers",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#jokers-modsj_jokerslua",
+      "description": "An example joker card that gives all played cards +2 mult.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Parrot Joker",
+      "url": "https://github.com/JopStro/BalatroMods",
+      "description": "Adds, the Joker, Parrot to the game.",
+      "author": [
+        {
+          "name": "JopStro",
+          "url": "https://github.com/JopStro"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "ShamPack",
+      "url": "https://github.com/GoldenEpsilon/ShamPack",
+      "description": "Adds a couple of custom jokers and mechanics to the game.",
+      "author": [
+        {
+          "name": "[@Golden Epsilon](https://github.com/GoldenEpsilon)",
+          "url": null
+        },
+        {
+          "name": "`@DankShamwow`",
+          "url": null
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Slutty Joker",
+      "url": "https://github.com/HeyImKyu/balatro-slutty-joker",
+      "description": "Adds the 'Slutty Joker' that gives a 2x multiplier if you play a 6 and a 9.",
+      "author": [
+        {
+          "name": "HeyImKyu",
+          "url": "https://github.com/HeyImKyu"
+        },
+        {
+          "name": "UwuDev",
+          "url": "https://github.com/UwUDev"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "sols",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#sols-modsj_solslua",
+      "description": "A joker card that gives you X4 mult if you play at least 4 cards that contain any sequence in DISASTERMODE (5776578588).",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "The Jonkler",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#the-jonkler-modsj_jonklerlua",
+      "description": "A simple joker card that gives X1.8 mult.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "Ganymede",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#ganymede-modsc_ganymedelua",
+      "description": "A planet card that levels up all hands that contain flushes.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["planets"]
+    },
+    {
+      "name": "Double Seals",
+      "url": "https://github.com/jacobr1227/double_seals",
+      "description": "Adds new Double versions of the 4 base game seals as well as all my other seal mods.",
+      "author": [
+        {
+          "name": "jacobr1227",
+          "url": "https://github.com/jacobr1227"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Orange Seals",
+      "url": "https://github.com/jacobr1227/double_seals",
+      "description": "Adds new Orange seal When discarded, enhances a random card.",
+      "author": [
+        {
+          "name": "jacobr1227",
+          "url": "https://github.com/jacobr1227"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Silver Seals",
+      "url": "https://github.com/jacobr1227/double_seals",
+      "description": "Adds new Silver seal When held in hand at end of round, creates 1 spectral card.",
+      "author": [
+        {
+          "name": "jacobr1227",
+          "url": "https://github.com/jacobr1227"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["seals"]
+    },
+    {
+      "name": "Humanity",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#humanity-modsc_humanitylua",
+      "description": "An example spectral card that gives you $100 on use.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["spectrals"]
+    },
+    {
+      "name": "Bezos",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#bezos-modsc_bezoslua",
+      "description": "An example tarot card that averages the ranks of selected cards.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["tarots"]
+    },
+    {
+      "name": "Better French",
+      "url": "https://github.com/FrBmt-BIGetNouf/balatro-french-translations",
+      "description": "A humble community-made version of the French localization of Balatro.",
+      "author": [
+        {
+          "name": "`The Balatro FR Loc Mod Community`",
+          "url": null
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["translates"]
+    },
+    {
+      "name": "Hobby Shop",
+      "url": "https://github.com/nicholassam6425/balatro-mods?tab=readme-ov-file#hobby-shop-modsv_hobby_shoplua",
+      "description": "A voucher card that allows you to refresh purchased booster packs.",
+      "author": [
+        {
+          "name": "arachnei",
+          "url": "https://github.com/nicholassam6425"
+        }
+      ],
+      "deps": ["balamod"],
+      "cat": ["vouchers"]
+    },
+    {
+      "name": "Buffoon Deck",
+      "url": "https://thunderstore.io/c/balatro/p/JoStro/Buffoon_Deck/",
+      "description": "Simple custom deck that gives you a Jumbo Buffoon Pack at the start of a run.",
+      "author": [
+        {
+          "name": "JoStro",
+          "url": "https://thunderstore.io/c/balatro/p/JoStro/"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["decks"]
+    },
+    {
+      "name": "typist",
+      "url": "https://github.com/kasimeka/balatro-typist-mod",
+      "description": "typist is an implementation of fully keyboard-driven UX for Balatro and includes a lot of QoL shortcuts as well.",
+      "author": [
+        {
+          "name": "kasimeka",
+          "url": "https://github.com/kasimeka"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["functional"]
+    },
+    {
+      "name": "Malverk",
+      "url": "https://github.com/Eremel/Malverk",
+      "description": "Malverk is an all-in-one texture manager. With an inbuilt API for AltTextures and TexturePacks, Malverk integrates a simple UI to customise which textures are applied to your game whenever you wish.",
+      "author": [
+        {
+          "name": "Eremel_",
+          "url": "https://github.com/Eremel"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Planet Card Cash-Out Mod",
+      "url": "https://github.com/antler5/Balatro-Planet-Card-Cash-Out-Mod",
+      "description": "\"Use\" a planet card while the cash-out animations play",
+      "author": [
+        {
+          "name": "antler5",
+          "url": "https://github.com/antler5"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Readabletro",
+      "url": "https://github.com/bladeSk/readabletro",
+      "description": "Readabletro improves readability of the game, especially on lower res screens (Steam Deck) by using a more legible vector typeface and smoothly upscaled card textures. ",
+      "author": [
+        {
+          "name": "bladeSk",
+          "url": "https://github.com/bladeSk"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["gui"]
+    },
+    {
+      "name": "Parrot Joker",
+      "url": "https://thunderstore.io/c/balatro/p/JoStro/Parrot_Joker/",
+      "description": "A custom joker that copies the abilities of other jokers at random.",
+      "author": [
+        {
+          "name": "JoStro",
+          "url": "https://thunderstore.io/c/balatro/p/JoStro/"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["jokers"]
+    },
+    {
+      "name": "#1 Victory Royale!",
+      "url": "https://github.com/Muddieee/balatro_victory_royale",
+      "description": "On win screen, replaces the \"YOU WIN!\" text with \"#1 VICTORY ROYALE!\" and the default win music with fortnite default dance.",
+      "author": [
+        {
+          "name": "Muddie",
+          "url": "https://github.com/Muddieee"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["miscellaneous"]
+    },
+    {
+      "name": "When the impostor is Sun",
+      "url": "https://github.com/Muddieee/sun_is_sus",
+      "description": "Renames The Sun tarot card to The Sus and replaces its texture.",
+      "author": [
+        {
+          "name": "Muddie",
+          "url": "https://github.com/Muddieee"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["miscellaneous"]
+    },
+    {
+      "name": "Cartomancer",
+      "url": "https://github.com/stupxd/Cartomancer",
+      "description": "Improved deck view and joker management with stacking and scrolling, capped deck pile and scoring flames customization. Made for long endless runs and crazy modded runs.",
+      "author": [
+        {
+          "name": "stupxd",
+          "url": "https://github.com/stupxd"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["miscellaneous"]
+    },
+    {
+      "name": "Blueprint",
+      "url": "https://github.com/stupxd/Blueprint",
+      "description": "Dynamically adjust Blueprint joker texture to the joker it is copying.",
+      "author": [
+        {
+          "name": "stupxd",
+          "url": "https://github.com/stupxd"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["miscellaneous"]
+    },
+    {
+      "name": "ProperRussian",
+      "url": "https://github.com/Nitablade/Balatro_ProperRussian",
+      "description": "Russian localization for Balatro.",
+      "author": [
+        {
+          "name": "Nitablade",
+          "url": "https://github.com/Nitablade"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["translates"]
+    },
+    {
+      "name": "Altrand",
+      "url": "https://discord.com/channels/1116389027176787968/1230007377806229595",
+      "description": "Improved Randomization.",
+      "author": [
+        {
+          "name": "tertu",
+          "url": null
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "DebugPlus",
+      "url": "https://github.com/WilsontheWolf/DebugPlus",
+      "description": "A simple mod that adds a bunch more debug functions on top of Balatro's built in.",
+      "author": [
+        {
+          "name": "WilsontheWolf",
+          "url": "https://github.com/WilsontheWolf"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "json",
+      "url": "https://thunderstore.io/c/balatro/p/JoStro/json/",
+      "description": "Exposes json.lua as a module using lovely.",
+      "author": [
+        {
+          "name": "JoStro",
+          "url": "https://thunderstore.io/c/balatro/p/JoStro/"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "JSUtils",
+      "url": "https://thunderstore.io/c/balatro/p/JoStro/JSUtils/",
+      "description": "Lets mods add item prototypes, descriptions and custom sprites with simple json configuration files.",
+      "author": [
+        {
+          "name": "JoStro",
+          "url": "https://thunderstore.io/c/balatro/p/JoStro/"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["utils"]
+    },
+    {
+      "name": "ScoreImprovements",
+      "url": "https://github.com/WilsontheWolf/balatro-mods/tree/master/lovely/ScoreImprovements",
+      "description": "Misc score improvements (Better score display, fixed fire at inf, inf blinds let you win)",
+      "author": [
+        {
+          "name": "WilsontheWolf",
+          "url": "https://github.com/WilsontheWolf"
+        }
+      ],
+      "deps": ["lovely"],
+      "cat": ["utils"]
+    }
+  ]
+}

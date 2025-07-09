@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 #                           ---.
 #                         -,JOOOJ=.
 #                       -,OKKKKOEEK:
@@ -17,7 +17,7 @@ set -euo pipefail
 #                 =EkoKOKjooojKOKkeR=
 #                   JekEKERRREKRerJ
 #              .--//JjerekjjjkerroJ,,/:.
-#           -=,JOOEERokookeerkoojoojREKOJ=:          WIP 
+#           -=,JOOEERokookeerkoojoojREKOJ=:          WIP
 #         .,JOEEjjoooRKOOEjjooEOORjjooojRKO/.        TODO:
 #         /JJOKRjoojOJOEREKOKjojOJKjjjojKOKK,        Entirely rewrite repositories to match something like BMM. This isn't working
 #         /JJJ,JKREOJKKOJJ,,,JJERKJORRO,,JJO=        Add a comment to most functions or confusing things to explain functionality
@@ -37,6 +37,7 @@ ARGS=()
 MODDED_LAUNCH=0
 SHOW_HELP=0
 SHOW_VERSION=0
+
 # --- Logging
 SILENT=0
 ERROR=1
@@ -45,7 +46,7 @@ INFO=3
 VERBOSE=4
 DEBUGGING=5
 
-DEBUG=3
+DEBUG=$INFO
 
 log() {
     local level_name="$1"
@@ -55,14 +56,16 @@ log() {
     local dlv
 
     case "$level_name" in
-        SILENT)  dlv=$SILENT ;;
-        ERROR)   dlv=$ERROR ;;
-        WARNING) dlv=$WARNING ;;
-        INFO)    dlv=$INFO ;;
-        VERBOSE) dlv=$VERBOSE ;;
-        DEBUG)   dlv=$DEBUGGING ;;
-        *)       dlv=$INFO
-                 message="[!!] $level_name: $message" ;;
+    SILENT) dlv=$SILENT ;;
+    ERROR) dlv=$ERROR ;;
+    WARNING) dlv=$WARNING ;;
+    INFO) dlv=$INFO ;;
+    VERBOSE) dlv=$VERBOSE ;;
+    DEBUG) dlv=$DEBUGGING ;;
+    *)
+        dlv=$INFO
+        message="[!!] $level_name: $message"
+        ;;
     esac
 
     if [[ "$dlv" -le "$DEBUG" ]]; then
@@ -95,9 +98,15 @@ log() {
 # Creates the default config file and necessary directories if missing.
 mkconf() {
     log VERBOSE "Creating default config and directories..."
-    mkdir -p "$CONF_DIR" || { log ERROR "Could not create config directory '$CONF_DIR'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"; return 1; }
-    mkdir -p "$REPO_DIR" || { log ERROR "Could not create repository directory '$REPO_DIR'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"; return 1; }
-    
+    mkdir -p "$CONF_DIR" || {
+        log ERROR "Could not create config directory '$CONF_DIR'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"
+        return 1
+    }
+    mkdir -p "$REPO_DIR" || {
+        log ERROR "Could not create repository directory '$REPO_DIR'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"
+        return 1
+    }
+
     local dldef="$HOME/.config/balatro/mods"
     local modsdef="$HOME/.config/love/Mods"
     local modsddef="$modsdef/disabled"
@@ -126,10 +135,13 @@ mkrepo() {
     local core="$REPO_DIR/core.json"
     if [[ ! -f "$core" ]]; then
         log VERBOSE "Default core mod repository '$core' not found. Downloading"
-        wget -P $REPO_DIR https://raw.githubusercontent.com/vanillyn/jkrsh/main/scripts/core.json
-        return 1
+        wget -q -P $REPO_DIR https://raw.githubusercontent.com/vanillyn/jkrsh/main/scripts/core.json || {
+            log WARNING "Core repository not used"
+            return 1
+        }
+        return 0
     fi
-    log VERBOSE "Default core mod repository found at '$core_repo_file'."
+    log VERBOSE "Default core mod repository found at '$core'."
     return 0
 }
 
@@ -142,6 +154,7 @@ load_config() {
     else
         log WARNING "Config file '$CONF' not found during load_config. Using default values."
         GAME_PATH="/usr/share/balatro"
+        GAME_BIN="balatro-native"
         DOWNLOAD_DIR="$HOME/.config/balatro/mods"
         MODS_DIR="$HOME/.config/love"
         USER_DIR="$HOME/.local/share/love/Balatro"
@@ -162,11 +175,26 @@ load_config() {
     WINEPREFIX=$(eval echo "$WINEPREFIX")
     DISABLED_DIR=$(eval echo "$MODS_DIR/disabled")
 
-    mkdir -p "$REPO_DIR" || { log ERROR "Could not create repository directory '$REPO_DIR'."; return 1; }
-    mkdir -p "$DOWNLOAD_DIR" || { log ERROR "Could not create download directory '$DOWNLOAD_DIR'."; return 1; }
-    mkdir -p "$MODS_DIR" || { log ERROR "Could not create mods directory '$MODS_DIR'."; return 1; }
-    mkdir -p "$DISABLED_DIR" || { log ERROR "Could not create disabled mods directory '$DISABLED_DIR'."; return 1; }
-    mkdir -p "$USER_DIR" || { log ERROR "Could not create user data directory '$USER_DIR'."; return 1; }
+    mkdir -p "$REPO_DIR" || {
+        log ERROR "Could not create repository directory '$REPO_DIR'."
+        return 1
+    }
+    mkdir -p "$DOWNLOAD_DIR" || {
+        log ERROR "Could not create download directory '$DOWNLOAD_DIR'."
+        return 1
+    }
+    mkdir -p "$MODS_DIR" || {
+        log ERROR "Could not create mods directory '$MODS_DIR'."
+        return 1
+    }
+    mkdir -p "$DISABLED_DIR" || {
+        log ERROR "Could not create disabled mods directory '$DISABLED_DIR'."
+        return 1
+    }
+    mkdir -p "$USER_DIR" || {
+        log ERROR "Could not create user data directory '$USER_DIR'."
+        return 1
+    }
     return 0
 }
 
@@ -239,114 +267,106 @@ get_releases() {
 
 # --- cli flags parsing
 flags() {
-    log VERBOSE "Parsing command line flags."
-    while [[ $# -gt 0 ]]; do
-        local arg="$1"
-        log DEBUG "Processing flag/arg: $arg"
-        if [[ "$arg" == --* ]]; then
-            case "$arg" in
-            --native) MODE="native"; log DEBUG "Set MODE to native." ;;
-            --wine) MODE="wine"; log DEBUG "Set MODE to wine." ;;
-            --steam) MODE="steam"; log DEBUG "Set MODE to steam." ;;
-            --noinstall) NOINSTALL=1; log DEBUG "Set NOINSTALL to 1." ;;
-            --modded) MODDED_LAUNCH=1; log DEBUG "Set MODDED_LAUNCH to 1." ;;
-            --dir)
-                shift
-                GAME_PATH="$1"; log DEBUG "Set GAME_PATH to $GAME_PATH."
-                ;;
-            --mod_dir)
-                shift
-                MODS_DIR="$1"; log DEBUG "Set MODS_DIR to $MODS_DIR."
-                ;;
-            --love_path)
-                shift
-                LOVE_BIN="$1"; log DEBUG "Set LOVE_BIN to $LOVE_BIN."
-                ;;
-            --wine_path)
-                shift
-                WINE_BIN="$1"; log DEBUG "Set WINE_BIN to $WINE_BIN."
-                ;;
-            --wineprefix)
-                shift
-                WINEPREFIX="$1"; log DEBUG "Set WINEPREFIX to $WINEPREFIX."
-                ;;
-            --user_dir)
-                shift
-                USER_DIR="$1"; log DEBUG "Set USER_DIR to $USER_DIR."
-                ;;
-            --config)
-                shift
-                CONF="$1"; log DEBUG "Set CONF to $CONF."
-                ;;
-            --log-level)
-                shift
-                local level_str=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-                case "$level_str" in
-                    silent) DEBUG=$SILENT ;;
-                    error) DEBUG=$ERROR ;;
-                    warning) DEBUG=$WARNING ;;
-                    info) DEBUG=$INFO ;;
-                    verbose) DEBUG=$VERBOSE ;;
-                    debug) DEBUG=$DEBUGINGG ;;
-                    *) log ERROR "Invalid log level: $1. Using default (info).";;
-                esac
-                log DEBUG "Set DEBUG to $level_str ($DEBUG)."LOG_LEVEL_
-                ;;
-            --help) SHOW_HELP=1; log DEBUG "Set SHOW_HELP to 1." ;;
-            --version) SHOW_VERSION=1; log DEBUG "Set SHOW_VERSION to 1." ;;
-            *)
-                log ERROR "Unknown flag: $arg"
-                return 1
-                ;;
-            esac
-        elif [[ "$arg" == -* && "$arg" != "--" ]]; then
-            local short_flags="${arg:1}"
-            local i=0
-            while [[ $i -lt ${#short_flags} ]]; do
-                local flag="${short_flags:$i:1}"
-                ((i++))
-                log DEBUG "Processing short flag: -$flag"
-                case "$flag" in
-                n) MODE="native"; log DEBUG "Set MODE to native." ;;
-                w) MODE="wine"; log DEBUG "Set MODE to wine." ;;
-                s) MODE="steam"; log DEBUG "Set MODE to steam." ;;
-                h) SHOW_HELP=1; log DEBUG "Set SHOW_HELP to 1." ;;
-                v) SHOW_VERSION=1; log DEBUG "Set SHOW_VERSION to 1." ;;
-                V) DEBUG=$DEBUG; log DEBUG "Set DEBUG to DEBUG." ;;
-                m) MODDED_LAUNCH=1; log DEBUG "Set MODDED_LAUNCH to 1." ;;
-                l)
-                    if [[ $# -gt 1 ]]; then
-                        shift
-                        local level_str=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-                        case "$level_str" in
-                            silent) DEBUG=$SILENT ;;
-                            error) DEBUG=$ERROR ;;
-                            warning) DEBUG=$WARNING ;;
-                            info) DEBUG=$INFO ;;
-                            verbose) DEBUG=$VERBOSE ;;
-                            debug) DEBUG=$DEBUGGING ;;
-                            *) log ERROR "Invalid log level: $1. Using default.";;
-                        esac
-                        log DEBUG "Set DEBUG to $level_str ($DEBUG)."
-                    else
-                        log ERROR "-l requires an argument."
-                        return 1
-                    fi
-                    ;;
+    log VERBOSE "parsing command line flags."
+
+    local OPTIONS=mnvhl:
+    local LONGOPTS=native,modded,log-level:,noinstall,help,version,dir:,mod_dir:,love_path:,wine_path:,wineprefix:,user_dir:,config:
+
+    PARSED=$(getopt -o "$OPTIONS" -l "$LONGOPTS" -- "$@") || {
+        log ERROR "getopt parsing failed." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"
+        exit 1
+    }
+    eval set -- "$PARSED"
+
+    while true; do
+        case "$1" in
+        -n|--native)
+            MODE="native"
+            log DEBUG "set MODE to native."
+            ;;
+        -m|--modded)
+            MODDED_LAUNCH=1
+            log DEBUG "set MODDED_LAUNCH to 1."
+            ;;
+        --noinstall)
+            NOINSTALL=1
+            log DEBUG "set NOINSTALL to 1."
+            ;;
+        -l|--log-level)
+            shift
+            local level_str=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+            case "$level_str" in
+                silent) DEBUG=$SILENT ;;
+                error) DEBUG=$ERROR ;;
+                warning) DEBUG=$WARNING ;;
+                info) DEBUG=$INFO ;;
+                verbose) DEBUG=$VERBOSE ;;
+                debug) DEBUG=$DEBUGGING ;;
                 *)
-                    log ERROR "Unknown flag: -$flag"
-                    return 1
+                    log ERROR "invalid log level: $level_str. using default (info)." "${FUNCNAME[0]}" "${BASH_LINENO[0]}"
                     ;;
-                esac
-            done
-        else
-            ARGS+=("$arg")
-        fi
+            esac
+            log DEBUG "set DEBUG to $level_str ($DEBUG)"
+            ;;
+        --dir)
+            shift
+            GAME_PATH="$1"
+            log DEBUG "set GAME_PATH to $GAME_PATH."
+            ;;
+        --mod_dir)
+            shift
+            MODS_DIR="$1"
+            log DEBUG "set MODS_DIR to $MODS_DIR."
+            ;;
+        --love_path)
+            shift
+            LOVE_BIN="$1"
+            log DEBUG "set LOVE_BIN to $LOVE_BIN."
+            ;;
+        --wine_path)
+            shift
+            WINE_BIN="$1"
+            log DEBUG "set WINE_BIN to $WINE_BIN."
+            ;;
+        --wineprefix)
+            shift
+            WINEPREFIX="$1"
+            log DEBUG "set WINEPREFIX to $WINEPREFIX."
+            ;;
+        --user_dir)
+            shift
+            USER_DIR="$1"
+            log DEBUG "set USER_DIR to $USER_DIR."
+            ;;
+        --config)
+            shift
+            CONF="$1"
+            log DEBUG "set CONF to $CONF."
+            ;;
+        --help|-h)
+            SHOW_HELP=1
+            log DEBUG "set SHOW_HELP to 1."
+            ;;
+        --version|-v)
+            SHOW_VERSION=1
+            log DEBUG "set SHOW_VERSION to 1."
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            log ERROR "unknown flag: $1" "${FUNCNAME[0]}" "${BASH_LINENO[0]}"
+            break
+            ;;
+        esac
         shift
     done
-    log DEBUG "Finished parsing flags."
-    return 0
+
+    ARGS=("$@")
+    log DEBUG "remaining args: ${ARGS[*]}"
 }
+
 
 # Links subcommands to the functions
 subcommand() {
@@ -468,7 +488,10 @@ launch_vanilla() {
         fi
         if [[ -f "$GAME_PATH/version.dll" ]]; then
             log INFO "Disabling Lovely (version.dll) for vanilla launch."
-            mv "$GAME_PATH/version.dll" "$GAME_PATH/version.dll.disabled" || { log ERROR "Failed to disable version.dll."; return 1; }
+            mv "$GAME_PATH/version.dll" "$GAME_PATH/version.dll.disabled" || {
+                log ERROR "Failed to disable version.dll."
+                return 1
+            }
         fi
         WINEPREFIX="$WINEPREFIX" "$WINE_BIN" "$GAME_PATH/Balatro.exe"
         ;;
@@ -494,7 +517,10 @@ launch_modded() {
     log INFO "Launching Balatro [$MODE] (Modded)..."
 
     if [[ "$MODE" == "native" ]]; then
-        check love || return 1
+        check love || {
+            log ERROR "love not installed"
+            return 1
+        }
 
         if [[ ! -x "$GAME_BIN" ]]; then
             log WARNING "Native Balatro launcher script '$GAME_BIN' not found."
@@ -511,15 +537,24 @@ launch_modded() {
             fi
         fi
 
-        mkdir -p "$USER_DIR/Mods"
+        mkdir -p "$MODS_DIR"
 
-        log INFO "[Lovely] Mod files linked"
-        if ldconfig -p | grep -q liblovely &>/dev/null; then
-            log INFO "[Lovely] liblovely.so preloaded"
+        log VERBOSE "[Lovely] Mod files linked"
+        local lonely=1
+        if [[ -f "/lib/liblovely.so" ]]; then
+            log VERBOSE "[Lovely] liblovely.so found directly at /lib/liblovely.so"
+            lonely=0
+        elif ldconfig -p | grep -q liblovely &>/dev/null; then
+            log VERBOSE "[Lovely] liblovely.so found via ldconfig cache"
+            lonely=0
+        fi
+
+        if [[ "$lonely" -eq 0 ]]; then
+            log VERBOSE "[Lovely] liblovely.so preloaded"
             LD_PRELOAD=liblovely.so "$GAME_BIN"
         else
             log WARNING "Lovely not found or not preloaded."
-            read -rp "Attempt to install Lovely now? (Requires sudo) [Y/n] " yn
+            read -rp "Install Lovely? (Requires sudo) [Y/n] " yn
             if [[ "$yn" == [Yy]* ]]; then
                 i_lovely
                 if [[ $? -ne 0 ]]; then
@@ -543,7 +578,10 @@ launch_modded() {
         local dll="$GAME_PATH/version.dll"
         if [[ -f "$GAME_PATH/version.dll.disabled" ]]; then
             log INFO "Enabling Lovely"
-            mv "$GAME_PATH/version.dll.disabled" "$dll" || { log ERROR "Failed to enable version.dll."; return 1; }
+            mv "$GAME_PATH/version.dll.disabled" "$dll" || {
+                log ERROR "Failed to enable version.dll."
+                return 1
+            }
         elif [[ -f "$dll" ]]; then
             log INFO "Lovely already enabled."
         else
@@ -566,7 +604,10 @@ backup() {
     if [[ -z "$backup_dir" ]]; then
         backup_dir="."
     fi
-    mkdir -p "$backup_dir" || { log ERROR "Could not create backup directory '$backup_dir'."; return 1; }
+    mkdir -p "$backup_dir" || {
+        log ERROR "Could not create backup directory '$backup_dir'."
+        return 1
+    }
 
     log INFO "Backing up saves in $USER_DIR to $(readlink -f "$backup_dir")"
 
@@ -586,16 +627,16 @@ backup() {
 }
 
 # --- Mod Installation and Management
-# Trims whitespace from a string.
+# trims all the whitespaces from strings
 trim() {
     echo "$1" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
 }
 
-# Dispatches mod-related subcommands.
+# Dispatches mod subcommands
 m_command() {
     log VERBOSE "Dispatching mod subcommand: $1"
     case "$1" in
-    launch) launch_modded ;; # Calls the main modded launch function
+    launch) launch_modded ;;
     install)
         shift
         m_install "$@"
@@ -641,7 +682,6 @@ m_help() {
     log INFO ""
 }
 
-# Installs a mod and its dependencies based on repository data.
 m_install() {
     log DEBUG "Entering m_install for mod: $1"
     check jq || return 1
@@ -653,45 +693,47 @@ m_install() {
     local modname="$1"
     local mods_index_file="$DOWNLOAD_DIR/mods_index.json"
 
-    r_sync || { log ERROR "Failed to sync repositories. Cannot install mod."; return 1; }
+    r_sync || {
+        log ERROR "Failed to sync repositories. Cannot install mod."
+        return 1
+    }
 
     if [[ ! -f "$mods_index_file" ]]; then
         log ERROR "No aggregated mod index found. Please add a repository first using 'jkrsh repo add'."
         return 1
     fi
 
-    unset insmod
-    declare -g -A insmod
+    unset balmod
+    declare -g -A balmod
 
-    # Downloads and installs a mod.
     resolve_mod() {
         local in_name="$1"
         in_name=$(echo "$in_name" | tr '[:upper:]' '[:lower:]')
 
-        log DEBUG "Resolving '$in_name'. Current tracker state: ${!insmod[@]}"
+        log DEBUG "Resolving '$in_name'. Current tracker state: ${!balmod[@]}"
 
-        if [[ -n "${insmod[$in_name]}" ]]; then
-            log VERBOSE "Skipping already processed mod: '$in_name' (state: '${insmod[$in_name]}')"
+        if [[ -v "balmod[$in_name]" ]]; then
+            log VERBOSE "Skipping already processed mod: '$in_name' (state: '${balmod[$in_name]}')"
             return 0
         fi
 
-        local mod_json_data=$(jq --arg name "$in_name" '.[] | select(.name | ascii_downcase == $name)' "$mods_index_file")
+        local jsond=$(jq --arg name "$in_name" '.[] | select(.name | ascii_downcase == $name)' "$mods_index_file")
 
-        if [[ -z "$mod_json_data" ]]; then
+        if [[ -z "$jsond" ]]; then
             log ERROR "Mod '$in_name' not found in any active repository."
-            log DEBUG "Exiting resolve_mod for: '$in_name'. Final tracker state: ${!insmod[@]}"
+            log DEBUG "Exiting resolve_mod for: '$in_name'. Final tracker state: ${!balmod[@]}"
             return 1
         fi
 
-        local found_name=$(echo "$mod_json_data" | jq -r '.name')
-        local found_url=$(echo "$mod_json_data" | jq -r '.download_url')
-        local found_deps=$(echo "$mod_json_data" | jq -r '.dependencies | join(",")')
-        local found_category=$(echo "$mod_json_data" | jq -r '.category')
-        local found_install_type=$(echo "$mod_json_data" | jq -r '.install_type // ""')
+        local found_name=$(echo "$jsond" | jq -r '.name')
+        local found_url=$(echo "$jsond" | jq -r '.download_url')
+        local found_deps=$(echo "$jsond" | jq -r '.dependencies | join(",")')
+        local found_category=$(echo "$jsond" | jq -r '.category')
+        local found_install_type=$(echo "$jsond" | jq -r '.install_type // ""')
 
         log DEBUG "Found match for '$in_name': '$found_name'. Marking as 'processing'."
-        insmod[$in_name]="processing"
-        log DEBUG "Tracker state after marking 'processing': ${!insmod[@]}"
+        balmod[$in_name]="processing"
+        log DEBUG "Tracker state after marking 'processing': ${!balmod[@]}"
 
         if [[ -n "$found_deps" && "$found_deps" != "null" ]]; then
             IFS=',' read -ra dep_array <<<"$found_deps"
@@ -719,121 +761,127 @@ m_install() {
         log DEBUG "Effective install type for '$found_name': '$effective_install_type'."
 
         case "$effective_install_type" in
-            lovely_prebuilt)
-                log VERBOSE "Installing $found_name [$found_category] via prebuilt Lovely setup..."
-                i_lovely || { log ERROR "Failed to install Lovely for '$found_name'."; return 1; }
-                ;;
-            smods_prebuilt|smod)
-                log VERBOSE "Installing $found_name [$found_category] via prebuilt SMODS setup..."
-                i_steammodded || { log ERROR "Failed to install SMODS for '$found_name'."; return 1; }
-                ;;
-            zip)
-                log VERBOSE "Installing $found_name [$found_category] via ZIP download..."
-                local dp="$DOWNLOAD_DIR/$found_name"
-                local ip="$MODS_DIR/$found_name"
-                local archive_file="$DOWNLOAD_DIR/${found_name}.zip"
-
-                mkdir -p "$DOWNLOAD_DIR"
-
-                wget -q -O "$archive_file" "$found_url" || {
-                    log ERROR "Failed to download '$found_name.zip' from '$found_url'."
-                    return 1
-                }
-
-                mkdir -p "$dp"
-                unzip -o "$archive_file" -d "$dp" || {
-                    log ERROR "Failed to extract '$found_name.zip'."
-                    return 1
-                }
-                rm -f "$archive_file"
-
-                local extracted_subdir_count=$(find "$dp" -maxdepth 1 -mindepth 1 -type d | wc -l)
-                if [[ "$extracted_subdir_count" -eq 1 ]]; then
-                    local extracted_first_dir=$(find "$dp" -maxdepth 1 -mindepth 1 -type d -print -quit)
-                    local extracted_base_name=$(basename "$extracted_first_dir")
-                    if [[ "$(echo "$extracted_base_name" | tr '[:upper:]' '[:lower:]')" == "$(echo "$found_name" | tr '[:upper:]' '[:lower:]')" ]]; then
-                        log VERBOSE "Flattening directory structure for '$found_name' (moved contents from '$extracted_base_name')."
-                        mv "$extracted_first_dir"/* "$dp/" 2>/dev/null
-                        rmdir "$extracted_first_dir" 2>/dev/null || true
-                    fi
-                fi
-
-                if [[ "$NOINSTALL" != 1 ]]; then
-                    mkdir -p "$MODS_DIR"
-                    log VERBOSE "Copying $found_name to "$ip""
-                    rsync -a "$dp/" "$ip/"
-                else
-                    log INFO "Skipping $found_name."
-                fi
-                ;;
-            git)
-                log VERBOSE "Installing $found_name [$found_category]"
-                local dp="$DOWNLOAD_DIR/$found_name"
-                local ip="$MODS_DIR/$found_name"
-
-                mkdir -p "$DOWNLOAD_DIR"
-
-                if [[ -d "$dp/.git" ]]; then
-                    log VERBOSE "Updating $found_name (pulling latest changes)."
-                    git -C "$dp" pull || {
-                        log ERROR "Update failed for $found_name."
-                        return 1
-                    }
-                else
-                    log VERBOSE "Cloning $found_name from $found_url."
-                    git clone "$found_url" "$dp" || {
-                        log ERROR "Download failed for $found_name."
-                        return 1
-                    }
-                fi
-
-                if [[ "$NOINSTALL" != 1 ]]; then
-                    mkdir -p "$MODS_DIR"
-                    log VERBOSE "Copying $found_name to "$ip""
-                    rsync -a --exclude='.git' "$dp/" "$ip/"
-                else
-                    log INFO "Skipping $found_name."
-                fi
-                ;;
-            custom_script)
-                log WARNING "Installing '$found_name' via custom script from '$found_url'."
-                log WARNING "Executing remote scripts is a significant security risk. Proceed with extreme caution."
-                read -rp "Do you wish to continue with this custom script installation? [y/N] " confirm_custom_script
-                if [[ "$confirm_custom_script" == [Yy]* ]]; then
-                    local temp_script="$DOWNLOAD_DIR/${found_name}_install_script.sh"
-                    log VERBOSE "Downloading custom script to $temp_script."
-                    wget -q -O "$temp_script" "$found_url" || {
-                        log ERROR "Failed to download custom install script for '$found_name'."
-                        return 1
-                    }
-                    chmod +x "$temp_script" || {
-                        log ERROR "Failed to make custom install script executable."
-                        rm -f "$temp_script"
-                        return 1
-                    }
-                    log VERBOSE "Executing custom install script for '$found_name'..."
-                    "$temp_script" "$found_name" "$DOWNLOAD_DIR" "$MODS_DIR" "$USER_DIR" "$DEBUG" || {
-                        log ERROR "Custom install script for '$found_name' failed."
-                        rm -f "$temp_script"
-                        return 1
-                    }
-                    rm -f "$temp_script"
-                    log INFO "'$found_name' installed."
-                else
-                    log INFO "Installation for '$found_name' cancelled by user."
-                    return 1
-                fi
-                ;;
-            *)
-                log ERROR "Unsupported install type for '$found_name': '$effective_install_type'."
+        lovely_prebuilt)
+            log VERBOSE "Installing $found_name [$found_category] via prebuilt Lovely setup..."
+            i_lovely || {
+                log ERROR "Failed to install Lovely for '$found_name'."
                 return 1
-                ;;
+            }
+            ;;
+        smods_prebuilt | smod)
+            log VERBOSE "Installing $found_name [$found_category] via prebuilt SMODS setup..."
+            i_steammodded || {
+                log ERROR "Failed to install SMODS for '$found_name'."
+                return 1
+            }
+            ;;
+        zip)
+            log VERBOSE "Installing $found_name [$found_category] via ZIP download..."
+            local dp="$DOWNLOAD_DIR/$found_name"
+            local ip="$MODS_DIR/$found_name"
+            local archive_file="$DOWNLOAD_DIR/${found_name}.zip"
+
+            mkdir -p "$DOWNLOAD_DIR"
+
+            wget -q -O "$archive_file" "$found_url" || {
+                log ERROR "Failed to download '$found_name.zip' from '$found_url'."
+                return 1
+            }
+
+            mkdir -p "$dp"
+            unzip -o "$archive_file" -d "$dp" || {
+                log ERROR "Failed to extract '$found_name.zip'."
+                return 1
+            }
+            rm -f "$archive_file"
+
+            local extracted_subdir_count=$(find "$dp" -maxdepth 1 -mindepth 1 -type d | wc -l)
+            if [[ "$extracted_subdir_count" -eq 1 ]]; then
+                local extracted_first_dir=$(find "$dp" -maxdepth 1 -mindepth 1 -type d -print -quit)
+                local extracted_base_name=$(basename "$extracted_first_dir")
+                if [[ "$(echo "$extracted_base_name" | tr '[:upper:]' '[:lower:]')" == "$(echo "$found_name" | tr '[:upper:]' '[:lower:]')" ]]; then
+                    log VERBOSE "Flattening directory structure for '$found_name' (moved contents from '$extracted_base_name')."
+                    mv "$extracted_first_dir"/* "$dp/" 2>/dev/null
+                    rmdir "$extracted_first_dir" 2>/dev/null || true
+                fi
+            fi
+
+            if [[ "$NOINSTALL" != 1 ]]; then
+                mkdir -p "$MODS_DIR"
+                log VERBOSE "Copying $found_name to "$ip""
+                rsync -a "$dp/" "$ip/"
+            else
+                log INFO "Skipping $found_name."
+            fi
+            ;;
+        git)
+            log VERBOSE "Installing $found_name [$found_category]"
+            local dp="$DOWNLOAD_DIR/$found_name"
+            local ip="$MODS_DIR/$found_name"
+
+            mkdir -p "$DOWNLOAD_DIR"
+
+            if [[ -d "$dp/.git" ]]; then
+                log VERBOSE "Updating $found_name (pulling latest changes)."
+                git -C "$dp" pull || {
+                    log ERROR "Update failed for $found_name."
+                    return 1
+                }
+            else
+                log VERBOSE "Cloning $found_name from $found_url."
+                git clone "$found_url" "$dp" || {
+                    log ERROR "Download failed for $found_name."
+                    return 1
+                }
+            fi
+
+            if [[ "$NOINSTALL" != 1 ]]; then
+                mkdir -p "$MODS_DIR"
+                log VERBOSE "Copying $found_name to "$ip""
+                rsync -a --exclude='.git' "$dp/" "$ip/"
+            else
+                log INFO "Skipping $found_name."
+            fi
+            ;;
+        custom_script)
+            log WARNING "Installing '$found_name' via custom script from '$found_url'."
+            log WARNING "Executing remote scripts is a significant security risk. Proceed with extreme caution."
+            read -rp "Do you wish to continue with this custom script installation? [y/N] " confirm_custom_script
+            if [[ "$confirm_custom_script" == [Yy]* ]]; then
+                local temp_script="$DOWNLOAD_DIR/${found_name}_install_script.sh"
+                log VERBOSE "Downloading custom script to $temp_script."
+                wget -q -O "$temp_script" "$found_url" || {
+                    log ERROR "Failed to download custom install script for '$found_name'."
+                    return 1
+                }
+                chmod +x "$temp_script" || {
+                    log ERROR "Failed to make custom install script executable."
+                    rm -f "$temp_script"
+                    return 1
+                }
+                log VERBOSE "Executing custom install script for '$found_name'..."
+                "$temp_script" "$found_name" "$DOWNLOAD_DIR" "$MODS_DIR" "$USER_DIR" "$DEBUG" || {
+                    log ERROR "Custom install script for '$found_name' failed."
+                    rm -f "$temp_script"
+                    return 1
+                }
+                rm -f "$temp_script"
+                log INFO "'$found_name' installed."
+            else
+                log WARNING "Installation for '$found_name' cancelled by user."
+                return 1
+            fi
+            ;;
+        *)
+            log ERROR "Unsupported install type for '$found_name': '$effective_install_type'."
+            return 1
+            ;;
         esac
 
         log DEBUG "Finished processing '$in_name'. Marking as 'installed'."
-        insmod[$in_name]="installed"
-        log DEBUG "Tracker state after marking 'installed': ${!insmod[@]}"
-        log DEBUG "Exiting resolve_mod for: '$in_name'. Final tracker state: ${!insmod[@]}"
+        balmod[$in_name]="installed"
+        log DEBUG "Tracker state after marking 'installed': ${!balmod[@]}"
+        log DEBUG "Exiting resolve_mod for: '$in_name'. Final tracker state: ${!balmod[@]}"
         return 0
     }
 
@@ -860,7 +908,10 @@ m_remove() {
     if [[ -d "$installed_path" ]]; then
         read -rp "Remove '$modname' ($installed_path)? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
-            rm -rf "$installed_path" || { log ERROR "Failed to remove '$installed_path'."; return 1; }
+            rm -rf "$installed_path" || {
+                log ERROR "Failed to remove '$installed_path'."
+                return 1
+            }
             log INFO "Removed '$modname'."
         else
             log INFO "Skipping removal."
@@ -873,7 +924,10 @@ m_remove() {
     if [[ -d "$downloaded_path" ]]; then
         read -rp "Remove '$modname' from your downloads ($downloaded_path)? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
-            rm -rf "$downloaded_path" || { log ERROR "Failed to remove '$downloaded_path'."; return 1; }
+            rm -rf "$downloaded_path" || {
+                log ERROR "Failed to remove '$downloaded_path'."
+                return 1
+            }
             log INFO "Removed '$modname'."
         else
             log INFO "Skipping removal."
@@ -885,7 +939,10 @@ m_remove() {
     if [[ -f "$archive_file" ]]; then
         read -rp "Remove disabled mod '$modname' ($archive_file)? [Y/n] " yn
         if [[ "$yn" == [Yy]* ]]; then
-            rm -f "$archive_file" || { log ERROR "Failed to remove '$archive_file'."; return 1; }
+            rm -f "$archive_file" || {
+                log ERROR "Failed to remove '$archive_file'."
+                return 1
+            }
             log INFO "Removed '$modname'."
         else
             log INFO "Skipping removal."
@@ -926,7 +983,10 @@ m_disable() {
         return 0
     fi
 
-    mkdir -p "$DISABLED_DIR" || { log ERROR "Could not create disabled archives directory '$DISABLED_DIR'."; return 1; }
+    mkdir -p "$DISABLED_DIR" || {
+        log ERROR "Could not create disabled archives directory '$DISABLED_DIR'."
+        return 1
+    }
     log VERBOSE "Disabling mod: $modname"
     tar -czf "$archive_file" -C "$(dirname "$installed_path")" "$(basename "$installed_path")" || {
         log ERROR "Failed to create archive for '$modname'."
@@ -961,7 +1021,10 @@ m_enable() {
     fi
 
     log VERBOSE "Extracting and enabling mod: $modname"
-    mkdir -p "$MODS_DIR" || { log ERROR "Could not create mods directory '$MODS_DIR'."; return 1; }
+    mkdir -p "$MODS_DIR" || {
+        log ERROR "Could not create mods directory '$MODS_DIR'."
+        return 1
+    }
     tar -xzf "$archive_file" -C "$MODS_DIR" || {
         log ERROR "Failed to extract archive for '$modname'."
         return 1
@@ -1008,7 +1071,7 @@ m_list() {
     return 0
 }
 
-# Searches for available mods in active repositories.
+## Searches for available mods in active repositories.
 m_search() {
     log DEBUG "Entering m_search for query: $1"
     check jq || return 1
@@ -1016,10 +1079,13 @@ m_search() {
     local query="$1"
     local mods_index_file="$DOWNLOAD_DIR/mods_index.json"
 
-    r_sync || { log ERROR "Failed to sync repositories. Cannot search mods."; return 1; }
+    r_sync || {
+        log ERROR "Failed to sync repositories. Cannot search mods." "${FUNCNAME[0]}" "${BASH_LINENO[0]}";
+        return 1
+    }
 
     if [[ ! -f "$mods_index_file" ]]; then
-        log ERROR "No aggregated mod index found. Please add a repository first using 'jkrsh repo add'."
+        log ERROR "No aggregated mod index found. Please add a repository first using 'jkrsh repo add'." "${FUNCNAME[0]}" "${BASH_LINENO[0]}";
         return 1
     fi
 
@@ -1027,18 +1093,25 @@ m_search() {
     local search_results=$(jq -r --arg query "$query" '
         .[] | select(.name | ascii_downcase | contains($query | ascii_downcase) or
                      (.description // "" | ascii_downcase | contains($query | ascii_downcase))) |
-        "Found: \( .name ) (Category: \( .category // "Unknown" ), Install Type: \( .install_type // "auto" )) - \( .download_url ) (Dependencies: \( (.dependencies // []) | join(", ") | if . == "" then "None" else . end ))"
+        "--- \( .name ) ---\n" +
+        "Category: \( .category // "Unknown" )\n" +
+        "Install Type: \( .install_type // "auto" )\n" +
+        "Dependencies: \( (.dependencies // []) | join(", ") | if . == "" then "None" else . end )\n" +
+        "Download: \( .download_url )\n"
     ' "$mods_index_file" | sort)
 
     if [[ -z "$search_results" ]]; then
         log INFO "'$query' not found. Nothing to do."
         return 1
     else
+        log INFO "--- '$query' results: ---"
         log SILENT "$search_results"
+        log INFO "--------------------------------"
     fi
     log DEBUG "Exiting m_search."
     return 0
 }
+
 
 # --- Handles install subcommands
 # Dispatches component installation subcommands.
@@ -1089,7 +1162,10 @@ i_native() {
         return 0
     fi
 
-    check love || { log ERROR "'love' executable not found. Please install LÖVE (love2d.org) for native Balatro to work."; return 1; }
+    check love || {
+        log ERROR "'love' executable not found. Please install LÖVE (love2d.org) for native Balatro to work."
+        return 1
+    }
 
     local src=""
     if steam_check; then
@@ -1113,8 +1189,14 @@ i_native() {
     fi
 
     log VERBOSE "Copying Balatro files from '$src' to '$GAME_PATH'..."
-    sudo mkdir -p "$GAME_PATH" || { log ERROR "Could not create target directory '$GAME_PATH'. Check permissions."; return 1; }
-    sudo rsync -a --delete "$src/" "$GAME_PATH/" || { log ERROR "Failed to copy Balatro files to '$GAME_PATH'. Check permissions."; return 1; }
+    sudo mkdir -p "$GAME_PATH" || {
+        log ERROR "Could not create target directory '$GAME_PATH'. Check permissions."
+        return 1
+    }
+    sudo rsync -a --delete "$src/" "$GAME_PATH/" || {
+        log ERROR "Failed to copy Balatro files to '$GAME_PATH'. Check permissions."
+        return 1
+    }
     log INFO "Balatro files copied to '$GAME_PATH'."
 
     local scr="/tmp/balatro-native-temp-$(date +%s%N).sh"
@@ -1142,10 +1224,18 @@ fi
 \"\$LOVE_BIN\" \"\$GAME_DIR/Balatro.exe\" \"\$@\"
 EOF
 
-    chmod +x "$scr" || { log ERROR "Could not make temporary native launcher script executable."; rm -f "$scr"; return 1; }
+    chmod +x "$scr" || {
+        log ERROR "Could not make temporary native launcher script executable."
+        rm -f "$scr"
+        return 1
+    }
 
     log VERBOSE "Installing native launcher script to '$GAME_BIN'..."
-    sudo mv "$scr" "$GAME_BIN" || { log ERROR "Could not install Balatro Native launcher script to '$GAME_BIN'. Check permissions."; rm -f "$scr"; return 1; }
+    sudo mv "$scr" "$GAME_BIN" || {
+        log ERROR "Could not install Balatro Native launcher script to '$GAME_BIN'. Check permissions."
+        rm -f "$scr"
+        return 1
+    }
     log INFO "Balatro Native installed successfully."
     log DEBUG "Finished i_native."
     return 0
@@ -1160,7 +1250,10 @@ i_wine() {
     if [[ -d "$WINEPREFIX" ]]; then
         log INFO "Wine prefix '$WINEPREFIX' already exists. Skipping creation."
     else
-        mkdir -p "$(dirname "$WINEPREFIX")" || { log ERROR "Could not create parent directory for Wineprefix."; return 1; }
+        mkdir -p "$(dirname "$WINEPREFIX")" || {
+            log ERROR "Could not create parent directory for Wineprefix."
+            return 1
+        }
         log INFO "Creating Wine prefix '$WINEPREFIX'..."
         WINEPREFIX="$WINEPREFIX" "$WINE_BIN" wineboot -u || {
             log ERROR "Failed to create Wine prefix '$WINEPREFIX'."
@@ -1252,7 +1345,10 @@ i_steammodded() {
             return 1
         }
     else
-        mkdir -p "$(dirname "$mod_dir")" || { log ERROR "Could not create parent directory for SMODS."; return 1; }
+        mkdir -p "$(dirname "$mod_dir")" || {
+            log ERROR "Could not create parent directory for SMODS."
+            return 1
+        }
         git clone "$repo" "$mod_dir" || {
             log ERROR "Download failed."
             return 1
@@ -1341,7 +1437,10 @@ r_add() {
         return 1
     fi
 
-    mv "$repo_file.tmp" "$repo_file" || { log ERROR "Failed to move temporary repo file to '$repo_file'."; return 1; }
+    mv "$repo_file.tmp" "$repo_file" || {
+        log ERROR "Failed to move temporary repo file to '$repo_file'."
+        return 1
+    }
 
     log INFO "Repository '$repo_name' added successfully."
     r_sync
@@ -1368,7 +1467,10 @@ r_delete() {
 
     read -rp "Are you sure you want to delete repository '$repo_name' ($repo_file)? [Y/n] " yn
     if [[ "$yn" == [Yy]* ]]; then
-        rm -f "$repo_file" || { log ERROR "Failed to delete repository file '$repo_file'."; return 1; }
+        rm -f "$repo_file" || {
+            log ERROR "Failed to delete repository file '$repo_file'."
+            return 1
+        }
         log INFO "Repository '$repo_name' deleted."
         r_sync
     else
@@ -1389,7 +1491,7 @@ r_list() {
         if [[ -f "$repo_file" ]]; then
             found_repos=$((found_repos + 1))
             local repo_info=$(jq -r '{name: .name, author: .author, description: .description, url: .url, mod_count: (.mods | length)}' "$repo_file")
-            
+
             local name=$(echo "$repo_info" | jq -r '.name')
             local author=$(echo "$repo_info" | jq -r '.author')
             local desc=$(echo "$repo_info" | jq -r '.description')
@@ -1432,7 +1534,10 @@ r_sync() {
         fi
     done
 
-    echo "$all_mods_json" > "$aggregated_mods_file" || { log ERROR "Failed to write aggregated mod index to '$aggregated_mods_file'."; return 1; }
+    echo "$all_mods_json" >"$aggregated_mods_file" || {
+        log ERROR "Failed to write aggregated mod index to '$aggregated_mods_file'."
+        return 1
+    }
     local total_mods=$(echo "$all_mods_json" | jq '. | length')
     log INFO "Aggregated $total_mods mods into '$aggregated_mods_file'."
     log DEBUG "Finished r_sync."
@@ -1442,7 +1547,10 @@ r_sync() {
 # --- Locks script so nothing breaks
 lock() {
     log VERBOSE "Attempting to acquire lock."
-    echo $$ >"$LOCKFILE" || { log ERROR "Could not create lock file '$LOCKFILE'. Check permissions."; exit 1; }
+    echo $$ >"$LOCKFILE" || {
+        log ERROR "Could not create lock file '$LOCKFILE'. Check permissions."
+        exit 1
+    }
     cleanup() {
         rm -f "$LOCKFILE"
         log DEBUG "Cleaned up lockfile."
@@ -1455,23 +1563,35 @@ lock() {
 # ----------- Main function
 # Main entry point for the script.
 main() {
-
     if [[ ! -f "$CONF" ]]; then
-        mkconf || { log ERROR "Failed to create default config. Exiting."; exit 1; }
+        mkconf || {
+            log ERROR "failed to create default config. exiting."
+            exit 1
+        }
     fi
 
-    load_config || { log ERROR "Failed to load configuration. Exiting."; exit 1; }
+    load_config || {
+        log ERROR "failed to load configuration. exiting."
+        exit 1
+    }
 
-    lock || { log ERROR "Failed to acquire lock. Exiting."; exit 1; }
+    lock || {
+        log ERROR "failed to acquire lock. exiting."
+        exit 1
+    }
 
-    check jq || { log ERROR "'jq' is required for this mod manager. Please install it."; exit 1; }
+    check jq || {
+        log ERROR "'jq' is required for this mod manager. please install it."
+        exit 1
+    }
 
-    mkrepo || { log WARNING "Failed to create default repository file."; }
+    mkrepo || {
+        log WARNING "failed to create default repository file."
+    }
 
     flags "$@"
 
-
-    log VERBOSE "Running jkrsh $ver"
+    log VERBOSE "running jkrsh $ver"
     log DEBUG "CONF: $CONF. $DEBUG|$MODE|$NOINSTALL|$MODDED_LAUNCH|$ver"
 
     if [[ "$SHOW_HELP" == 1 ]]; then
@@ -1487,8 +1607,9 @@ main() {
         subcommand "${ARGS[@]}"
     else
         help
+        exit 0
     fi
-    exit 0
 }
+
 
 main "$@"
